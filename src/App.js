@@ -1,5 +1,4 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 import Tab from '@material-ui/core/Tab'
@@ -14,16 +13,9 @@ import background from './background.jpg'
 
 import './App.css'
 
-const addCharacter = (name) => {
-  return {
-    type: 'ADD_TREE',
-    name: name,
-  }
-}
-
 class App extends React.Component {
-  constructor(props, context){
-    super(props, context)
+  constructor(props){
+    super(props)
     this.state = {
       path: 'all',
       allRoutesChildDefiners: ["Corrin", "Azura", "Silas", "Kaze", "Jakob"],
@@ -36,10 +28,6 @@ class App extends React.Component {
       birRouteChild: ["Shiro", "Kiragi", "Asugi", "Mitama", "Hisame", "Caeldori", "Rhajat", "Selkie"],
       conRouteChild: ["Siegbert", "Forrest", "Soleil", "Ophelia", "Nina", "Percy", "Ignatius", "Velouria"]
     }
-  }
-
-  createCharacter = (name) => {
-    this.context.store.dispatch(addCharacter(name))
   }
 
   pathSelected = (e, newValue) => {
@@ -82,10 +70,6 @@ class App extends React.Component {
   }
 }
 
-App.contextTypes ={
-  store: PropTypes.object
-}
-
 const mapStateToProps = (state) => {
   return {
     characters: state.characters,
@@ -93,8 +77,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {
-  addCharacter
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, {})(App)
