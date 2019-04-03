@@ -36,16 +36,6 @@ class App extends React.Component {
       birRouteChild: ["Shiro", "Kiragi", "Asugi", "Mitama", "Hisame", "Caeldori", "Rhajat", "Selkie"],
       conRouteChild: ["Siegbert", "Forrest", "Soleil", "Ophelia", "Nina", "Percy", "Ignatius", "Velouria"]
     }
-    //  Redux store
-    this.state.allRoutesChildDefiners.map( name => this.createCharacter(name) )
-    this.state.birRouteChildDefiners.map( name => this.createCharacter(name) )
-    this.state.conRouteChildDefiners.map( name => this.createCharacter(name) )
-    this.state.birRouteMates.map( name => this.createCharacter(name) )
-    this.state.conRouteMates.map( name => this.createCharacter(name) )
-    this.state.revRouteMates.map( name => this.createCharacter(name) )
-    this.state.allRoutesChild.map( name => this.createCharacter(name) )
-    this.state.birRouteChild.map( name => this.createCharacter(name) )
-    this.state.conRouteChild.map( name => this.createCharacter(name) )
   }
 
   createCharacter = (name) => {

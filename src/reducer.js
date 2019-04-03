@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import CharactersData from './database.js'
+import Database from './database.js'
 
 const supportTree = (state = {}, action) => {
   const id = state.id === undefined ? 0 : 1 + state.id++
@@ -18,31 +18,20 @@ const supportTree = (state = {}, action) => {
   }
 }
 
-const cleanName = (nameR) => {
-  const hasMinus = nameR.indexOf('-')
-  const minIndex = hasMinus > 0 ? hasMinus + 1 : 0
-  const hasDot = nameR.indexOf('.')
-  const maxIndex = hasDot > 0 ? hasDot : nameR.length
-  return nameR.substring(minIndex, maxIndex)
-}
+const charactersInitialState = Object.keys(Database.characters)
+                                     .map( (name, index) => {
+                                        return {
+                                          name: name,
+                                          friend: 'None',
+                                          support: 'None'
+                                        }})
 
-const getChildName = (parentName) => {
-  for(var key in CharactersData){
-    if(key.indexOf(parentName) !== -1 ){
-      const name = cleanName(CharactersData[key].child.name)
-      return name
-    }
-  }
-}
-
-const characters = (state = [], action) => {
+const characters = (state = charactersInitialState, action) => {
   switch(action.type){
     case 'ADD_TREE':
-      const childName = getChildName(action.name)
       return [
         ...state,
         {
-          id: state.length,
           name: action.name,
           friend: 'None',
           support: 'None'
