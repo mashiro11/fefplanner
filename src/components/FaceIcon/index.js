@@ -21,8 +21,6 @@ const FaceIcon = (props, context) => {
       name: props.name
     })
   }
-
-  console.log("image: ", props.name)
   return(
     <div>
       {props.name ?

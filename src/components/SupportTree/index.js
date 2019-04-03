@@ -15,7 +15,7 @@ const SupportTree = (props) => {
         {props.character.name}
       </Typography>
     </CardContent>
-    <Grid container direction="row" justify="center" spacing={2} style={{padding:2}}>
+    <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
           <Grid item xs={4} sm={4} lg={4} xl={4}>
             <FaceIcon name={props.character.support.Friend} />
           </Grid>
@@ -29,7 +29,7 @@ const SupportTree = (props) => {
       <Typography>
         Child
       </Typography>
-      <Grid container direction="row" justify="center" spacing={2} style={{padding:2}}>
+      <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
           <Grid item xs={4} sm={4} lg={4} xl={4}>
             <FaceIcon name={props.character.child.support.Friend} />
           </Grid>

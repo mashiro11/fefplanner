@@ -14,15 +14,19 @@ const styles = {
 }
 
 const CharacterStatus = (props) => {
+  const { character } = props
     return (
       <div>
         <Paper style={styles.pannel}>
-          <Grid container xs={12} sm={12} lg={4} xl={2}>
-            <Grid item>
-              <Character info={ props.character.name } />
+          <Grid container>
+            <Grid item xs={2} sm={2} lg={2}>
+              <Character info={ character.name } />
             </Grid>
-            <Grid item>
-              <Status />
+            <Grid item xs={2} sm={2} lg={2}>
+              <Status
+                grownthRate={ character.grownthRate }
+                maxModifiers={ character.maxModifiers }
+                />
             </Grid>
           </Grid>
         </Paper>

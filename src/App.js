@@ -35,6 +35,8 @@ class App extends React.Component {
   }
 
   render() {
+    const { characters } = this.props
+    const { status } = this.props
     return (
       <div className="App">
         <img src={background} height="200" alt="Fire Emblem: Fates" />
@@ -64,7 +66,7 @@ class App extends React.Component {
             ): null }
         </Grid>
         { undefined ? <CharacterList /> : null }
-        { this.props.status.name ? <CharacterStatus character={this.props.status} /> : null }
+        { status.name ? <CharacterStatus character={characters.find( character => character.name === status.name)} /> : null }
       </div>
     )
   }

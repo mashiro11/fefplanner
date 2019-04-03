@@ -23,7 +23,8 @@ const styles={
   }
 }
 
-const Status = () => {
+const Status = (props) => {
+  const { grownthRate, maxModifiers } = props
   return(
     <Paper style={styles.paper}>
       <Table style={styles.table}>
@@ -43,25 +44,11 @@ const Status = () => {
         <TableBody>
           <TableRow>
             <TableCell>Status Modifyer</TableCell>
-            <TableCell>Hp</TableCell>
-            <TableCell>Str</TableCell>
-            <TableCell>Mag</TableCell>
-            <TableCell>Skill</TableCell>
-            <TableCell>Speed</TableCell>
-            <TableCell>Luck</TableCell>
-            <TableCell>Def</TableCell>
-            <TableCell>Res</TableCell>
+            {maxModifiers.map((item, index) => <TableCell key={index}>{item}</TableCell>)}
           </TableRow>
           <TableRow>
           <TableCell>Base Grownth</TableCell>
-            <TableCell>HP</TableCell>
-            <TableCell>Str</TableCell>
-            <TableCell>Mag</TableCell>
-            <TableCell>Skill</TableCell>
-            <TableCell>Speed</TableCell>
-            <TableCell>Luck</TableCell>
-            <TableCell>Def</TableCell>
-            <TableCell>Res</TableCell>
+            {grownthRate.map((item, index) => <TableCell key={index}>{item}</TableCell>)}
           </TableRow>
           <TableRow>
             <TableCell>Class Grownth</TableCell>

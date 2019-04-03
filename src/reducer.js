@@ -18,12 +18,24 @@ const supportTree = (state = {}, action) => {
   }
 }
 
-const charactersInitialState = Object.keys(Database.characters)
-                                     .map( (name, index) => {
+const charactersInitialState = Object.values(Database.characters)
+                                     .map( (character, index) => {
                                         return {
-                                          name: name,
+                                          name: character.name,
+                                          japanese: character.japanese,
+                                          path: character.path,
+                                          childDefiner: character.childDefiner,
+                                          isChild:character.isChild,
+                                          gender: character.gender,
+                                          skill: character.skill,
+                                          charClass: character.charClass,
                                           friend: 'None',
-                                          support: 'None'
+                                          support: 'None',
+                                          grownthRate: character.grownthRate,
+                                          maxModifiers: character.maxModifiers,
+                                          supportList: character.supportList,
+                                          choosenClasses: character.choosenClasses,
+                                          choosenSkills: character.choosenSkills
                                         }})
 
 const characters = (state = charactersInitialState, action) => {
