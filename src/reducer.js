@@ -35,7 +35,7 @@ const getChildName = (parentName) => {
   }
 }
 
-const supportTreeList = (state = [], action) => {
+const characters = (state = [], action) => {
   switch(action.type){
     case 'ADD_TREE':
       const childName = getChildName(action.name)
@@ -44,11 +44,8 @@ const supportTreeList = (state = [], action) => {
         {
           id: state.length,
           name: action.name,
-          childName: childName,
           friend: 'None',
-          support: 'None',
-          childFriend: 'None',
-          childSupport: 'None'
+          support: 'None'
         }
       ]
     case 'CHANGE_SUPPORT':
@@ -72,7 +69,7 @@ const status = (state = {}, action) => {
   }
 }
 const reducer = combineReducers({
-  supportTreeList,
+  characters,
   status
 })
 

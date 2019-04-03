@@ -14,7 +14,7 @@ import background from './background.jpg'
 
 import './App.css'
 
-const addTree = (name) => {
+const addCharacter = (name) => {
   return {
     type: 'ADD_TREE',
     name: name,
@@ -28,16 +28,28 @@ class App extends React.Component {
       path: 'all',
       allRoutesChildDefiners: ["Corrin", "Azura", "Silas", "Kaze", "Jakob"],
       birRouteChildDefiners: ["Ryoma", "Takumi", "Saizo", "Hinata", "Azama", "Subaki", "Hayato", "Kaden"],
-      conRouteChildDefiners: ["Xander", "Leo", "Laslow", "Odin", "Niles", "Arthur", "Benny", "Keaton"]
+      conRouteChildDefiners: ["Xander", "Leo", "Laslow", "Odin", "Niles", "Arthur", "Benny", "Keaton"],
+      birRouteMates: ["Hinoka", "Sakura", "Kagero", "Oboro", "Setsuna", "Hana", "Rinkah", "Orochi", "Reina", "Scarlet", "Yukimura"],
+      conRouteMates: ["Camilla", "Elise", "Peri", "Selena", "Beruka", "Effie", "Nyx", "Charlotte", "Flora", "Gunther"],
+      revRouteMates: ["Fuuga"],
+      allRoutesChild: ["Kana", "Shigure", "Dwyer", "Sophie", "Midori"],
+      birRouteChild: ["Shiro", "Kiragi", "Asugi", "Mitama", "Hisame", "Caeldori", "Rhajat", "Selkie"],
+      conRouteChild: ["Siegbert", "Forrest", "Soleil", "Ophelia", "Nina", "Percy", "Ignatius", "Velouria"]
     }
     //  Redux store
-    this.state.allRoutesChildDefiners.map( name => this.createTree(name) )
-    this.state.birRouteChildDefiners.map( name => this.createTree(name) )
-    this.state.conRouteChildDefiners.map( name => this.createTree(name) )
+    this.state.allRoutesChildDefiners.map( name => this.createCharacter(name) )
+    this.state.birRouteChildDefiners.map( name => this.createCharacter(name) )
+    this.state.conRouteChildDefiners.map( name => this.createCharacter(name) )
+    this.state.birRouteMates.map( name => this.createCharacter(name) )
+    this.state.conRouteMates.map( name => this.createCharacter(name) )
+    this.state.revRouteMates.map( name => this.createCharacter(name) )
+    this.state.allRoutesChild.map( name => this.createCharacter(name) )
+    this.state.birRouteChild.map( name => this.createCharacter(name) )
+    this.state.conRouteChild.map( name => this.createCharacter(name) )
   }
 
-  createTree = (name) => {
-    this.context.store.dispatch(addTree(name))
+  createCharacter = (name) => {
+    this.context.store.dispatch(addCharacter(name))
   }
 
   pathSelected = (e, newValue) => {
@@ -56,13 +68,9 @@ class App extends React.Component {
         </Tabs>
         <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.state.allRoutesChildDefiners.map((character, index) =>
-            {
-              return(
-                <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
-                  <SupportTree character={Database.characters[character]} />
-                </Grid>
-              )
-            }
+              <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                <SupportTree character={Database.characters[character]} />
+              </Grid>
           )}
           {this.state.path === 'bir' || this.state.path === 'rev'?
             this.state.birRouteChildDefiners.map((character, index) =>
@@ -90,13 +98,13 @@ App.contextTypes ={
 
 const mapStateToProps = (state) => {
   return {
-    supportTreeList: state.supportTreeList,
+    characters: state.characters,
     status: state.status
   }
 }
 
 const mapDispatchToProps = {
-  addTree
+  addCharacter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
