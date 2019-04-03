@@ -17,7 +17,7 @@ class CharacterList extends Component {
     var id = 0
     return (
       nameList.map(name => (
-        <Grid item xs={24} sm={6} lg={3} xl={2} key={id++}>
+        <Grid item xs={6} sm={3} lg={2} xl={1} key={id++}>
           <Character info={name} />
         </Grid>
       ))

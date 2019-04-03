@@ -1,4 +1,3 @@
-import React from 'react'
 const skillDescription = [];
 //  Songstress
 skillDescription["Luck+4"] = "Increase Luck by 4";
@@ -528,48 +527,48 @@ classes["Kitsune"] = new CharClass("Kitsune");
 classes["NineTails"] = new CharClass("NineTails");
 
 const characters = {};
-characters["Kamui-Corrin"] = new Character("Kamui-Corrin");
-characters["Aqua-Azura"] = new Character("Aqua-Azura");
-characters["Cyrus-Silas"] = new Character("Cyrus-Silas");
-characters["Suzukaze-Kaze"] = new Character("Suzukaze-Kaze");
-characters["Joker-Jakob"] = new Character("Joker-Jakob");
+characters["Corrin"] = new Character("Corrin");
+characters["Azura"] = new Character("Azura");
+characters["Silas"] = new Character("Silas");
+characters["Kaze"] = new Character("Kaze");
+characters["Jakob"] = new Character("Jakob");
 characters["Felicia"] = new Character("Felicia");
-characters["Mozume-Mozu"] = new Character("Mozume-Mozu");
-characters["Ashura-Shura"] = new Character("Ashura-Shura");
+characters["Mozu"] = new Character("Mozu");
+characters["Shura"] = new Character("Shura");
 characters["Ryoma"] = new Character("Ryoma");
 characters["Hinoka"] = new Character("Hinoka");
 characters["Takumi"] = new Character("Takumi");
 characters["Sakura"] = new Character("Sakura");
-characters["Saizou-Saizo"] = new Character("Saizou-Saizo");
-characters["Kagerou-Kagero"] = new Character("Kagerou-Kagero");
-characters["Asama-Azama"] = new Character("Asama-Azama");
+characters["Saizo"] = new Character("Saizo");
+characters["Kagero"] = new Character("Kagero");
+characters["Azama"] = new Character("Azama");
 characters["Setsuna"] = new Character("Setsuna");
 characters["Hinata"] = new Character("Hinata");
 characters["Oboro"] = new Character("Oboro");
-characters["Kazahana-Hana"] = new Character("Kazahana-Hana");
-characters["Tsubaki-Subaki"] = new Character("Tsubaki-Subaki");
-characters["Tsukuyomi-Hayato"] = new Character("Tsukuyomi-Hayato");
-characters["Nishiki-Kaden"] = new Character("Nishiki-Kaden");
+characters["Hana"] = new Character("Hana");
+characters["Subaki"] = new Character("Subaki");
+characters["Hayato"] = new Character("Hayato");
+characters["Kaden"] = new Character("Kaden");
 characters["Orochi"] = new Character("Orochi");
 characters["Rinkah"] = new Character("Rinkah");
-characters["Yuugiri-Reina"] = new Character("Yuugiri-Reina");
-characters["Crimson-Scarlet"] = new Character("Crimson-Scarlet");
+characters["Reina"] = new Character("Reina");
+characters["Scarlet"] = new Character("Scarlet");
 characters["Xander"] = new Character("Xander");
 characters["Camilla"] = new Character("Camilla");
 characters["Leo"] = new Character("Leo");
 characters["Elise"] = new Character("Elise");
-characters["Lazward-Laslow"] = new Character("Lazward-Laslow");
-characters["Pieri-Peri"] = new Character("Pieri-Peri");
-characters["Luna-Selena"] = new Character("Luna-Selena");
-characters["Belka-Beruka"] = new Character("Belka-Beruka");
+characters["Laslow"] = new Character("Laslow");
+characters["Peri"] = new Character("Peri");
+characters["Selena"] = new Character("Selena");
+characters["Beruka"] = new Character("Beruka");
 characters["Odin"] = new Character("Odin");
-characters["Zero-Niles"] = new Character("Zero-Niles");
-characters["Elfie-Effie"] = new Character("Elfie-Effie");
-characters["Harold-Arthur"] = new Character("Harold-Arthur");
+characters["Niles"] = new Character("Niles");
+characters["Effie"] = new Character("Effie");
+characters["Arthur"] = new Character("Arthur");
 characters["Nyx"] = new Character("Nyx");
 characters["Charlotte"] = new Character("Charlotte");
-characters["Benoit-Benny"] = new Character("Benoit-Benny");
-characters["Flannel-Keaton"] = new Character("Flannel-Keaton");
+characters["Benny"] = new Character("Benny");
+characters["Keaton"] = new Character("Keaton");
 characters["Flora"] = new Character("Flora");
 characters["Gunter"] = new Character("Gunter");
 characters["Yukimura"] = new Character("Yukimura");
@@ -632,23 +631,25 @@ function changeObjCharacter(characterName, character){
         /*
             SPECIAL CHILD DEFINERS
         */
-        if(character.name == "Kamui-Corrin"){
-            character.path = "all";
-            character.childDefiner = true;
-            character.isChild = false;
-            character.gender = "male";
-            character.skill = new Skill("Supportive");
-            characters["Kana"] = new Character("Kana");
-            character.child = characters["Kana"];
-            character.supportList["Friend"] = null;
-            character.supportList["Partner"] = null;
-            character.charClass = [[classes["NohrPrinc"]]];
+        if(character.name === "Corrin"){
+            character.japanese = "Kamui"
+            character.path = "all"
+            character.childDefiner = true
+            character.isChild = false
+            character.gender = "male"
+            character.skill = new Skill("Supportive")
+            characters["Kana"] = new Character("Kana")
+            character.child = characters["Kana"]
+            character.supportList["Friend"] = null
+            character.supportList["Partner"] = null
+            character.charClass = [[classes["NohrPrinc"]]]
 
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
-        else if(character.name == "Aqua-Azura"){
+        else if(character.name === "Azura"){
+            character.japanese = "Aqua"
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
@@ -659,9 +660,9 @@ function changeObjCharacter(characterName, character){
             character.child = characters["Shigure"];
 
             character.supportList["Friend"] = ["Elise", "Sakura", "Hinoka"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama", "Tsubaki-Subaki",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Lazward-Laslow", "Zero-Niles"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Saizo", "Hayato", "Kaden", "Azama", "Subaki",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Laslow", "Niles"];
             character.charClass = [[classes["Songstress"], classes["Songstress2"]],
                                    [classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]]];
             /*
@@ -679,17 +680,18 @@ function changeObjCharacter(characterName, character){
         /*
             ALL ROUTES - NON CHILD DEFINERS
         */
-        else if(character.name == "Felicia"){
+        else if(character.name === "Felicia"){
+            character.japanese = "Felicia"
             character.path = "all"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("DevotedPartner");
 
-            character.supportList["Friend"] = ["Pieri-Peri", "Flora", "Kazahana-Hana"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Peri", "Flora", "Hana"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             /*
                 Felicia tem acesso as classes
                     Apothecary,
@@ -705,16 +707,17 @@ function changeObjCharacter(characterName, character){
             character.grownthRate =  [ 40 , 20  , 45  , 45  , 55  , 65  , 20  , 45];
             character.maxModifiers = [  0 , -2  , +2  ,  0  , +1  ,  0  , -1  , +1];
         }
-        else if(character.name == "Mozume-Mozu"){
+        else if(character.name === "Mozu"){
+            character.japanese = "Mozume"
             character.path = "all"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Forager");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
                                    [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -724,20 +727,21 @@ function changeObjCharacter(characterName, character){
         /*
             ALL ROUTES - CHILD DEFINERS
         */
-        else if(character.name == "Joker-Jakob"){
+        else if(character.name === "Jakob"){
+            character.japanese = "Joker"
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("EvasivePartner");
 
-            characters["Dia-Dwyer"] = new Character("Dia-Dwyer");
-            character.child = characters["Dia-Dwyer"];
+            characters["Dwyer"] = new Character("Dwyer");
+            character.child = characters["Dwyer"];
 
-            character.supportList["Friend"] = ["Cyrus-Silas", "Gunter", "Takumi"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                    "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                    "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna" ];
+            character.supportList["Friend"] = ["Silas", "Gunter", "Takumi"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                    "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                    "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna" ];
             character.charClass = [[classes["Troubadourmale"], classes["Butler"], classes["Strategist"]],
                                   [classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]]];
                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -745,7 +749,8 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , +2  ,  -2  , +2  ,  0  , -1  ,  0  , -1];
         }
 
-        else if(character.name == "Cyrus-Silas"){
+        else if(character.name === "Silas"){
+            character.japanese = "Cyrus"
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
@@ -755,10 +760,10 @@ function changeObjCharacter(characterName, character){
             characters["Sophie"] = new Character("Sophie");
             character.child = characters["Sophie"];
 
-            character.supportList["Friend"] = ["Joker-Jakob", "Suzukaze-Kaze", "Ryoma"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                     "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna" ];
+            character.supportList["Friend"] = ["Jakob", "Kaze", "Ryoma"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                     "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna" ];
             character.charClass = [[classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]],
                                    [classes["Mercenary"], classes["Hero"], classes["BowKnight"]]];
                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -766,20 +771,21 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , +1  ,  0  , +2  ,  0  , -1  ,  0  , -1];
         }
 
-        else if(character.name == "Suzukaze-Kaze"){
+        else if(character.name === "Kaze"){
+            character.japanese = "Suzukaze"
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("MiraculousSave");
 
-            characters["Midoriko-Midori"] = new Character("Midoriko-Midori");
-            character.child = characters["Midoriko-Midori"];
+            characters["Midori"] = new Character("Midori");
+            character.child = characters["Midori"];
 
-            character.supportList["Friend"] = ["Cyrus-Silas", "Xander", "Saizou-Saizo"];
-            character.supportList["Partner"] = ["Kamui-Corrin-Female", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                     "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna"
+            character.supportList["Friend"] = ["Silas", "Xander", "Saizo"];
+            character.supportList["Partner"] = ["Corrin-Female", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                     "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna"
                                     ];
             character.charClass = [[classes["Ninja"], classes["Mechanist"], classes["MasterNinja"]],
                                   [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
@@ -790,66 +796,67 @@ function changeObjCharacter(characterName, character){
         /*
             ALL ROUTE - CHILDREN
         */
-        else if(character.name == "Sophie"){
-            /*
-                Não tem gifs de outras classes.
-            */
+        else if(character.name === "Sophie"){
+            character.japanese = "Sophie"
             character.path = "all"
             character.childDefiner = false;
-            character.childDefinerName = "Cyrus-Silas";
+            character.childDefinerName = "Silas";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Mischievous");
-            character.supportList["Friend"] = ["Matoi-Caeldori", "Velor-Velouria", "Soleil"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Shigure", "Dia-Dwyer",
-                                                "Shinonome-Shiro", "Kisaragi-Kiragi", "Hisame", "Grey-Asugi"];
+            character.supportList["Friend"] = ["Caeldori", "Velouria", "Soleil"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer",
+                                                "Shiro", "Kiragi", "Hisame", "Asugi"];
             character.charClass = [[classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]],
                                   [classes["Mercenary"], classes["Hero"], classes["BowKnight"]]];
                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 35,  35  , 10  , 55  , 50  , 35  , 25  , 35];
             character.maxModifiers = [  0 , +2  , +1  , +3  ,  +1  , 0  , +1  ,  0];//Cyrus-Silas + 1
-        }else if(character.name == "Dia-Dwyer"){
+        }else if(character.name === "Dwyer"){
+            character.japanese = "Dia"
             character.path = "all"
             character.childDefiner = false;
-            character.childDefinerName = "Joker-Jakob";
+            character.childDefinerName = "Jakob";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("BornSteward");
-            character.supportList["Friend"] = ["Kisaragi-Kiragi", "Gray-Asugi", "Percy"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Sophie", "Midori",
-                                                "Shara-Rhajat", "Kinu-Selkie", "Matoi-Caeldori", "Mitama"];
+            character.supportList["Friend"] = ["Kiragi", "Gray-Asugi", "Percy"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori",
+                                                "Rhajat", "Selkie", "Caeldori", "Mitama"];
             character.charClass = [[classes["Troubadourmale"], classes["Butler"], classes["Strategist"]],
                                    [classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 45,  45  , 30  , 20  , 30  , 30  , 30  , 35];
             character.maxModifiers = [  0 , +3  , -1  , +3  , +1  ,  0  , +1  ,  0];//Joker-Jakob +1
-        }else if(character.name == "Midoriko-Midori"){
+        }else if(character.name === "Midori"){
+            character.japanese = "Midoriko"
             character.path = "all"
             character.childDefiner = false;
-            character.childDefinerName = "Suzukaze-Kaze";
+            character.childDefinerName = "Kaze";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("LuckyCharm");
-            character.supportList["Friend"] = ["Kana", "Kinu-Selkie", "Ophelia"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Shigure", "Dia-Dwyer",
-                                               "Shinonome-Shiro", "Kisaragi-Kiragi", "Hisame", "Grey-Asugi",
-                                               "Siegebert", "Foleo-Forrest", "Ignis-Ignatius", "Lutz-Percy"];
+            character.supportList["Friend"] = ["Kana", "Selkie", "Ophelia"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer",
+                                               "Shiro", "Kiragi", "Hisame", "Asugi",
+                                               "Siegebert", "Forrest", "Ignatius", "Percy"];
             character.charClass = [[classes["Apothecary"], classes["Merchant"], classes["Mechanist"]],
                                    [classes["Ninja"], classes["Mechanist"], classes["MasterNinja"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 45 , 35  ,  5  , 55  , 35  , 50  , 30  , 20];
             character.maxModifiers = [  0 , -1  , +1  , +3  , +4  , -1  ,  0  , +2];
-        }else if(character.name == "Shigure"){
+        }else if(character.name === "Shigure"){
+            character.japanese = "Shigure"
             character.path = "all"
             character.childDefiner = false;
-            character.childDefinerName = "Aqua-Azura";
+            character.childDefinerName = "Azura";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("PerfectPitch");
-            character.supportList["Friend"] = ["Hisame", "Foleo-Forrest"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana",
-                                                "Sophie", "Midori", "Shara-Rhajat", "Kinu-Selkie", "Matoi-Caeldori", "Mitama",
-                                               "Eponne-Nina", "Velor-Velouria", "Ophelia", "Soleil"];
+            character.supportList["Friend"] = ["Hisame", "Forrest"];
+            character.supportList["Partner"] = ["Corrin", "Kana",
+                                                "Sophie", "Midori", "Rhajat", "Selkie", "Caeldori", "Mitama",
+                                               "Nina", "Velouria", "Ophelia", "Soleil"];
             character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]]];
                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 35,  45  ,  5  , 45  , 35  , 25  , 35  , 25];
@@ -858,10 +865,11 @@ function changeObjCharacter(characterName, character){
         /*
             KANA
         */
-        else if(character.name == "Kana"){
+        else if(character.name === "Kana"){
+            character.japanese = "Kana"
             character.path = "all"
             character.childDefiner = false;
-            character.childDefinerName = "Kamui-Corrin";
+            character.childDefinerName = "Corrin";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("DraconicHeir");
@@ -885,7 +893,8 @@ function changeObjCharacter(characterName, character){
         /*
             NOHR - CHILD DEFINERS
         */
-        else if(character.name == "Xander"){
+        else if(character.name === "Xander"){
+            character.japanese = "Xander"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
@@ -895,35 +904,37 @@ function changeObjCharacter(characterName, character){
             characters["Siegbert"] = new Character("Siegbert");
             character.child = characters["Siegbert"];
 
-            character.supportList["Friend"] = ["Suzukaze-Kaze", "Leo", "Lazward-Laslow", "Ryoma"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
+            character.supportList["Friend"] = ["Kaze", "Leo", "Laslow", "Ryoma"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
                                      "Hinoka", "Sakura"];
             character.charClass = [[classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]],
                                    [classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 45 , 50  ,  5  , 40  , 35  , 60  , 40  , 15];
             character.maxModifiers = [  0 , +2  , -1  , -1  , -1  , +2  , +1  , -2];
-        }else if(character.name == "Leo"){
+        }else if(character.name === "Leo"){
+            character.japanese = "Leo"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Pragmatic");
 
-            characters["Foleo-Forrest"] = new Character("Foleo-Forrest");
-            character.child = characters["Foleo-Forrest"];
+            characters["Forrest"] = new Character("Forrest");
+            character.child = characters["Forrest"];
 
-            character.supportList["Friend"] = ["Xander", "Odin", "Zero-Niles", "Takumi"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
+            character.supportList["Friend"] = ["Xander", "Odin", "Niles", "Takumi"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
                                      "Hinoka", "Sakura"];
             character.charClass = [[classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]],
                                    [classes["Troubadourmale"], classes["Butler"], classes["Strategist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 45 , 25  , 55  , 35  , 45  , 45  , 30  , 45];
             character.maxModifiers = [  0 , -2  , +2  ,  0  , -2  ,  0  ,  0  , +2];
-        }else if(character.name == "Lazward-Laslow"){
+        }else if(character.name === "Laslow"){
+            character.japanese = "Lazward"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
@@ -933,16 +944,17 @@ function changeObjCharacter(characterName, character){
             characters["Soleil"] = new Character("Soleil");
             character.child = characters["Soleil"];
 
-            character.supportList["Friend"] = ["Xander", "Odin", "Flannel-Keaton", "Saizou-Saizo"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                     "Kazahana-Hana", "Orochi"];
+            character.supportList["Friend"] = ["Xander", "Odin", "Keaton", "Saizo"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                     "Hana", "Orochi"];
             character.charClass = [[classes["Mercenary"], classes["Hero"], classes["BowKnight"]],
                                    [classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 50 , 45  ,  0  , 45  , 30  , 45  , 35  , 25];
             character.maxModifiers = [  0 , +1  ,  0  , +2  , -1  , +1  , -1  , -1];
-        }else if(character.name == "Odin"){
+        }else if(character.name === "Odin"){
+            character.japanese = "Odin"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
@@ -952,86 +964,90 @@ function changeObjCharacter(characterName, character){
             characters["Ophelia"] = new Character("Ophelia");
             character.child = characters["Ophelia"];
 
-            character.supportList["Friend"] = ["Leo", "Zero-Niles", "Lazward-Laslow", "Hinata"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                     "Orochi", "Kagerou-Kagero"];
+            character.supportList["Friend"] = ["Leo", "Niles", "Laslow", "Hinata"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                     "Orochi", "Kagero"];
             character.charClass = [[classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]],
                                    [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 55 , 35  , 30  , 55  , 35  , 60  , 40  , 20];
             character.maxModifiers = [  0 ,  0  , +1  , +1  , -1  , +1  ,  0  , -1];
-        }else if(character.name == "Zero-Niles"){
+        }else if(character.name === "Niles"){
+            character.japanese = "Zero"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Kidnap");
 
-            characters["Eponne-Nina"] = new Character("Eponne-Nina");
-            character.child = characters["Eponne-Nina"];
+            characters["Nina"] = new Character("Nina");
+            character.child = characters["Nina"];
 
-            character.supportList["Friend"] = ["Harold-Arthur", "Leo", "Odin", "Tsubaki-Subaki"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
+            character.supportList["Friend"] = ["Arthur", "Leo", "Odin", "Subaki"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
                                      "Oboro", "Setsuna"];
             character.charClass = [[classes["Outlaw"], classes["Adventurer"], classes["BowKnight"]],
                                    [classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 40 , 35  , 20  , 40  , 50  , 30  , 30  , 40];
             character.maxModifiers = [  0 , -2  ,  0  , -1  , +3  ,  0  ,  0  , +1];
-        }else if(character.name == "Harold-Arthur"){
+        }else if(character.name === "Arthur"){
+            character.japanese = "Harold"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Misfortunate");
 
-            characters["Lutz-Percy"] = new Character("Lutz-Percy");
-            character.child = characters["Lutz-Percy"];
+            characters["Percy"] = new Character("Percy");
+            character.child = characters["Percy"];
 
-            character.supportList["Friend"] = ["Benoit-Benny", "Zero-Niles", "Flannel-Keaton", "Asama-Azama"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                     "Kagerou-Kagero", "Setsuna"];
+            character.supportList["Friend"] = ["Benny", "Niles", "Keaton", "Azama"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                     "Kagero", "Setsuna"];
             character.charClass = [[classes["Fighter"], classes["Hero"], classes["Berserker"]],
                                    [classes["Cavalier"], classes["Paladin"],classes["GreatKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 50 , 45  ,  0  , 55  , 35  ,  5  , 45  , 20];
             character.maxModifiers = [  0 , +1  ,  0  , +3  ,  0  , -3  , +1  , -1];
-        }else if(character.name == "Benoit-Benny"){
+        }else if(character.name === "Benny"){
+            character.japanese = "Benoit"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("FierceMien");
 
-            characters["Ignis-Ignatius"] = new Character("Ignis-Ignatius");
-            character.child = characters["Ignis-Ignatius"];
+            characters["Ignatius"] = new Character("Ignatius");
+            character.child = characters["Ignatius"];
 
-            character.supportList["Friend"] = ["Flannel-Keaton", "Harold-Arthur", "Tsukuyomi-Hayato"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
+            character.supportList["Friend"] = ["Keaton", "Arthur", "Hayato"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
                                      "Rinkah", "Oboro"];
             character.charClass = [[classes["Knight"], classes["General"], classes["GreatKnight"]],
                                    [classes["Fighter"], classes["Hero"], classes["Berserker"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 50 , 40  ,  0  , 50  , 10  , 35  , 55  , 45];
             character.maxModifiers = [  0 ,  0  ,  0  ,  0  , -3  ,  0  , +3  , +1];
-        }else if(character.name == "Flannel-Keaton"){
+        }else if(character.name === "Keaton"){
+            character.japanese = "Flannel"
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Collector");
 
-            characters["Velor-Velouria"] = new Character("Velor-Velouria");
-            character.child = characters["Velor-Velouria"];
+            characters["Velouria"] = new Character("Velouria");
+            character.child = characters["Velouria"];
 
-            character.supportList["Friend"] = ["Harold-Arthur", "Benoit-Benny", "Lazward-Laslow", "Nishiki-Kaden"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu",
-                                     "Camilla", "Elise", "Belka-Beruka", "Elfie-Effie", "Charlotte", "Luna-Selena", "Nyx", "Pieri-Peri",
-                                     "Kazahana-Hana", "Rinkah"];
+            character.supportList["Friend"] = ["Arthur", "Benny", "Laslow", "Kaden"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu",
+                                     "Camilla", "Elise", "Beruka", "Effie", "Charlotte", "Selena", "Nyx", "Peri",
+                                     "Hana", "Rinkah"];
             character.charClass = [[classes["Wolfskin"], classes["Wolfssegner"]],
                                    [classes["Fighter"], classes["Hero"], classes["Berserker"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1041,119 +1057,127 @@ function changeObjCharacter(characterName, character){
         /*
             NOHR - CHILDREN
         */
-        else if(character.name == "Siegbert"){
+        else if(character.name === "Siegbert"){
+            character.japanese = "Siegbert"
             character.path = "con"
             character.childDefiner = false;
             character.childDefinerName = "Xander";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("Gallant");
-            character.supportList["Friend"] = ["Kana", "Ignis-Ignatius", "Foleo-Forrest", "Shinonome-Shiro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Sophie", "Midori", "Eponne-Nina", "Ophelia", "Soleil", "Velor-Velouria", "Matoi-Caeldori", "Mitama"];
+            character.supportList["Friend"] = ["Kana", "Ignatius", "Forrest", "Shiro"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Caeldori", "Mitama"];
             character.charClass = [[classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]],
                                    [classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 40,  45  ,  5  , 45  , 45  , 45  , 35  , 20];
             character.maxModifiers = [  0 , +3  ,  0  ,  0  ,  0  , +3  , +2  , -1];
-        }else if(character.name == "Foleo-Forrest"){
+        }else if(character.name === "Forrest"){
+            character.japanese = "Foleo"
             character.path = "con"
             character.childDefiner = false;
             character.childDefinerName = "Leo";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("FierceCounter");
-            character.supportList["Friend"] = ["Shigure", "Siegbert", "Ignis-Ignatius", "Kisaragi-Kiragi"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Sophie", "Midori", "Eponne-Nina", "Ophelia", "Soleil", "Velor-Velouria", "Shara-Rhajat", "Kinu-Selkie"];
+            character.supportList["Friend"] = ["Shigure", "Siegbert", "Ignatius", "Kiragi"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Rhajat", "Selkie"];
 
             character.charClass = [[classes["Troubadourmale"], classes["Butler"], classes["Strategist"]],
                                    [classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 55,  15  , 65  , 20  , 35  , 25  , 25  , 55];
             character.maxModifiers = [  0 , -1  , +3  , +1  , -1  , +1  , +1  , +3];
-        }else if(character.name == "Ignis-Ignatius"){
+        }else if(character.name === "Ignatius"){
+            character.japanese = "Ignis"
             character.path = "con"
             character.childDefiner = false;
-            character.childDefinerName = "Benoit-Benny";
+            character.childDefinerName = "Benny";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("GuardedBravery");
-            character.supportList["Friend"] = ["Siegbert", "Foleo-Forrest", "Lutz-Percy", "Grey-Asugi"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Sophie", "Midori", "Eponne-Nina", "Ophelia", "Soleil", "Velor-Velouria", "Matoi-Caeldori", "Kinu-Selkie"];
+            character.supportList["Friend"] = ["Siegbert", "Forrest", "Percy", "Asugi"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Caeldori", "Selkie"];
 
             character.charClass = [[classes["Knight"], classes["General"], classes["GreatKnight"]],
                                    [classes["Fighter"], classes["Hero"], classes["Berserker"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 40,  50  ,  0  , 40  , 30  , 55  , 45  , 35];
             character.maxModifiers = [  0 , +1  , +1  , +1  , -2  , +1  , +4  , +2];
-        }else if(character.name == "Velor-Velouria"){
+        }else if(character.name === "Velouria"){
+            character.japanese = "Velor"
             character.path = "con"
             character.childDefiner = false;
-            character.childDefinerName = "Flannel-Keaton";
+            character.childDefinerName = "Keaton";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("GoodyBasket");
-            character.supportList["Friend"] = ["Kana", "Sophie", "Eponne-Nina", "Kinu-Selkie"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Shigure", "Dia-Dwyer", "Siegbert", "Foleo-Forrest", "Ignis-Ignatius", "Lutz-Percy", "Kisaragi-Kiragi", "Hisame"];
+            character.supportList["Friend"] = ["Kana", "Sophie", "Nina", "Selkie"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Kiragi", "Hisame"];
 
             character.charClass = [[classes["Wolfskin"], classes["Wolfssegner"]],
                                    [classes["Fighter"], classes["Hero"], classes["Berserker"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 50,  50  ,  0  , 40  , 40  , 35  , 45  , 30];
             character.maxModifiers = [  0 , +4  , +1  , -1  ,  0  , +1  , +3  ,  0];
-        }else if(character.name == "Lutz-Percy"){
+        }else if(character.name === "Percy"){
+            character.japanese = "Lutz"
             character.path = "con"
             character.childDefiner = false;
-            character.childDefinerName = "Harold-Arthur";
+            character.childDefinerName = "Arthur";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("FortunateSon");
-            character.supportList["Friend"] = ["Kana", "Dia-Dwyer", "Ignis-Ignatius", "Hisame"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Sophie", "Midori", "Eponne-Nina", "Ophelia", "Soleil", "Velor-Velouria", "Shara-Rhajat", "Mitama"];
+            character.supportList["Friend"] = ["Kana", "Dwyer", "Ignatius", "Hisame"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Rhajat", "Mitama"];
 
             character.charClass = [[classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]],
                                     [classes["Fighter"], classes["Hero"], classes["Berserker"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 30,  30  ,  5  , 45  , 40  , 75  , 55  , 15];
             character.maxModifiers = [  0 , +2  , +1  , +4  , +1  , -2  , +2  ,  0];
-        }else if(character.name == "Ophelia"){
+        }else if(character.name === "Ophelia"){
+            character.japanese = "Ophelia"
             character.path = "con"
             character.childDefiner = false;
             character.childDefinerName = "Odin";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Bibliophile");
-            character.supportList["Friend"] = ["Midori", "Soleil", "Shara-Rhajat"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Shigure", "Dia-Dwyer", "Siegbert", "Foleo-Forrest", "Ignis-Ignatius", "Lutz-Percy", "Shinonome-Shiro", "Hisame"];
+            character.supportList["Friend"] = ["Midori", "Soleil", "Rhajat"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Shiro", "Hisame"];
 
             character.charClass = [[classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]],
                                    [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 45,  15  , 45  , 40  , 45  , 65  , 20  , 30];
             character.maxModifiers = [  0 , +1  , +2  , +2  ,  0  , +2  , +1  ,  0];
-        }else if(character.name == "Soleil"){
+        }else if(character.name === "Soleil"){
+            character.japanese = "Soleil"
             character.path = "con"
             character.childDefiner = false;
-            character.childDefinerName = "Lazward-Laslow";
+            character.childDefinerName = "Laslow";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Sisterhood");
-            character.supportList["Friend"] = ["Sophie", "Eponne-Nina", "Ophelia", "Mitama"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Shigure", "Dia-Dwyer", "Siegbert", "Foleo-Forrest", "Ignis-Ignatius", "Lutz-Percy", "Kisaragi-Kiragi", "Grey-Asugi"];
+            character.supportList["Friend"] = ["Sophie", "Nina", "Ophelia", "Mitama"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Kiragi", "Asugi"];
 
             character.charClass = [[classes["Mercenary"], classes["Hero"], classes["BowKnight"]],
                                    [classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 25,  60  ,  0  , 35  , 35  , 45  , 35  , 40];
             character.maxModifiers = [  0 , +2  , +1  , +3  ,  0  , +2  ,  0  ,  0];
-        }else if(character.name == "Eponne-Nina"){
+        }else if(character.name === "Nina"){
+            character.japanese = "Eponne"
             character.path = "con"
             character.childDefiner = false;
-            character.childDefinerName = "Zero-Niles";
+            character.childDefinerName = "Niles";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Daydream");
-            character.supportList["Friend"] = ["Soleil", "Velor-Velouria", "Matoi-Caeldori"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Kana", "Shigure", "Dia-Dwyer", "Siegbert", "Foleo-Forrest", "Ignis-Ignatius", "Lutz-Percy", "Shinonome-Shiro", "Grey-Asugi"];
+            character.supportList["Friend"] = ["Soleil", "Velouria", "Caeldori"];
+            character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Shiro", "Asugi"];
 
             character.charClass = [[classes["Outlaw"], classes["Adventurer"], classes["BowKnight"]],
                                    [classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]]];
@@ -1165,134 +1189,143 @@ function changeObjCharacter(characterName, character){
         /*
             NOHR - NON CHILD DEFINERS
         */
-        else if(character.name == "Camilla"){
+        else if(character.name === "Camilla"){
+            character.japanese = "Camilla"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("RosesThorns");
-            character.supportList["Friend"] = ["Elise", "Luna-Selena", "Belka-Beruka", "Hinoka"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
+            character.supportList["Friend"] = ["Elise", "Selena", "Beruka", "Hinoka"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
                                      "Ryoma", "Takumi",
-                                     "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+                                     "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]],
                                    [classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 40 , 65  , 40  , 60  , 60  , 25  , 45  , 60];
             character.maxModifiers = [  0 , +1  , -1  , +1  , +1  , -2  , +1  ,  0];
-        }else if(character.name == "Elise"){
+        }else if(character.name === "Elise"){
+            character.japanese = "Elise"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("LilysPoise");
-            character.supportList["Friend"] = ["Aqua-Azura", "Camilla", "Elfie-Effie", "Sakura"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
+            character.supportList["Friend"] = ["Azura", "Camilla", "Effie", "Sakura"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
                                      "Ryoma", "Takumi",
-                                     "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+                                     "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Troubadourfemale"], classes["Maid"], classes["Strategist"]],
                                    [classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 30 ,  5  , 75  , 45  , 65  , 85  , 15  , 55];
             character.maxModifiers = [  0 , -1  , +3  , -2  , +1  , +1  , -3  , +1];
-        }else if(character.name == "Pieri-Peri"){
+        }else if(character.name === "Peri"){
+            character.japanese = "Pieri"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("BloodThirst");
-            character.supportList["Friend"] = ["Felicia", "Charlotte", "Selena", "Kagerou-Kagero"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Hinata", "Nishiki-Kaden",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Felicia", "Charlotte", "Selena", "Kagero"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Hinata", "Kaden",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Cavalier"], classes["Paladin"], classes["GreatKnight"]],
                                    [classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 50 , 45  ,  5  , 45  , 60  , 35  , 55  , 35];
             character.maxModifiers = [  0 , -1  ,  0  , -1  , +2  ,  0  , +1  ,  0];
-        }else if(character.name == "Luna-Selena"){
+        }else if(character.name === "Selena"){
+            character.japanese = "Luna"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("FierceRival");
-            character.supportList["Friend"] = ["Camilla", "Belka-Beruka", "Pieri-Peri", "Setsuna"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Hinata", "Tsubaki-Subaki",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Camilla", "Beruka", "Peri", "Setsuna"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Hinata", "Subaki",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Mercenary"], classes["Hero"], classes["BowKnight"]],
                                    [classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 50 , 45  ,  5  , 45  , 60  , 35  , 55  , 35];
             character.maxModifiers = [  0 , -1  ,  0  , -1  , +2  ,  0  , +1  ,  0];
-        }else if(character.name == "Belka-Beruka"){
+        }else if(character.name === "Beruka"){
+            character.japanese = "Belka"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Opportunist");
-            character.supportList["Friend"] = ["Camilla", "Charlotte", "Luna-Selena", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Saizou-Saizo", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Camilla", "Charlotte", "Selena", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Saizo", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]],
                                    [classes["Fighter"], classes["Hero"], classes["Berserker"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
-        }else if(character.name == "Elfie-Effie"){
+        }else if(character.name === "Effie"){
+            character.japanese = "Elfie"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Puissance");
-            character.supportList["Friend"] = ["Mozume-Mozu", "Elise", "Nyx", "Kazahana-Hana"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Tsukuyomi-Hayato", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Mozu", "Elise", "Nyx", "Hana"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Hayato", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Knight"], classes["General"], classes["GreatKnight"]],
                                    [classes["Troubadourfemale"], classes["Maid"], classes["Strategist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 55 , 80  ,  0  , 50  , 55  , 60  , 55  , 30];
             character.maxModifiers = [  0 , +3  ,  0  , -1  , +1  ,  0  , -1  , -1];
-        }else if(character.name == "Nyx"){
+        }else if(character.name === "Nyx"){
+            character.japanese = "Nyx"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Countercurse");
-            character.supportList["Friend"] = ["Mozume-Mozu", "Elise", "Charlotte", "Orochi"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Tsubaki-Subaki", "Tsukuyomi-Hayato",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Mozu", "Elise", "Charlotte", "Orochi"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Subaki", "Hayato",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]],
                                    [classes["Outlaw"], classes["Adventurer"], classes["BowKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
             character.maxModifiers = [  0 ,  0  , +3  , -2  , +2  , -1  , -2  , +1];
-        }else if(character.name == "Charlotte"){
+        }else if(character.name === "Charlotte"){
+            character.japanese = "Charlotte"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Unmask");
-            character.supportList["Friend"] = ["Nyx", "Belka-Beruka", "Pieri-Peri", "Rinkah"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Saizou-Saizo", "Nishiki-Kaden",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Nyx", "Beruka", "Peri", "Rinkah"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Saizo", "Kaden",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Fighter"], classes["Hero"], classes["Berserker"]],
                                    [classes["Troubadourfemale"], classes["Maid"], classes["Strategist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
             character.maxModifiers = [  0 , +3  ,  0  ,  0  , +2  ,  0  , -2  , -2];
-        }else if(character.name == "Flora"){
+        }else if(character.name === "Flora"){
+            character.japanese = "Flora"
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("IcyBlood");
             character.supportList["Friend"] = ["Felicia"];
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Troubadourfemale"], classes["Maid"], classes["Strategist"]],
                                    [classes["DarkMage"], classes["Sorcerer"], classes["DarkKnight"]],
                                    [classes["Mercenary"], classes["Hero"], classes["BowKnight"]]];
@@ -1314,16 +1347,17 @@ function changeObjCharacter(characterName, character){
         /*
             HOSHIDO - CHILD DEFINERS
         */
-        else if(character.name == "Ryoma"){
+        else if(character.name === "Ryoma"){
+            character.japanese = "Ryoma"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Bushido");
-            character.supportList["Friend"] = ["Kamui-Corrin", "Cyrus-Cilas", "Takumi", "Saizou-Saizo", "Xander"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Camilla", "Elise"];
-            characters["Shinonome-Shiro"] = new Character("Shinonome-Shiro");
-            character.child = characters["Shinonome-Shiro"];
+            character.supportList["Friend"] = ["Corrin", "Cyrus-Cilas", "Takumi", "Saizo", "Xander"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Camilla", "Elise"];
+            characters["Shiro"] = new Character("Shiro");
+            character.child = characters["Shiro"];
 
             character.charClass = [[classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]],
                                    [classes["Ninja"], classes["Mechanist"], classes["MasterNinja"]]];
@@ -1332,16 +1366,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Takumi"){
+        else if(character.name === "Takumi"){
+            character.japanese = "Takumi"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Competitive");
-            character.supportList["Friend"] = ["Joker-Jakob", "Ryoma", "Hinata", "Leo"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Camilla", "Elise"];
-            characters["Kisaragi-Kiragi"] = new Character("Kisaragi-Kiragi");
-            character.child = characters["Kisaragi-Kiragi"];
+            character.supportList["Friend"] = ["Jakob", "Ryoma", "Hinata", "Leo"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Camilla", "Elise"];
+            characters["Kiragi"] = new Character("Kiragi");
+            character.child = characters["Kiragi"];
 
             character.charClass = [[classes["Archer"], classes["Sniper"], classes["KinshiKnight"]],
                                    [classes["SpearFighter"], classes["SpearMaster"], classes["Basara"]]];
@@ -1350,16 +1385,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Saizou-Saizo"){
+        else if(character.name === "Saizo"){
+            character.japanese = "Saizo"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Pyrotechnics");
-            character.supportList["Friend"] = ["Suzukaze-Kaze", "Tsubaki-Subaki", "Ryoma", "Lazward-Laslow"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Charlotte", "Belka-Beruka"];
-            characters["Grey-Asugi"] = new Character("Grey-Asugi");
-            character.child = characters["Grey-Asugi"];
+            character.supportList["Friend"] = ["Kaze", "Subaki", "Ryoma", "Laslow"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Charlotte", "Beruka"];
+            characters["Asugi"] = new Character("Asugi");
+            character.child = characters["Asugi"];
 
             character.charClass = [[classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]],
                                    [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
@@ -1368,14 +1404,15 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Asama-Azama"){
+        else if(character.name === "Azama"){
+            character.japanese = "Asama"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("DivineRetribution");
-            character.supportList["Friend"] = ["Tsubaki-Subaki", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Harold-Arthur"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Elfie-Effie", "Belka-Beruka"];
+            character.supportList["Friend"] = ["Subaki", "Hayato", "Kaden", "Arthur"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Effie", "Beruka"];
             characters["Mitama"] = new Character("Mitama");
             character.child = characters["Mitama"];
 
@@ -1386,14 +1423,15 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Hinata"){
+        else if(character.name === "Hinata"){
+            character.japanese = "Hinata"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("TripleThreat");
-            character.supportList["Friend"] = ["Tsubaki-Subaki", "Takumi", "Nishiki-Kaden", "Odin"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Luna-Selena", "Pieri-Peri"];
+            character.supportList["Friend"] = ["Subaki", "Takumi", "Kaden", "Odin"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Selena", "Peri"];
             characters["Hisame"] = new Character("Hisame");
             character.child = characters["Hisame"];
 
@@ -1404,16 +1442,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Tsubaki-Subaki"){
+        else if(character.name === "Subaki"){
+            character.japanese = "Tsubaki"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Perfectionist");
-            character.supportList["Friend"] = ["Hinata", "Saizou-Saizo", "Asama-Azama", "Zero-Niles"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Luna-Selena", "Nyx"];
-            characters["Matoi-Caeldori"] = new Character("Matoi-Caeldori");
-            character.child = characters["Matoi-Caeldori"];
+            character.supportList["Friend"] = ["Hinata", "Saizo", "Azama", "Niles"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Selena", "Nyx"];
+            characters["Caeldori"] = new Character("Caeldori");
+            character.child = characters["Caeldori"];
 
             character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]],
                                     [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
@@ -1422,16 +1461,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Tsukuyomi-Hayato"){
+        else if(character.name === "Hayato"){
+            character.japanese = "Tsukuyomi"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Pride");
-            character.supportList["Friend"] = ["Asama-Azama", "Nishiki-Kaden", "Benoit-Benny"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Elfie-Effie", "Nyx"];
-            characters["Shara-Rhajat"] = new Character("Shara-Rhajat");
-            character.child = characters["Shara-Rhajat"];
+            character.supportList["Friend"] = ["Azama", "Kaden", "Benny"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Effie", "Nyx"];
+            characters["Rhajat"] = new Character("Rhajat");
+            character.child = characters["Rhajat"];
 
             character.charClass = [[classes["Diviner"], classes["Onmyoji"], classes["Basara"]],
                                    [classes["OniSavage"], classes["OniChieftain"], classes["Blacksmith"]]];
@@ -1440,16 +1480,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Nishiki-Kaden"){
+        else if(character.name === "Kaden"){
+            character.japanese = "Nishiki"
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
             character.gender = "male";
             character.skill = new Skill("Reciprocity");
-            character.supportList["Friend"] = ["Hinata", "Tsukuyomi-Hayato", "Asama-Azama", "Keaton"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Aqua-Azura", "Felicia", "Mozume-Mozu", "Hinoka", "Sakura", "Kazahana-Hana", "Orochi", "Rinkah", "Kagerou-Kagero", "Oboro", "Setsuna", "Charlotte", "Pieri-Peri"];
-            characters["Kinu-Selkie"] = new Character("Kinu-Selkie");
-            character.child = characters["Kinu-Selkie"];
+            character.supportList["Friend"] = ["Hinata", "Hayato", "Azama", "Keaton"];
+            character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Charlotte", "Peri"];
+            characters["Selkie"] = new Character("Selkie");
+            character.child = characters["Selkie"];
 
             character.charClass = [[classes["Kitsune"], classes["NineTails"]],
                                    [classes["Diviner"], classes["Onmyoji"], classes["Basara"]]];
@@ -1458,14 +1499,15 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 , -2  ,  0  ,  2  ,  3  , -2  , -1  , +1];
         }
 
-        else if(character.name == "Shinonome-Shiro"){
+        else if(character.name === "Shiro"){
+            character.japanese = "Shinonome"
             character.path = "bir"
             character.childDefiner = false;
             character.childDefinerName = "Ryoma";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("NobleCause");
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]],
                                    [classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1473,14 +1515,15 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Kisaragi-Kiragi"){
+        else if(character.name === "Kiragi"){
+            character.japanese = "Kisaragi"
             character.path = "bir"
             character.childDefiner = false;
             character.childDefinerName = "Takumi";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("Optimist");
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Archer"], classes["Sniper"], classes["KinshiKnight"]],
                                    [classes["SpearFighter"], classes["SpearMaster"], classes["Basara"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1488,14 +1531,15 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Grey-Asugi"){
+        else if(character.name === "Asugi"){
+            character.japanese = "Grey"
             character.path = "bir"
             character.childDefiner = false;
-            character.childDefinerName = "Saizou-Saizo";
+            character.childDefinerName = "Saizo";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("SweetTooth");
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]],
                                    [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1503,14 +1547,15 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Hisame"){
+        else if(character.name === "Hisame"){
+            character.japanese = "Hisame"
             character.path = "bir"
             character.childDefiner = false;
             character.childDefinerName = "Hinata";
             character.isChild = true;
             character.gender = "male";
             character.skill = new Skill("Calm");
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]],
                                    [classes["OniSavage"], classes["OniChieftain"], classes["Blacksmith"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1518,10 +1563,11 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Mitama"){
+        else if(character.name === "Mitama"){
+            character.japanese = "Mitama"
             character.path = "bir"
             character.childDefiner = false;
-            character.childDefinerName = "Asama-Azama";
+            character.childDefinerName = "Azama";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Haiku");
@@ -1532,15 +1578,16 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Matoi-Caeldori"){
+        else if(character.name === "Caeldori"){
+            character.japanese = "Matoi"
             character.path = "bir"
             character.childDefiner = false;
-            character.childDefinerName = "Tsubaki-Subaki";
+            character.childDefinerName = "Subaki";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Prodigy");
             character.supportList["Friend"] = ["Felicia"];
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]],
                                    [classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1548,15 +1595,16 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Kinu-Selkie"){
+        else if(character.name === "Selkie"){
+            character.japanese = "Kinu"
             character.path = "bir"
             character.childDefiner = false;
-            character.childDefinerName = "Nishiki-Kaden";
+            character.childDefinerName = "Kaden";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("PlayThings");
             character.supportList["Friend"] = ["Felicia"];
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Kitsune"], classes["NineTails"]],
                                    [classes["Diviner"], classes["Onmyoji"], classes["Basara"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1564,15 +1612,16 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Shara-Rhajat"){
+        else if(character.name === "Rhajat"){
+            character.japanese = "Shara"
             character.path = "bir"
             character.childDefiner = false;
-            character.childDefinerName = "Tsukuyomi-Hayato";
+            character.childDefinerName = "Hayato";
             character.isChild = true;
             character.gender = "female";
             character.skill = new Skill("Vendetta");
             character.supportList["Friend"] = ["Felicia"];
-            character.supportList["Partner"] = ["Kamui-Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Diviner"], classes["Onmyoji"], classes["Basara"]],
                                    [classes["OniSavage"], classes["OniChieftain"], classes["Blacksmith"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1580,16 +1629,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0,   0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
 
-        else if(character.name == "Hinoka"){
+        else if(character.name === "Hinoka"){
+            character.japanese = "Hinoka"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("RallyingCry");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]],
                                    [classes["SpearFighter"], classes["SpearMaster"], classes["Basara"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1597,16 +1647,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Sakura"){
+        else if(character.name === "Sakura"){
+            character.japanese = "Sakura"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("QuietStrength");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["ShrineMaiden"], classes["Priestess"], classes["Onmyoji"]],
                                    [classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1614,16 +1665,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Kagerou-Kagero"){
+        else if(character.name === "Kagero"){
+            character.japanese = "Kagero"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("ShurikenMastery");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]],
                                    [classes["Diviner"], classes["Onmyoji"], classes["Basara"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1631,16 +1683,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Setsuna"){
+        else if(character.name === "Setsuna"){
+            character.japanese = "Setsuna"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Optimistic");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Archer"], classes["Sniper"], classes["KinshiKnight"]],
                                    [classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1648,16 +1701,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Oboro"){
+        else if(character.name === "Oboro"){
+            character.japanese = "Oboro"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("NohrEnmity");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["SpearFighter"], classes["SpearMaster"], classes["Basara"]],
                                    [classes["Apothecary"], classes["Merchant"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1665,16 +1719,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Kazahana-Hana"){
+        else if(character.name === "Hana"){
+            character.japanese = "Kazahana"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("FearsomeBlow");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]],
                                    [classes["ShrineMaiden"], classes["Priestess"], classes["Onmyoji"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1682,16 +1737,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Orochi"){
+        else if(character.name === "Orochi"){
+            character.japanese = "Orochi"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("Capture");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["Diviner"], classes["Onmyoji"], classes["Basara"]],
                                    [classes["Apothecary"], classes["Merchant"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1699,16 +1755,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Rinkah"){
+        else if(character.name === "Rinkah"){
+            character.japanese = "Rinkah"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("FieryBlood");
-            character.supportList["Friend"] = ["Orochi", "Oboro", "Kagerou-Kagero", "Charlotte"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Orochi", "Oboro", "Kagero", "Charlotte"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["OniSavage"], classes["OniChieftain"], classes["Blacksmith"]],
                                    [classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1716,16 +1773,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Reina"){
+        else if(character.name === "Reina"){
+            character.japanese = "Reina"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("MorbidCelebration");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]],
                                    [classes["Diviner"], classes["Onmyoji"], classes["Basara"]],
                                    [classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]]];
@@ -1734,16 +1792,17 @@ function changeObjCharacter(characterName, character){
             character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 
-        else if(character.name == "Crimson-Scarlet"){
+        else if(character.name === "Scarlet"){
+            character.japanese = "Crimson"
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.gender = "female";
             character.skill = new Skill("InExtremis");
-            character.supportList["Friend"] = ["Elfie-Effie", "Nyx", "Oboro"];
-            character.supportList["Partner"] = ["Kamui-Corrin", "Joker-Jakob", "Cyrus-Silas", "Suzukaze-Kaze",
-                                     "Ryoma", "Hinata", "Takumi", "Tsubaki-Subaki", "Saizou-Saizo", "Tsukuyomi-Hayato", "Nishiki-Kaden", "Asama-Azama",
-                                    "Xander", "Leo", "Odin", "Harold-Arthur", "Flannel-Keaton", "Benoit-Benny", "Zero-Niles", "Lazward-Laslow"];
+            character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
+            character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
+                                     "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
+                                    "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
             character.charClass = [[classes["WyvernRider"], classes["WyvernLord"], classes["MaligKnight"]],
                                    [classes["Outlaw"], classes["Adventurer"], classes["BowKnight"]],
                                    [classes["Knight"], classes["General"], classes["GreatKnight"]]];
@@ -1777,7 +1836,7 @@ function CharClass(className, charGender){
         /*
             CAVALIER -> GREAT KNIGHT | PALADIN
         */
-        if(this.name == "Cavalier"){
+        if(this.name === "Cavalier"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png"];
             this.skills = [skills["ElbowRoom"], skills["Shelter"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1785,7 +1844,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  40 , 22  , 15  , 21  , 20  , 24  , 22  , 21];
             this.grownthRate = [  10 , 15  ,  0  , 10  , 10  , 15  , 10  ,  5];
         }
-        if(this.name == "Paladin"){
+        if(this.name === "Paladin"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png"];
             this.skills = [skills["Defender"], skills["Aegis"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1793,7 +1852,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  60 , 31  , 26  , 30  , 30  , 32  , 32  , 32];
             this.grownthRate = [  10 , 15  ,  0  , 10  , 10  , 15  , 10  , 10];
         }
-        if(this.name == "GreatKnight"){
+        if(this.name === "GreatKnight"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png", this.weaponPath+"Axe.png"];
             this.skills = [skills["Luna"], skills["ArmoredBlow"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1805,7 +1864,7 @@ function CharClass(className, charGender){
         /*
             KNIGHT -> GENERAL | GREAT KNIGHT
         */
-        if(this.name == "Knight"){
+        if(this.name === "Knight"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["Defense+2"], skills["NaturalCover"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1813,7 +1872,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  45 , 24  , 15  , 22  , 17  , 22  , 26  , 18];
             this.grownthRate = [  20 , 20  ,  0  , 15  ,  5  , 10  , 20  ,  0];
         }
-        if(this.name == "General"){
+        if(this.name === "General"){
             this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Axe.png"];
             this.skills = [skills["WaryFighter"], skills["Pavise"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1824,7 +1883,7 @@ function CharClass(className, charGender){
         /*
             FIGHTER -> BERSERKER | HERO
         */
-        if(this.name == "Fighter"){
+        if(this.name === "Fighter"){
             this.weapons = [this.weaponPath+"Axe.png"];
             this.skills = [skills["HP+5"], skills["Gamble"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1832,7 +1891,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  45 , 25  , 15  , 23  , 22  , 21  , 19  , 18];
             this.grownthRate = [  20 , 20  ,  0  , 15  , 15  ,  5  ,  5  ,  0];
         }
-        if(this.name == "Berserker"){
+        if(this.name === "Berserker"){
             this.weapons = [this.weaponPath+"Axe.png"];
             this.skills = [skills["RallyStrength"], skills["Axefaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1840,7 +1899,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  70 , 40  , 25  , 32  , 33  , 25  , 27  , 25];
             this.grownthRate = [  30 , 25  ,  0  , 15  , 15  ,  0  ,  0  ,  0];
         }
-        if(this.name == "Hero"){
+        if(this.name === "Hero"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Axe.png"];
             this.skills = [skills["Sol"], skills["Axebreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1852,7 +1911,7 @@ function CharClass(className, charGender){
         /*
             MERCENARY -> BOW KNIGHT | HERO
         */
-        if(this.name == "Mercenary"){
+        if(this.name === "Mercenary"){
             this.weapons = [this.weaponPath+"Sword.png"];
             this.skills = [skills["GoodFortune"], skills["StrongRiposte"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1860,7 +1919,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  40 , 22  , 15  , 24  , 22  , 20  , 21  , 19];
             this.grownthRate = [  10 , 15  ,  0  , 20  , 15  ,  5  , 10  ,  5];
         }
-        if(this.name == "BowKnight"){
+        if(this.name === "BowKnight"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Bow.png"];
             this.skills = [skills["RallySkill"], skills["Shurikenbreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1872,7 +1931,7 @@ function CharClass(className, charGender){
         /*
             OUTLAW -> BOW KNIGHT | ADVENTURER
         */
-        if(this.name == "Outlaw"){
+        if(this.name === "Outlaw"){
             this.weapons = [this.weaponPath+"Bow.png"];
             this.skills = [skills["Locktouch"], skills["Movement+1"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1880,7 +1939,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 19  , 18  , 20  , 24  , 18  , 17  , 22];
             this.grownthRate = [   0 , 10  ,  5  , 10  , 20  ,  0  ,  0  , 20];
         }
-        if(this.name == "Adventurer"){
+        if(this.name === "Adventurer"){
             this.weapons = [this.weaponPath+"Bow.png", this.weaponPath+"Staff.png"];
             this.skills = [skills["LuckySeven"], skills["Pass"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1891,7 +1950,7 @@ function CharClass(className, charGender){
         /*
             WYVERN RIDER -> WYVERN LORD | MALIG KNIGHT
         */
-        if(this.name == "WyvernRider"){
+        if(this.name === "WyvernRider"){
             this.weapons = [this.weaponPath+"Axe.png"];
             this.skills = [skills["Strength+2"], skills["Lunge"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1899,7 +1958,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  40 , 22  , 17  , 21  , 20  , 19  , 24  , 15];
             this.grownthRate = [  10 , 15  ,  5  , 10  , 10  ,  5  , 20  ,  0];
         }
-        if(this.name == "WyvernLord"){
+        if(this.name === "WyvernLord"){
             this.weapons = [this.weaponPath+"Axe.png", this.weaponPath+"Lance.png"];
             this.skills = [skills["RallyDefense"], skills["Swordbreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1907,7 +1966,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  70 , 40  , 25  , 32  , 33  , 25  , 27  , 25];
             this.grownthRate = [  10 , 15  ,  0  , 15  , 10  ,  5  , 20  , 20];
         }
-        if(this.name == "MaligKnight"){
+        if(this.name === "MaligKnight"){
             this.weapons = [this.weaponPath+"Axe.png", this.weaponPath+"Tome.png"];
             this.skills = [skills["SavageBlow"], skills["Trample"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1919,7 +1978,7 @@ function CharClass(className, charGender){
         /*
             DARK MAGE -> SORCERER | DARK KNIGHT
         */
-        if(this.name == "DarkMage"){
+        if(this.name === "DarkMage"){
             this.weapons = [this.weaponPath+"Tome.png"];
             this.skills = [skills["Heartseeker"], skills["MaleficAura"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1927,7 +1986,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 19  , 24  , 16  , 19  , 18  , 19  , 22];
             this.grownthRate = [   0 , 10  , 20  ,  0  , 10  ,  0  ,  5  , 10];
         }
-        if(this.name == "Sorcerer"){
+        if(this.name === "Sorcerer"){
             this.weapons = [this.weaponPath+"Tome.png"];
             this.skills = [skills["Vengeance"], skills["Bowbreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1935,7 +1994,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  50 , 25  , 35  , 26  , 29  , 26  , 29  , 33];
             this.grownthRate = [   0 ,  0  , 25  ,  0  , 10  ,  0  ,  5  , 15];
         }
-        if(this.name == "DarkKnight"){
+        if(this.name === "DarkKnight"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Tome.png"];
             this.skills = [skills["SealMagic"], skills["Lifetaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1947,16 +2006,16 @@ function CharClass(className, charGender){
         /*
             TROUBADOUR -> STRATEGIST | MAID/BUTLER
         */
-        if(this.name == "Troubadour"){
+        if(this.name === "Troubadour"){
             this.weapons = [this.weaponPath+"Staff.png"];
-            this.skills = [skills["Resistance+2"], (this.gender == "female") ? skills["Demoiselle"] : skills["Gentilhomme"]];
+            this.skills = [skills["Resistance+2"], (this.gender === "female") ? skills["Demoiselle"] : skills["Gentilhomme"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  15 ,  0  ,  3  ,  7  ,  5  ,  4  ,  1  ,  4];
             this.maxStatus =   [  35 , 16  , 19  , 24  , 20  , 23  , 16  , 21];
             this.grownthRate = [   0 ,  0  , 10  , 20  , 10  , 15  ,  0  , 15];
         }
-        if(this.name == "Maid" || this.name == "Butler"){
-            this.name = (this.gender == "male") ? "Butler" : "Maid";
+        if(this.name === "Maid" || this.name === "Butler"){
+            this.name = (this.gender === "male") ? "Butler" : "Maid";
 
             this.weapons = [this.weaponPath+"Shuriken.png", this.weaponPath+"Staff.png"];
             this.skills = [skills["LiveToServe"], skills["Tomebreaker"]];
@@ -1965,7 +2024,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  50 , 28  , 31  , 33  , 33  , 32  , 29  , 29];
             this.grownthRate = [   0 , 10  , 10  , 15  , 15  , 10  ,  5  , 10];
         }
-        if(this.name == "Strategist"){
+        if(this.name === "Strategist"){
             this.weapons = [this.weaponPath+"Tome.png", this.weaponPath+"Staff.png"];
             this.skills = [skills["RallyResistance"], skills["Inspiration"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1976,7 +2035,7 @@ function CharClass(className, charGender){
         /*
             WOLFSKIN -> WOLFSSEGNER
         */
-        if(this.name == "Wolfskin"){
+        if(this.name === "Wolfskin"){
             this.weapons = [this.weaponPath+"Stone.png"];
             this.skills = [skills["OddShaped"], skills["Beastbane"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1984,7 +2043,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  45 , 24  , 15  , 18  , 22  , 17  , 21  , 15];
             this.grownthRate = [  20 , 20  ,  0  ,  5  , 15  ,  5  , 10  ,  0];
         }
-        if(this.name == "Wolfssegner"){
+        if(this.name === "Wolfssegner"){
             this.weapons = [this.weaponPath+"Stone.png"];
             this.skills = [skills["BetterOdds"], skills["GrislyWound"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1998,7 +2057,7 @@ function CharClass(className, charGender){
         /*
             SAMURAI -> SWORDMASTER | MASTER OF ARMS
         */
-        if(this.name == "Samurai"){
+        if(this.name === "Samurai"){
             this.weapons = [this.weaponPath+"Sword.png"];
             this.skills = [skills["DuelistBlow"], skills["Vantage"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2006,7 +2065,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Swordmaster"){
+        if(this.name === "Swordmaster"){
             this.weapons = [this.weaponPath+"Sword.png"];
             this.skills = [skills["Astra"], skills["Swordfaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2014,7 +2073,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "MasterOfArms"){
+        if(this.name === "MasterOfArms"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png", this.weaponPath+"Axe.png"];
             this.skills = [skills["SealStrength"], skills["LifeAndDeath"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2025,7 +2084,7 @@ function CharClass(className, charGender){
         /*
             NINJA -> MASTER NINJA | MECHANIST
         */
-        if(this.name == "Ninja"){
+        if(this.name === "Ninja"){
             this.weapons = [this.weaponPath+"Shuriken.png"];
             this.skills = [skills["Locktouch"], skills["PoisonStrike"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2033,7 +2092,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [   5 ,  5  ,  0  , 20  , 20  ,  0  ,  5  , 15];
         }
-        if(this.name == "MasterNinja"){
+        if(this.name === "MasterNinja"){
             this.weapons = [this.weaponPath+"Shuriken.png", this.weaponPath+"Sword.png"];
             this.skills = [skills["Lethality"], skills["Shurikenfaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2041,7 +2100,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Mechanist"){
+        if(this.name === "Mechanist"){
             this.weapons = [this.weaponPath+"Shuriken.png", this.weaponPath+"Bow.png"];
             this.skills = [skills["Golembane"], skills["Replicate"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2052,7 +2111,7 @@ function CharClass(className, charGender){
         /*
             VILLAGER -> MERCHANT | MASTER OF ARMS
         */
-        if(this.name == "Villager"){
+        if(this.name === "Villager"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["Aptitude"], skills["Underdog"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2060,7 +2119,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Merchant"){
+        if(this.name === "Merchant"){
             this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Bow.png"];
             this.skills = [skills["Profiteer"], skills["Spendthrift"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2071,7 +2130,7 @@ function CharClass(className, charGender){
         /*
             APOTHECARY -> MERCHANT | MECHANIST
         */
-        if(this.name == "Apothecary"){
+        if(this.name === "Apothecary"){
             this.weapons = [this.weaponPath+"Bow.png"];
             this.skills = [skills["PotentPotion"], skills["QuickSalve"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2082,7 +2141,7 @@ function CharClass(className, charGender){
         /*
             ONI SAVAGE -> ONI CHIFTAIN | BLACKSMITH
         */
-        if(this.name == "OniSavage"){
+        if(this.name === "OniSavage"){
             this.weapons = [this.weaponPath+"Axe.png"];
             this.skills = [skills["SealResistence"], skills["Shove"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2090,7 +2149,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "OniChieftain"){
+        if(this.name === "OniChieftain"){
             this.weapons = [this.weaponPath+"Axe.png", this.weaponPath+"Tome.png"];
             this.skills = [skills["DeathBlow"], skills["Counter"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2098,7 +2157,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Blacksmith"){
+        if(this.name === "Blacksmith"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Axe.png"];
             this.skills = [skills["SalvageBlow"], skills["Lancebreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2109,7 +2168,7 @@ function CharClass(className, charGender){
         /*
             SPEAR FIGHTER -> BASARA | SPEAR MASTER
         */
-        if(this.name == "SpearFighter"){
+        if(this.name === "SpearFighter"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["SealDefense"], skills["Swap"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2117,7 +2176,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "SpearMaster"){
+        if(this.name === "SpearMaster"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["SealSpeed"], skills["Lancefaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2125,7 +2184,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Basara"){
+        if(this.name === "Basara"){
             this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Tome.png"];
             this.skills = [skills["RendHeaven"], skills["Quixotic"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2136,7 +2195,7 @@ function CharClass(className, charGender){
         /*
             DIVINER -> ONMYOJI | BASARA
         */
-        if(this.name == "Diviner"){
+        if(this.name === "Diviner"){
             this.weapons = [this.weaponPath+"Tome.png"];
             this.skills = [skills["Magic+2"], skills["FutureSight"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2144,7 +2203,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Onmyoji"){
+        if(this.name === "Onmyoji"){
             this.weapons = [this.weaponPath+"Tome.png", this.weaponPath+"Staff.png"];
             this.skills = [skills["RallyMagic"], skills["Tomefaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2155,8 +2214,8 @@ function CharClass(className, charGender){
         /*
             MONK/SHRINE MAIDEN -> ONMYOJI | GREAT MASTER
         */
-        if(this.name == "Monk" || this.name == "ShrineMaiden"){
-            (this.gender == "male") ? this.name = "Monk" : this.name = "ShrineMaiden";
+        if(this.name === "Monk" || this.name === "ShrineMaiden"){
+            (this.gender === "male") ? this.name = "Monk" : this.name = "ShrineMaiden";
 
             this.weapons = [this.weaponPath+"Staff.png"];
             this.skills = [skills["Miracle"], skills["RallyLuck"]];
@@ -2165,9 +2224,9 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "GreatMaster" || this.name == "Priestess"){
-            this.name = (this.gender == "male") ? "GreatMaster" : "Priestess";
-            this.weapons = (this.gender == "male") ? [this.weaponPath+"Lance.png", this.weaponPath+"Staff.png"] : [this.weaponPath+"Bow.png", this.weaponPath+"Staff.png"];
+        if(this.name === "GreatMaster" || this.name === "Priestess"){
+            this.name = (this.gender === "male") ? "GreatMaster" : "Priestess";
+            this.weapons = (this.gender === "male") ? [this.weaponPath+"Lance.png", this.weaponPath+"Staff.png"] : [this.weaponPath+"Bow.png", this.weaponPath+"Staff.png"];
 
             this.skills = [skills["Renewal"], skills["Countermagic"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2178,7 +2237,7 @@ function CharClass(className, charGender){
         /*
             SKY KNIGHT -> FALCON KNIGHT | KINSHI KNIGHT
         */
-        if(this.name == "SkyKnight"){
+        if(this.name === "SkyKnight"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["DartingBlow"], skills["Camaraderie"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2186,7 +2245,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "FalconKnight"){
+        if(this.name === "FalconKnight"){
             this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Staff.png"];
             this.skills = [skills["RallySpeed"], skills["WardingBlow"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2194,7 +2253,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "KinshiKnight"){
+        if(this.name === "KinshiKnight"){
             this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Bow.png"];
             this.skills = [skills["AirSuperiority"], skills["Amaterasu"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2205,7 +2264,7 @@ function CharClass(className, charGender){
         /*
             ARCHER -> SNIPER | KINSHI KNIGHT
         */
-        if(this.name == "Archer"){
+        if(this.name === "Archer"){
             this.weapons = [this.weaponPath+"Bow.png"];
             this.skills = [skills["Skill+2"], skills["QuickDraw"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2213,7 +2272,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "Sniper"){
+        if(this.name === "Sniper"){
             this.weapons = [this.weaponPath+"Bow.png"];
             this.skills = [skills["CertainBlow"], skills["Bowfaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2224,7 +2283,7 @@ function CharClass(className, charGender){
         /*
             KITSUNE -> NINE TAILS
         */
-        if(this.name == "Kitsune"){
+        if(this.name === "Kitsune"){
             this.weapons = [this.weaponPath+"Stone.png"];
             this.skills = [skills["Evenhanded"], skills["Beastbane"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2232,7 +2291,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [  35 , 17  , 15  , 25  , 25  , 18  , 19  , 20];
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
-        if(this.name == "NineTails"){
+        if(this.name === "NineTails"){
             this.weapons = [this.weaponPath+"Stone.png"];
             this.skills = [skills["EvenBetter"], skills["GrislyWound"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2244,7 +2303,7 @@ function CharClass(className, charGender){
         /*
             Special Classes
         */
-        if(this.name == "Songstress"){
+        if(this.name === "Songstress"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["Luck+4"], skills["InspiringSong"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2252,7 +2311,7 @@ function CharClass(className, charGender){
             this.maxStatus =   [   0 ,  0  ,  0  ,  1  ,  3  ,  0  , -3  ,  0];
             this.grownthRate = [   0 ,  0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
-        if(this.name == "Songstress2"){
+        if(this.name === "Songstress2"){
             this.weapons = [this.weaponPath+"Lance.png"];
             this.skills = [skills["VoiceOfPeace"], skills["ForeignPrincess"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2266,7 +2325,7 @@ function CharClass(className, charGender){
             o avatar vai ser mais complexo que os outros aqui
          *
          */
-        if(this.name == "NohrPrinc"){
+        if(this.name === "NohrPrinc"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Stone.png"];
             this.skills = [skills["Nobility"], skills["DragonFang"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2275,7 +2334,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  ,  80 , 80  , 60  , 15  , 35];
         }
 
-        if(this.name == "NohrNoble"){
+        if(this.name === "NohrNoble"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Stone.png", this.weaponPath+"Tome.png"];
             this.skills = [skills["DraconicHex"], skills["NohrianTrust"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2284,7 +2343,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  ,  80 , 80  , 60  , 15  , 35];
         }
 
-        if(this.name == "HoshidoNoble"){
+        if(this.name === "HoshidoNoble"){
             this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Stone.png", this.weaponPath+"Staff.png"];
             this.skills = [skills["DragonWard"], skills["HoshidanUnity"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2293,7 +2352,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  ,  80 , 80  , 60  , 15  , 35];
         }
 
-        if(this.name == "None"){
+        if(this.name === "None"){
             this.weapons = [];
             this.skills = [];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2314,256 +2373,256 @@ function Skill(skillName, gender){
 
     //constructor
     this.setSkill = function(skillName){
-        if(skillName == "DragonFang"){
+        if(skillName === "DragonFang"){
             this.require = "Nobility";
-        }else if(skillName == "DragonWard"){
+        }else if(skillName === "DragonWard"){
             this.require = "DragonFang";
-        }else if(skillName == "HoshidanUnity"){
-            this.require == "DragonWard";
+        }else if(skillName === "HoshidanUnity"){
+            this.require = "DragonWard";
         }
         //Knight
-        else if(skillName == "NaturalCover"){
+        else if(skillName === "NaturalCover"){
             this.require = "Defense+2";
         }
         //Cavalier
-        else if(skillName == "Shelter"){
+        else if(skillName === "Shelter"){
             this.require = "ElbowRoom";
         }
         //Mercenary
-        else if(skillName == "StrongRiposte"){
+        else if(skillName === "StrongRiposte"){
             this.require = "GoodFortune";
         }
         //Fighter
-        else if(skillName == "Gamble"){
+        else if(skillName === "Gamble"){
             this.require = "HP+5";
         }
         //Outlaw
-        else if(skillName == "Movement+1"){
+        else if(skillName === "Movement+1"){
             this.require = "Locktouch";
         }
         //WyvernRider
-        else if(skillName == "Lunge"){
+        else if(skillName === "Lunge"){
             this.require = "Strength+2";
         }
         //DarkMage
-        else if(skillName == "MaleficAura"){
+        else if(skillName === "MaleficAura"){
             this.require = "Heartseeker";
         }
         //Troubadour
-        else if(skillName == "Gentilhomme" || skillName == "Demoiselle"){
+        else if(skillName === "Gentilhomme" || skillName === "Demoiselle"){
             this.require = "Resistance+2";
         }
         //Wolfskin
-        else if(skillName == "Beastbane"){
+        else if(skillName === "Beastbane"){
             this.require = "OddShaped";
         }
         //General
-        else if(skillName == "WaryFighter"){
+        else if(skillName === "WaryFighter"){
             this.require = "NaturalCover";
         }
-        else if(skillName == "Pavise"){
+        else if(skillName === "Pavise"){
             this.require = "WaryFighter";
         }
         //Paladin
-        else if(skillName == "Defender"){
+        else if(skillName === "Defender"){
             this.require = "Shelter";
-        }else if(skillName == "Aegis"){
+        }else if(skillName === "Aegis"){
             this.require = "Defender";
         }
         //GreatKnight
-        else if(skillName == "Luna"){
+        else if(skillName === "Luna"){
             this.require = "Shelter";
-        }else if(skillName == "ArmoredBlow"){
+        }else if(skillName === "ArmoredBlow"){
             this.require = "Luna";
         }
         //Hero
-        else if(skillName == "Sol"){
+        else if(skillName === "Sol"){
             this.require = "StrongRiposte";
-        }else if(skillName == "Axebreaker"){
+        }else if(skillName === "Axebreaker"){
             this.require = "Sol";
         }
         //BowKnight
-        else if(skillName == "RallySkill"){
+        else if(skillName === "RallySkill"){
             this.require = "StrongRiposte";
-        }else if(skillName == "Shurikenbreaker"){
+        }else if(skillName === "Shurikenbreaker"){
             this.require = "RallySkill";
         }
         //Berserker
-        else if(skillName == "RallyStrength"){
+        else if(skillName === "RallyStrength"){
             this.require = "Gamble";
-        }else if(skillName == "Axefaire"){
+        }else if(skillName === "Axefaire"){
             this.require = "RallyStrength";
         }
         //Adventurer
-        else if(skillName == "LuckySeven"){
+        else if(skillName === "LuckySeven"){
             this.require = "Movement+1";
-        }else if(skillName == "Pass"){
+        }else if(skillName === "Pass"){
             this.require = "LuckySeven";
         }
         //WyvernLord
-        else if(skillName == "RallyDefense"){
+        else if(skillName === "RallyDefense"){
             this.require = "Lunge";
-        }else if(skillName == "Swordbreaker"){
+        }else if(skillName === "Swordbreaker"){
             this.require = "RallyDefense";
         }
         //MaligKnight
-        else if(skillName == "SavageBlow"){
+        else if(skillName === "SavageBlow"){
             this.require = "Lunge";
-        }else if(skillName == "Trample"){
+        }else if(skillName === "Trample"){
             this.require = "SavageBlow";
         }
         //Sorcerer
-        else if(skillName == "Vengance"){
+        else if(skillName === "Vengance"){
             this.require = "MaleficAura";
-        }else if(skillName == "Bowbreaker"){
+        }else if(skillName === "Bowbreaker"){
             this.require = "Vengance";
         }
         //DarkKnight
-        else if(skillName == "SealMagic"){
+        else if(skillName === "SealMagic"){
             this.require = "MaleficAura";
-        }else if(skillName == "Lifetaker"){
+        }else if(skillName === "Lifetaker"){
             this.require = "SealMagic";
         }
         //Strategist
-        else if(skillName == "RallyResistance"){
+        else if(skillName === "RallyResistance"){
             this.require = "Gentilhomme";            //RESOLVER!!
-        }else if(skillName == "Inspiration"){
+        }else if(skillName === "Inspiration"){
             this.require = "RallyResistance";
         }
         //Maid/Butler
-        else if(skillName == "LiveToServe"){
+        else if(skillName === "LiveToServe"){
             this.require = "Gentilhomme";            //RESOLVER!!
-        }else if(skillName == "Tomebreaker"){
+        }else if(skillName === "Tomebreaker"){
             this.require = "LiveToServe";
         }
         //NineTails
-        else if(skillName == "BetterOdds"){
+        else if(skillName === "BetterOdds"){
             this.require = "Beastbane";             //RESOLVER!!
-        }else if(skillName == "GrislyWound"){
+        }else if(skillName === "GrislyWound"){
             this.require = "BetterOdds";            //RESOLVER!!
         }
         //Samurai
-        else if(skillName == "Vantage"){
+        else if(skillName === "Vantage"){
             this.require = "DuelistBlow";
         }
         //Villager
-        else if(skillName == "Underdog"){
+        else if(skillName === "Underdog"){
             this.require = "Aptitude";
         }
         //Apothecary
-        else if(skillName == "QuickSalve"){
+        else if(skillName === "QuickSalve"){
             this.require = "PotentPotion";
         }
         //Ninja
-        else if(skillName == "PoisonStrike"){
+        else if(skillName === "PoisonStrike"){
             this.require = "Locktouch";
         }
         //OniSavage
-        else if(skillName == "Shove"){
+        else if(skillName === "Shove"){
             this.require = "SealResistance";
         }
         //SpearFighter
-        else if(skillName == "Swap"){
+        else if(skillName === "Swap"){
             this.require = "SealDefense";
         }
         //Diviner
-        else if(skillName == "FutureSight"){
+        else if(skillName === "FutureSight"){
             this.require = "Magic+2";
         }
         //Monk/ShrineMaiden
-        else if(skillName == "RallyLuck"){
+        else if(skillName === "RallyLuck"){
             this.require = "Miracle";
         }
         //SkyKnight
-        else if(skillName == "Camaraderie"){
+        else if(skillName === "Camaraderie"){
             this.require = "DartingBlow";
         }
         //Archer
-        else if(skillName == "QuickDraw"){
+        else if(skillName === "QuickDraw"){
             this.require = "Skill+2";
         }
         //Swordmaster
-        else if(skillName == "Astra"){
+        else if(skillName === "Astra"){
             this.require = "Vantage";
-        }else if(skillName == "Swordfaire"){
+        }else if(skillName === "Swordfaire"){
             this.require = "Astra";
         }
         //MasterOfArms
-        else if(skillName == "SealStrength"){
+        else if(skillName === "SealStrength"){
             this.require = "Vantage";
-        }else if(skillName == "LifeAndDeath"){
+        }else if(skillName === "LifeAndDeath"){
             this.require = "SealStrength";
         }
         //Merchant
-        else if(skillName == "Profiteer"){
+        else if(skillName === "Profiteer"){
             this.require = "Underdog";
-        }else if(skillName == "Spendthrift"){
+        }else if(skillName === "Spendthrift"){
             this.require = "Profiteer";
         }
         //MasterNinja
-        else if(skillName == "Lethality"){
+        else if(skillName === "Lethality"){
             this.require = "PoisonStrike";
-        }else if(skillName == "Shurikenfaire"){
+        }else if(skillName === "Shurikenfaire"){
             this.require = "Lethality";
         }
         //Mechanist
-        else if(skillName == "Golembane"){
+        else if(skillName === "Golembane"){
             this.require = "PoisonStrike";
-        }else if(skillName == "Replicate"){
+        }else if(skillName === "Replicate"){
             this.require = "Golembane";
         }
         //OniChieftain
-        else if(skillName == "DeathBlow"){
+        else if(skillName === "DeathBlow"){
             this.require = "Shove";
-        }else if(skillName == "Counter"){
+        }else if(skillName === "Counter"){
             this.require = "DeathBlow";
         }
         //Blacksmith
-        else if(skillName == "SalvageBlow"){
+        else if(skillName === "SalvageBlow"){
             this.require = "Shove";
-        }else if(skillName == "Lancebreaker"){
+        }else if(skillName === "Lancebreaker"){
             this.require = "SalvageBlow";
         }
         //SpearMaster
-        else if(skillName == "SealSpeed"){
+        else if(skillName === "SealSpeed"){
             this.require = "Swap";
-        }else if(skillName == "Lancefaire"){
+        }else if(skillName === "Lancefaire"){
             this.require = "SealSpeed";
         }
         //Basara
-        else if(skillName == "RendHeaven"){
+        else if(skillName === "RendHeaven"){
             this.require = "Swap";
-        }else if(skillName == "Quixotic"){
+        }else if(skillName === "Quixotic"){
             this.require = "RendHeaven";
         }
         //Onmyoji
-        else if(skillName == "RallyMagic"){
+        else if(skillName === "RallyMagic"){
             this.require = "FutureSight";
-        }else if(skillName == "Tomefaire"){
+        }else if(skillName === "Tomefaire"){
             this.require = "RallyMagic";
         }
         //GreatMaster/Priestess
-        else if(skillName == "Renewal"){
+        else if(skillName === "Renewal"){
             this.require = "RallyLuck";
-        }else if(skillName == "Countermagic"){
+        }else if(skillName === "Countermagic"){
             this.require = "Renewal";
         }
         //FalconKnight
-        else if(skillName == "RallySpeed"){
+        else if(skillName === "RallySpeed"){
             this.require = "Camaraderie";
-        }else if(skillName == "WardingBlow"){
+        }else if(skillName === "WardingBlow"){
             this.require = "EallySpeed";
         }
         //KinshiKnight
-        else if(skillName == "AirSuperiority"){
+        else if(skillName === "AirSuperiority"){
             this.require = "QuickDraw";
-        }else if(skillName == "Amaterasu"){
+        }else if(skillName === "Amaterasu"){
             this.require = "AirSuperiority";
         }
         //Sniper
-        else if(skillName == "CertainBlow"){
+        else if(skillName === "CertainBlow"){
             this.require = "QuickDraw";
-        }else if(skillName == "Bowfaire"){
+        }else if(skillName === "Bowfaire"){
             this.require = "CertainBlow";
         }
 
@@ -2576,33 +2635,37 @@ function Skill(skillName, gender){
 
 /*
 function getGender(name){
-    if(name == "Suzukaze-Kaze") return "male";
-    if(name == "Kamui-Corrin-Male") return "male";
-    if(name == "Cyrus-Silas") return "male";
-    if(name == "Joker-Jakob") return "male";
-    if(name == "Xander") return "male";
-    if(name == "Leo") return "male";
-    if(name == "Lazward-Laslow") return "male";
-    if(name == "Odin") return "male";
-    if(name == "Zero-Niles") return "male";
-    if(name == "Harold-Arthur") return "male";
-    if(name == "Benoit-Benny") return "male";
-    if(name == "Flannel-Keaton") return "male";
+    if(name === "Kaze") return "male";
+    if(name === "Corrin-Male") return "male";
+    if(name === "Silas") return "male";
+    if(name === "Jakob") return "male";
+    if(name === "Xander") return "male";
+    if(name === "Leo") return "male";
+    if(name === "Laslow") return "male";
+    if(name === "Odin") return "male";
+    if(name === "Niles") return "male";
+    if(name === "Arthur") return "male";
+    if(name === "Benny") return "male";
+    if(name === "Keaton") return "male";
 
-    if(name == "Kamui-Corrin-Female") return "female";
-    if(name == "Aqua-Azura") return "female";
-    if(name == "Felicia") return "female";
-    if(name == "Mozume-Mozu") return "female";
-    if(name == "Camilla") return "female";
-    if(name == "Elise") return "female";
-    if(name == "Pieri-Peri") return "female";
-    if(name == "Luna-Selena") return "female";
-    if(name == "Belka-Beruka") return "female";
-    if(name == "Elfie-Effie") return "female";
-    if(name == "Nyx") return "female";
-    if(name == "Charlotte") return "female";
-    if(name == "Flora") return "female";
+    if(name === "Corrin-Female") return "female";
+    if(name === "Azura") return "female";
+    if(name === "Felicia") return "female";
+    if(name === "Mozu") return "female";
+    if(name === "Camilla") return "female";
+    if(name === "Elise") return "female";
+    if(name === "Peri") return "female";
+    if(name === "Selena") return "female";
+    if(name === "Beruka") return "female";
+    if(name === "Effie") return "female";
+    if(name === "Nyx") return "female";
+    if(name === "Charlotte") return "female";
+    if(name === "Flora") return "female";
 }
 */
-const CharactersData = characters
-export default CharactersData
+const Database = {
+  characters,
+  classes,
+  skills
+}
+export default Database

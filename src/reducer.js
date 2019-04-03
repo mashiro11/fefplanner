@@ -1,5 +1,5 @@
-import { createStore, combineReducers } from 'redux'
-import CharactersData from './components/Character/characterData.js'
+import { combineReducers } from 'redux'
+import CharactersData from './database.js'
 
 const supportTree = (state = {}, action) => {
   const id = state.id === undefined ? 0 : 1 + state.id++
@@ -71,10 +71,9 @@ const status = (state = {}, action) => {
       return state
   }
 }
-const supportApp = combineReducers({
+const reducer = combineReducers({
   supportTreeList,
   status
 })
 
-const Store = createStore(supportApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-export default Store
+export default reducer

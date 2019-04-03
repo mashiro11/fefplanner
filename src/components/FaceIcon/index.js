@@ -22,10 +22,20 @@ const FaceIcon = (props, context) => {
     })
   }
 
+  console.log("image: ", props.name)
   return(
     <div>
-      <img style={faceStyle} src={Images.Faces[findKey(props.name)]} title={props.name} onClick={onClick} />
-      {props.name}
+      {props.name ?
+        <div>
+          <img style={faceStyle} src={Images.Faces[findKey(props.name)]} title={props.name} onClick={onClick} alt={props.name}/>
+          {props.name}
+        </div>
+        :
+        <div>
+          <img style={faceStyle} src={Images.Faces[findKey('None')]} title={'None'} onClick={onClick} alt={'None'}/>
+          None
+        </div>
+      }
     </div>
   )
 }

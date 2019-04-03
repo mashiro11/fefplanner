@@ -1,39 +1,103 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 import TextField from '@material-ui/core/TextField'
+import Tab from '@material-ui/core/Tab'
+import Tabs from '@material-ui/core/Tabs'
+import Grid from '@material-ui/core/Grid'
 
-
+import Database from './database.js'
 import CharacterList from './containers/CharacterList'
-import SupportTreeList from './containers/SupportTreeList'
+import SupportTree from './components/SupportTree'
 import CharacterStatus from './components/CharacterStatus'
-import Status from './components/Status'
 import background from './background.jpg'
 
 import './App.css'
 
-class App extends React.Component {
-  constructor(){
-    super()
+const addTree = (name) => {
+  return {
+    type: 'ADD_TREE',
+    name: name,
   }
+}
+
+class App extends React.Component {
+  constructor(props, context){
+    super(props, context)
+    this.state = {
+      path: 'all',
+      allRoutesChildDefiners: ["Corrin", "Azura", "Silas", "Kaze", "Jakob"],
+      birRouteChildDefiners: ["Ryoma", "Takumi", "Saizo", "Hinata", "Azama", "Subaki", "Hayato", "Kaden"],
+      conRouteChildDefiners: ["Xander", "Leo", "Laslow", "Odin", "Niles", "Arthur", "Benny", "Keaton"]
+    }
+    //  Redux store
+    this.state.allRoutesChildDefiners.map( name => this.createTree(name) )
+    this.state.birRouteChildDefiners.map( name => this.createTree(name) )
+    this.state.conRouteChildDefiners.map( name => this.createTree(name) )
+  }
+
+  createTree = (name) => {
+    this.context.store.dispatch(addTree(name))
+  }
+
+  pathSelected = (e, newValue) => {
+    this.setState({path: newValue})
+  }
+
   render() {
     return (
       <div className="App">
         <img src={background} height="200" alt="Fire Emblem: Fates" />
         <h1 className="App-title">Fire Emblem: Fates - Character Planner</h1>
-        <TextField style={{padding: 24}}
-                    id="searchInput"
-                    placeholder="Search for Character"
-                    margin="normal"
-                    onChange={this.onSearchInputChange}
-        />
-        <SupportTreeList />
-        <CharacterList />
-        <CharacterStatus />
+        <Tabs centered onChange={this.pathSelected}>
+          <Tab value='bir' label={'Birthright'} />
+          <Tab value='con' label={'Conquest'} />
+          <Tab value='rev' label={'Revelations'} />
+        </Tabs>
+        <Grid container justify="center" spacing={24} style={{padding:24}}>
+          {this.state.allRoutesChildDefiners.map((character, index) =>
+            {
+              return(
+                <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                  <SupportTree character={Database.characters[character]} />
+                </Grid>
+              )
+            }
+          )}
+          {this.state.path === 'bir' || this.state.path === 'rev'?
+            this.state.birRouteChildDefiners.map((character, index) =>
+              <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                <SupportTree character={Database.characters[character]} />
+              </Grid>
+          ): null }
+          {this.state.path === 'con' || this.state.path === 'rev'?
+            this.state.conRouteChildDefiners.map((character, index) =>
+              <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                <SupportTree character={Database.characters[character]} />
+              </Grid>
+            ): null }
+        </Grid>
+        { undefined ? <CharacterList /> : null }
+        { this.props.status.name ? <CharacterStatus character={this.props.status} /> : null }
       </div>
-    );
+    )
   }
 }
 
-export default App;
+App.contextTypes ={
+  store: PropTypes.object
+}
+
+const mapStateToProps = (state) => {
+  return {
+    supportTreeList: state.supportTreeList,
+    status: state.status
+  }
+}
+
+const mapDispatchToProps = {
+  addTree
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

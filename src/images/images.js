@@ -1,7 +1,7 @@
-import React from 'react'
+
 function importAll(r) {
   let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  r.keys().map((item, index) => images[item.substring( item.indexOf("-")+1 )] = r(item) )
   return images;
 }
 

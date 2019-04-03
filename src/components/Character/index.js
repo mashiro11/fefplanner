@@ -52,7 +52,6 @@ const Character = (props, context) => {
   const name = findName(props.info)
   const wikia = 'http://fireemblem.wikia.com/wiki/' + name.american
 
-  const status = props.info.status
   return(
     <div style={props.style}>
       <Card>
