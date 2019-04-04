@@ -18,6 +18,17 @@ const supportTree = (state = {}, action) => {
   }
 }
 
+const character = (state = {}, action) => {
+  switch(action.type){
+    case 'SWITCH_GENDER':
+      return {...state,
+        gender: (state.name === 'Corrin' ? action.corrinGender : action.kanaGender)
+      }
+    default:
+      return state
+  }
+}
+
 const charactersInitialState = Object.values(Database.characters)
                                      .map( (character, index) => {
                                         let info = {
@@ -46,17 +57,14 @@ const charactersInitialState = Object.values(Database.characters)
 
 const characters = (state = charactersInitialState, action) => {
   switch(action.type){
-    case 'ADD_TREE':
-      return [
-        ...state,
-        {
-          name: action.name,
-          friend: 'None',
-          support: 'None'
-        }
-      ]
     case 'CHANGE_SUPPORT':
       return( state.map(sT => supportTree(sT, action)))
+    case 'SWITCH_GENDER':
+      return [
+        character(state.find( chr => chr.name === 'Corrin'), action),
+        character(state.find( chr => chr.name === 'Kana'), action),
+        ...state.filter( chr => chr.name !== 'Corrin' && chr.name !== 'Kana')
+        ]
     default:
       return(state)
     }

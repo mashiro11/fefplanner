@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -22,20 +23,36 @@ const styles={
     padding: '10px'
   }
 }
-const Character = (props, context) => {
 
+const switchGender = (corrinGender, kanaGender) => {
+  return {
+    type: 'SWITCH_GENDER',
+    corrinGender: corrinGender,
+    kanaGender: kanaGender
+  }
+}
+
+const Character = (props) => {
+  const switchGenderOnClick = () => {
+    let oldGender = character.gender
+    let newGender = (character.gender === 'male' ? 'female' : 'male')
+    props.dispatch(switchGender(newGender, oldGender))
+  }
   const { character } = props
 
-
   const wikia = 'http://fireemblem.wikia.com/wiki/' + character.name
+  let name = character.name + ((character.name === 'Corrin' || character.name === 'Kana') ? '_' + character.gender : '')
   return(
     <div style={props.style}>
       <Card>
         <CardMedia style={styles.portrait}
-                   image={Images.Portraits[character.name]}
+                   image={Images.Portraits[name]}
                    title={character.name}
         />
         <CardContent style={styles.content}>
+          {character.name === 'Corrin' ?
+            <Button onClick={switchGenderOnClick}>Set {character.gender === 'male'? 'female':'male'}</Button> : null
+          }
           <Button size="small" color="primary" href={wikia}>
             <Typography gutterBottom variant='headline' title={character.name + ' wikia'}>
               {character.name}
@@ -50,4 +67,10 @@ const Character = (props, context) => {
     </div>
   )
 }
-export default Character
+
+const mapStateToProps = state => {
+  return{
+    status: state.status
+  }
+}
+export default connect(mapStateToProps)(Character)
