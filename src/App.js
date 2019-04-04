@@ -36,11 +36,11 @@ class App extends React.Component {
       <div className="App">
         <img src={background} height="200" alt="Fire Emblem: Fates" />
         <h1 className="App-title">Fire Emblem: Fates - Character Planner</h1>
-        <Tabs value={0} centered onChange={this.pathSelected}>
-          <Tab value={0} label={'All Paths'} />
-          <Tab value={1} label={'Birthright'} />
-          <Tab value={2} label={'Conquest'} />
-          <Tab value={3} label={'Revelations'} />
+        <Tabs value={this.state.path} centered onChange={this.pathSelected}>
+          <Tab label={'All Paths'} />
+          <Tab label={'Birthright'} />
+          <Tab label={'Conquest'} />
+          <Tab label={'Revelations'} />
         </Tabs>
         <Grid container justify="center" spacing={24} style={{padding:24}}>
           {characters
