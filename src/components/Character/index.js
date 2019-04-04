@@ -16,56 +16,30 @@ const styles={
     left:0,
     width: 200,
     height: 300
-    //paddingBottom: 300,
   }
 }
 const Character = (props, context) => {
 
-  /*
-    Isso aqui vai pro reducer
-  */
-  const findName = (name) => {
-    var names = {
-                fileName: '',
-                american: '',
-                japan: ''}
-    for(var key in Images.Portraits){
-      if(key.indexOf(name) > -1){
-        names.fileName = key
-        const hasMinus = key.indexOf('-')
-        if(hasMinus !== -1){
-          names.japan = key.substring(0, hasMinus)
-          names.american = key.substring(hasMinus+1, key.indexOf('.'))
-        }else{
-          names.american = key.substring(0, key.indexOf('.'))
-          names.japan = names.american
-        }
-      }
-    }
-    return names
-  }
+  const { character } = props
 
   const closeStatus = () => {
-    context.store.dispatch({type: 'CLOSE_STATUS', name: name.american})
+    context.store.dispatch({type: 'CLOSE_STATUS', name: character.name})
   }
-
-  const name = findName(props.info)
-  const wikia = 'http://fireemblem.wikia.com/wiki/' + name.american
-
+  const wikia = 'http://fireemblem.wikia.com/wiki/' + character.name
   return(
     <div style={props.style}>
       <Card>
         <CardMedia style={styles.portrait}
-                  image={Images.Portraits[name.fileName]}
-                   title={name.american}
+                   image={Images.Portraits[character.name]}
+                   title={character.name}
         />
         <CardContent>
           <Typography gutterBottom variant='headline' component='h2'>
-            {name.american}
+            {character.name}
           </Typography>
         </CardContent>
         <CardContent>
-          Japan: {name.japan}
+          Japan: {character.japanese}
         </CardContent>
         <CardActions>
           <Button size="small" color="primary" href={wikia}>

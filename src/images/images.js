@@ -1,7 +1,11 @@
 
 function importAll(r) {
   let images = {};
-  r.keys().map((item, index) => images[item.substring( item.indexOf("-")+1 )] = r(item) )
+  r.keys().map( item => {
+    let almost = item.substring( item.indexOf("-")+1 ).replace('./', '')
+    images[almost.substring(0, almost.indexOf('.'))] = r(item)
+    return null
+  })
   return images;
 }
 

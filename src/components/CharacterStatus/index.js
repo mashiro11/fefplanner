@@ -19,10 +19,10 @@ const CharacterStatus = (props) => {
       <div>
         <Paper style={styles.pannel}>
           <Grid container>
-            <Grid item xs={2} sm={2} lg={2}>
-              <Character info={ character.name } />
+            <Grid item xs={3} sm={3} lg={3}>
+              <Character character={ character } />
             </Grid>
-            <Grid item xs={2} sm={2} lg={2}>
+            <Grid item xs={9} sm={9} lg={9}>
               <Status
                 grownthRate={ character.grownthRate }
                 maxModifiers={ character.maxModifiers }
