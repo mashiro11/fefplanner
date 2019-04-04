@@ -1,7 +1,9 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
+
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-
+import Button from '@material-ui/core/Button'
 import Character from '../Character'
 import Status from '../Status'
 
@@ -13,7 +15,10 @@ const styles = {
   }
 }
 
-const CharacterStatus = (props) => {
+const CharacterStatus = (props, context) => {
+  const closeStatus = () => {
+    context.store.dispatch({type: 'CLOSE_STATUS', name: character.name})
+  }
   const { character } = props
     return (
       <div>
@@ -29,9 +34,14 @@ const CharacterStatus = (props) => {
                 />
             </Grid>
           </Grid>
+          <Button size="small" color="primary" onClick={closeStatus}>
+            Close
+          </Button>
         </Paper>
       </div>
     )
 }
-
+CharacterStatus.contextTypes = {
+  store: PropTypes.object
+}
 export default CharacterStatus

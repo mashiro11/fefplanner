@@ -20,7 +20,7 @@ const supportTree = (state = {}, action) => {
 
 const charactersInitialState = Object.values(Database.characters)
                                      .map( (character, index) => {
-                                        return {
+                                        let info = {
                                           name: character.name,
                                           japanese: character.japanese,
                                           path: character.path,
@@ -36,7 +36,13 @@ const charactersInitialState = Object.values(Database.characters)
                                           supportList: character.supportList,
                                           choosenClasses: character.choosenClasses,
                                           choosenSkills: character.choosenSkills
-                                        }})
+                                        }
+                                        if(character.childDefiner){
+                                          info = {...info,
+                                                  childName: character.child.name }
+                                        }
+                                        return info
+                                      })
 
 const characters = (state = charactersInitialState, action) => {
   switch(action.type){

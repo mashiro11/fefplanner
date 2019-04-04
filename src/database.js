@@ -57,7 +57,7 @@ skillDescription["Axefaire"] = "+5 Damage dealt while an Axe/Club is equipped";
 skillDescription["Sol"] =
     "Restores HP equal to half the amount of damage done to the enemy.";
 
-skillDescription["Axebreaker"] =
+skillDescription["AxeBreaker"] =
     "Hit Rate/Evasion +50 when the enemy is equipped with an Axe.";
 
 //  BowKnight
@@ -436,7 +436,7 @@ skills["Axefaire"] =  new Skill("Axefaire");
 skills["GoodFortune"] =  new Skill("GoodFortune");
 skills["StrongRiposte"] =  new Skill("StrongRiposte");
 skills["Sol"] =  new Skill("Sol");
-skills["Axebreaker"] =  new Skill("Axebreaker");
+skills["AxeBreaker"] =  new Skill("AxeBreaker");
 skills["RallySkill"] =  new Skill("RallySkill");
 skills["Shurikenbreaker"] =  new Skill("Shurikenbreaker");
 skills["Locktouch"] =  new Skill("Locktouch");
@@ -603,8 +603,8 @@ function Character(characterName){
     this.supportList["Partner"] = null;
 
     this.support = {};
-    this.support["Friend"] = null;
-    this.support["Partner"] = null;
+    this.support["Friend"] = "None";
+    this.support["Partner"] = "None";
 
 
     this.choosenClasses = {};
@@ -1837,7 +1837,7 @@ function CharClass(className, charGender){
             CAVALIER -> GREAT KNIGHT | PALADIN
         */
         if(this.name === "Cavalier"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png"];
+            this.weapons = ["Sword", "Lance"];
             this.skills = [skills["ElbowRoom"], skills["Shelter"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  17 ,  6  ,  0  ,  5  ,  5  ,  3  ,  5  ,  3];
@@ -1845,7 +1845,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  10 , 15  ,  0  , 10  , 10  , 15  , 10  ,  5];
         }
         if(this.name === "Paladin"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png"];
+            this.weapons = ["Sword", "Lance"];
             this.skills = [skills["Defender"], skills["Aegis"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  19 ,  8  ,  1  ,  7  ,  7  ,  4  ,  7  ,  6];
@@ -1853,7 +1853,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  10 , 15  ,  0  , 10  , 10  , 15  , 10  , 10];
         }
         if(this.name === "GreatKnight"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png", this.weaponPath+"Axe.png"];
+            this.weapons = ["Sword", "Lance", "Axe"];
             this.skills = [skills["Luna"], skills["ArmoredBlow"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  21 , 10  ,  0  ,  6  ,  6  ,  3  , 10  ,  2];
@@ -1865,7 +1865,7 @@ function CharClass(className, charGender){
             KNIGHT -> GENERAL | GREAT KNIGHT
         */
         if(this.name === "Knight"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["Defense+2"], skills["NaturalCover"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  19 ,  8  ,  0  ,  5  ,  3  ,  3  ,  8  ,  1];
@@ -1873,7 +1873,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  20 , 20  ,  0  , 15  ,  5  , 10  , 20  ,  0];
         }
         if(this.name === "General"){
-            this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Axe.png"];
+            this.weapons = ["Lance", "Axe"];
             this.skills = [skills["WaryFighter"], skills["Pavise"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  22 , 11  ,  0  ,  7  ,  3  ,  4  , 12  ,  3];
@@ -1884,7 +1884,7 @@ function CharClass(className, charGender){
             FIGHTER -> BERSERKER | HERO
         */
         if(this.name === "Fighter"){
-            this.weapons = [this.weaponPath+"Axe.png"];
+            this.weapons = ["Axe"];
             this.skills = [skills["HP+5"], skills["Gamble"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  19 ,  7  ,  0  ,  6  ,  6  ,  2  ,  4  ,  1];
@@ -1892,7 +1892,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  20 , 20  ,  0  , 15  , 15  ,  5  ,  5  ,  0];
         }
         if(this.name === "Berserker"){
-            this.weapons = [this.weaponPath+"Axe.png"];
+            this.weapons = ["Axe"];
             this.skills = [skills["RallyStrength"], skills["Axefaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  24 , 12  ,  0  ,  8  ,  9  ,  0  ,  5  ,  0];
@@ -1900,8 +1900,8 @@ function CharClass(className, charGender){
             this.grownthRate = [  30 , 25  ,  0  , 15  , 15  ,  0  ,  0  ,  0];
         }
         if(this.name === "Hero"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Axe.png"];
-            this.skills = [skills["Sol"], skills["Axebreaker"]];
+            this.weapons = ["Sword", "Axe"];
+            this.skills = [skills["Sol"], skills["AxeBreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  20 ,  8  ,  0  , 10  ,  8  ,  3  ,  7  ,  2];
             this.maxStatus =   [  60 , 32  , 25  , 35  , 32  , 31  , 30  , 27];
@@ -1912,7 +1912,7 @@ function CharClass(className, charGender){
             MERCENARY -> BOW KNIGHT | HERO
         */
         if(this.name === "Mercenary"){
-            this.weapons = [this.weaponPath+"Sword.png"];
+            this.weapons = ["Sword"];
             this.skills = [skills["GoodFortune"], skills["StrongRiposte"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  17 ,  5  ,  0  ,  7  ,  6  ,  2  ,  5  ,  2];
@@ -1920,7 +1920,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  10 , 15  ,  0  , 20  , 15  ,  5  , 10  ,  5];
         }
         if(this.name === "BowKnight"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Bow.png"];
+            this.weapons = ["Sword", "Bow"];
             this.skills = [skills["RallySkill"], skills["Shurikenbreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  18 ,  6  ,  0  ,  8  ,  9  ,  3  ,  5  ,  6];
@@ -1932,7 +1932,7 @@ function CharClass(className, charGender){
             OUTLAW -> BOW KNIGHT | ADVENTURER
         */
         if(this.name === "Outlaw"){
-            this.weapons = [this.weaponPath+"Bow.png"];
+            this.weapons = ["Bow"];
             this.skills = [skills["Locktouch"], skills["Movement+1"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  1  ,  4  ,  8  ,  1  ,  2  ,  4];
@@ -1940,7 +1940,7 @@ function CharClass(className, charGender){
             this.grownthRate = [   0 , 10  ,  5  , 10  , 20  ,  0  ,  0  , 20];
         }
         if(this.name === "Adventurer"){
-            this.weapons = [this.weaponPath+"Bow.png", this.weaponPath+"Staff.png"];
+            this.weapons = ["Bow", "Staff"];
             this.skills = [skills["LuckySeven"], skills["Pass"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  17 ,  4  ,  6  ,  6  , 10  ,  2  ,  3  ,  8];
@@ -1951,7 +1951,7 @@ function CharClass(className, charGender){
             WYVERN RIDER -> WYVERN LORD | MALIG KNIGHT
         */
         if(this.name === "WyvernRider"){
-            this.weapons = [this.weaponPath+"Axe.png"];
+            this.weapons = ["Axe"];
             this.skills = [skills["Strength+2"], skills["Lunge"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  17 ,  6  ,  0  ,  5  ,  4  ,  2  ,  7  ,  0];
@@ -1959,7 +1959,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  10 , 15  ,  5  , 10  , 10  ,  5  , 20  ,  0];
         }
         if(this.name === "WyvernLord"){
-            this.weapons = [this.weaponPath+"Axe.png", this.weaponPath+"Lance.png"];
+            this.weapons = ["Axe", "Lance"];
             this.skills = [skills["RallyDefense"], skills["Swordbreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  19 ,  8  ,  0  ,  9  ,  6  ,  3  , 10  ,  1];
@@ -1967,7 +1967,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  10 , 15  ,  0  , 15  , 10  ,  5  , 20  , 20];
         }
         if(this.name === "MaligKnight"){
-            this.weapons = [this.weaponPath+"Axe.png", this.weaponPath+"Tome.png"];
+            this.weapons = ["Axe", "Tome"];
             this.skills = [skills["SavageBlow"], skills["Trample"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  18 ,  7  ,  6  ,  6  ,  5  ,  0  ,  8  ,  6];
@@ -1979,7 +1979,7 @@ function CharClass(className, charGender){
             DARK MAGE -> SORCERER | DARK KNIGHT
         */
         if(this.name === "DarkMage"){
-            this.weapons = [this.weaponPath+"Tome.png"];
+            this.weapons = ["Tome"];
             this.skills = [skills["Heartseeker"], skills["MaleficAura"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  0  ,  6  ,  3  ,  3  ,  1  ,  3  ,  5];
@@ -1987,7 +1987,7 @@ function CharClass(className, charGender){
             this.grownthRate = [   0 , 10  , 20  ,  0  , 10  ,  0  ,  5  , 10];
         }
         if(this.name === "Sorcerer"){
-            this.weapons = [this.weaponPath+"Tome.png"];
+            this.weapons = ["Tome"];
             this.skills = [skills["Vengeance"], skills["Bowbreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  17 ,  0  ,  9  ,  4  ,  6  ,  1  ,  5  ,  8];
@@ -1995,7 +1995,7 @@ function CharClass(className, charGender){
             this.grownthRate = [   0 ,  0  , 25  ,  0  , 10  ,  0  ,  5  , 15];
         }
         if(this.name === "DarkKnight"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Tome.png"];
+            this.weapons = ["Sword", "Tome"];
             this.skills = [skills["SealMagic"], skills["Lifetaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  19 ,  8  ,  6  ,  6  ,  5  ,  3  ,  8  ,  6];
@@ -2007,7 +2007,7 @@ function CharClass(className, charGender){
             TROUBADOUR -> STRATEGIST | MAID/BUTLER
         */
         if(this.name === "Troubadour"){
-            this.weapons = [this.weaponPath+"Staff.png"];
+            this.weapons = ["Staff"];
             this.skills = [skills["Resistance+2"], (this.gender === "female") ? skills["Demoiselle"] : skills["Gentilhomme"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  15 ,  0  ,  3  ,  7  ,  5  ,  4  ,  1  ,  4];
@@ -2017,7 +2017,7 @@ function CharClass(className, charGender){
         if(this.name === "Maid" || this.name === "Butler"){
             this.name = (this.gender === "male") ? "Butler" : "Maid";
 
-            this.weapons = [this.weaponPath+"Shuriken.png", this.weaponPath+"Staff.png"];
+            this.weapons = ["Shuriken", "Staff"];
             this.skills = [skills["LiveToServe"], skills["Tomebreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  18 ,  4  ,  5  ,  9  ,  8  ,  4  ,  5  ,  4];
@@ -2025,7 +2025,7 @@ function CharClass(className, charGender){
             this.grownthRate = [   0 , 10  , 10  , 15  , 15  , 10  ,  5  , 10];
         }
         if(this.name === "Strategist"){
-            this.weapons = [this.weaponPath+"Tome.png", this.weaponPath+"Staff.png"];
+            this.weapons = ["Tome", "Staff"];
             this.skills = [skills["RallyResistance"], skills["Inspiration"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  0  ,  7  ,  6  ,  7  ,  5  ,  2  ,  7];
@@ -2036,7 +2036,7 @@ function CharClass(className, charGender){
             WOLFSKIN -> WOLFSSEGNER
         */
         if(this.name === "Wolfskin"){
-            this.weapons = [this.weaponPath+"Stone.png"];
+            this.weapons = ["Stone"];
             this.skills = [skills["OddShaped"], skills["Beastbane"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  19 ,  8  ,  0  ,  4  ,  6  ,  0  ,  4  ,  0];
@@ -2044,7 +2044,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  20 , 20  ,  0  ,  5  , 15  ,  5  , 10  ,  0];
         }
         if(this.name === "Wolfssegner"){
-            this.weapons = [this.weaponPath+"Stone.png"];
+            this.weapons = ["Stone"];
             this.skills = [skills["BetterOdds"], skills["GrislyWound"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  22 , 11  ,  0  ,  6  ,  7  ,  1  ,  7  ,  1];
@@ -2058,7 +2058,7 @@ function CharClass(className, charGender){
             SAMURAI -> SWORDMASTER | MASTER OF ARMS
         */
         if(this.name === "Samurai"){
-            this.weapons = [this.weaponPath+"Sword.png"];
+            this.weapons = ["Sword"];
             this.skills = [skills["DuelistBlow"], skills["Vantage"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2066,7 +2066,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Swordmaster"){
-            this.weapons = [this.weaponPath+"Sword.png"];
+            this.weapons = ["Sword"];
             this.skills = [skills["Astra"], skills["Swordfaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2074,7 +2074,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "MasterOfArms"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Lance.png", this.weaponPath+"Axe.png"];
+            this.weapons = ["Sword", "Lance", "Axe"];
             this.skills = [skills["SealStrength"], skills["LifeAndDeath"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2085,7 +2085,7 @@ function CharClass(className, charGender){
             NINJA -> MASTER NINJA | MECHANIST
         */
         if(this.name === "Ninja"){
-            this.weapons = [this.weaponPath+"Shuriken.png"];
+            this.weapons = ["Shuriken"];
             this.skills = [skills["Locktouch"], skills["PoisonStrike"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2093,7 +2093,7 @@ function CharClass(className, charGender){
             this.grownthRate = [   5 ,  5  ,  0  , 20  , 20  ,  0  ,  5  , 15];
         }
         if(this.name === "MasterNinja"){
-            this.weapons = [this.weaponPath+"Shuriken.png", this.weaponPath+"Sword.png"];
+            this.weapons = ["Shuriken", "Sword"];
             this.skills = [skills["Lethality"], skills["Shurikenfaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2101,7 +2101,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Mechanist"){
-            this.weapons = [this.weaponPath+"Shuriken.png", this.weaponPath+"Bow.png"];
+            this.weapons = ["Shuriken", "Bow"];
             this.skills = [skills["Golembane"], skills["Replicate"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2112,7 +2112,7 @@ function CharClass(className, charGender){
             VILLAGER -> MERCHANT | MASTER OF ARMS
         */
         if(this.name === "Villager"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["Aptitude"], skills["Underdog"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2120,7 +2120,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Merchant"){
-            this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Bow.png"];
+            this.weapons = ["Lance", "Bow"];
             this.skills = [skills["Profiteer"], skills["Spendthrift"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2131,7 +2131,7 @@ function CharClass(className, charGender){
             APOTHECARY -> MERCHANT | MECHANIST
         */
         if(this.name === "Apothecary"){
-            this.weapons = [this.weaponPath+"Bow.png"];
+            this.weapons = ["Bow"];
             this.skills = [skills["PotentPotion"], skills["QuickSalve"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2142,7 +2142,7 @@ function CharClass(className, charGender){
             ONI SAVAGE -> ONI CHIFTAIN | BLACKSMITH
         */
         if(this.name === "OniSavage"){
-            this.weapons = [this.weaponPath+"Axe.png"];
+            this.weapons = ["Axe"];
             this.skills = [skills["SealResistence"], skills["Shove"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2150,7 +2150,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "OniChieftain"){
-            this.weapons = [this.weaponPath+"Axe.png", this.weaponPath+"Tome.png"];
+            this.weapons = ["Axe", "Tome"];
             this.skills = [skills["DeathBlow"], skills["Counter"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2158,7 +2158,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Blacksmith"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Axe.png"];
+            this.weapons = ["Sword", "Axe"];
             this.skills = [skills["SalvageBlow"], skills["Lancebreaker"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2169,7 +2169,7 @@ function CharClass(className, charGender){
             SPEAR FIGHTER -> BASARA | SPEAR MASTER
         */
         if(this.name === "SpearFighter"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["SealDefense"], skills["Swap"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2177,7 +2177,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "SpearMaster"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["SealSpeed"], skills["Lancefaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2185,7 +2185,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Basara"){
-            this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Tome.png"];
+            this.weapons = ["Lance", "Tome"];
             this.skills = [skills["RendHeaven"], skills["Quixotic"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2196,7 +2196,7 @@ function CharClass(className, charGender){
             DIVINER -> ONMYOJI | BASARA
         */
         if(this.name === "Diviner"){
-            this.weapons = [this.weaponPath+"Tome.png"];
+            this.weapons = ["Tome"];
             this.skills = [skills["Magic+2"], skills["FutureSight"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2204,7 +2204,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Onmyoji"){
-            this.weapons = [this.weaponPath+"Tome.png", this.weaponPath+"Staff.png"];
+            this.weapons = ["Tome", "Staff"];
             this.skills = [skills["RallyMagic"], skills["Tomefaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2217,7 +2217,7 @@ function CharClass(className, charGender){
         if(this.name === "Monk" || this.name === "ShrineMaiden"){
             (this.gender === "male") ? this.name = "Monk" : this.name = "ShrineMaiden";
 
-            this.weapons = [this.weaponPath+"Staff.png"];
+            this.weapons = ["Staff"];
             this.skills = [skills["Miracle"], skills["RallyLuck"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2226,7 +2226,7 @@ function CharClass(className, charGender){
         }
         if(this.name === "GreatMaster" || this.name === "Priestess"){
             this.name = (this.gender === "male") ? "GreatMaster" : "Priestess";
-            this.weapons = (this.gender === "male") ? [this.weaponPath+"Lance.png", this.weaponPath+"Staff.png"] : [this.weaponPath+"Bow.png", this.weaponPath+"Staff.png"];
+            this.weapons = (this.gender === "male") ? ["Lance", "Staff"] : ["Bow", "Staff"];
 
             this.skills = [skills["Renewal"], skills["Countermagic"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2238,7 +2238,7 @@ function CharClass(className, charGender){
             SKY KNIGHT -> FALCON KNIGHT | KINSHI KNIGHT
         */
         if(this.name === "SkyKnight"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["DartingBlow"], skills["Camaraderie"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2246,7 +2246,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "FalconKnight"){
-            this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Staff.png"];
+            this.weapons = ["Lance", "Staff"];
             this.skills = [skills["RallySpeed"], skills["WardingBlow"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2254,7 +2254,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "KinshiKnight"){
-            this.weapons = [this.weaponPath+"Lance.png", this.weaponPath+"Bow.png"];
+            this.weapons = ["Lance", "Bow"];
             this.skills = [skills["AirSuperiority"], skills["Amaterasu"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2265,7 +2265,7 @@ function CharClass(className, charGender){
             ARCHER -> SNIPER | KINSHI KNIGHT
         */
         if(this.name === "Archer"){
-            this.weapons = [this.weaponPath+"Bow.png"];
+            this.weapons = ["Bow"];
             this.skills = [skills["Skill+2"], skills["QuickDraw"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2273,7 +2273,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "Sniper"){
-            this.weapons = [this.weaponPath+"Bow.png"];
+            this.weapons = ["Bow"];
             this.skills = [skills["CertainBlow"], skills["Bowfaire"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2284,7 +2284,7 @@ function CharClass(className, charGender){
             KITSUNE -> NINE TAILS
         */
         if(this.name === "Kitsune"){
-            this.weapons = [this.weaponPath+"Stone.png"];
+            this.weapons = ["Stone"];
             this.skills = [skills["Evenhanded"], skills["Beastbane"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2292,7 +2292,7 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "NineTails"){
-            this.weapons = [this.weaponPath+"Stone.png"];
+            this.weapons = ["Stone"];
             this.skills = [skills["EvenBetter"], skills["GrislyWound"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  3  ,  0  ,  8  ,  8  ,  1  ,  3  ,  3];
@@ -2304,7 +2304,7 @@ function CharClass(className, charGender){
             Special Classes
         */
         if(this.name === "Songstress"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["Luck+4"], skills["InspiringSong"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  5  ,  2  ,  8  ,  8  ,  6  ,  4  ,  7];
@@ -2312,7 +2312,7 @@ function CharClass(className, charGender){
             this.grownthRate = [   0 ,  0  ,  0  ,  0  ,  0  ,  0  ,  0  ,  0];
         }
         if(this.name === "Songstress2"){
-            this.weapons = [this.weaponPath+"Lance.png"];
+            this.weapons = ["Lance"];
             this.skills = [skills["VoiceOfPeace"], skills["ForeignPrincess"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  5  ,  2  ,  8  ,  8  ,  6  ,  4  ,  7];
@@ -2326,7 +2326,7 @@ function CharClass(className, charGender){
          *
          */
         if(this.name === "NohrPrinc"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Stone.png"];
+            this.weapons = ["Sword", "Stone"];
             this.skills = [skills["Nobility"], skills["DragonFang"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  5  ,  2  ,  8  ,  8  ,  6  ,  4  ,  7];
@@ -2335,7 +2335,7 @@ function CharClass(className, charGender){
         }
 
         if(this.name === "NohrNoble"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Stone.png", this.weaponPath+"Tome.png"];
+            this.weapons = ["Sword", "Stone", "Tome"];
             this.skills = [skills["DraconicHex"], skills["NohrianTrust"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  5  ,  2  ,  8  ,  8  ,  6  ,  4  ,  7];
@@ -2344,7 +2344,7 @@ function CharClass(className, charGender){
         }
 
         if(this.name === "HoshidoNoble"){
-            this.weapons = [this.weaponPath+"Sword.png", this.weaponPath+"Stone.png", this.weaponPath+"Staff.png"];
+            this.weapons = ["Sword", "Stone", "Staff"];
             this.skills = [skills["DragonWard"], skills["HoshidanUnity"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  16 ,  5  ,  2  ,  8  ,  8  ,  6  ,  4  ,  7];
@@ -2438,7 +2438,7 @@ function Skill(skillName, gender){
         //Hero
         else if(skillName === "Sol"){
             this.require = "StrongRiposte";
-        }else if(skillName === "Axebreaker"){
+        }else if(skillName === "AxeBreaker"){
             this.require = "Sol";
         }
         //BowKnight
