@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 import ClassTree from '../ClassTree'
-import Images from '../../images/images.js'
 
 const styles={
   portrait:{
@@ -32,21 +31,20 @@ const switchGender = (corrinGender, kanaGender) => {
   }
 }
 
-const Character = (props) => {
+const Character = ({ character, dispatch }) => {
   const switchGenderOnClick = () => {
     let oldGender = character.gender
     let newGender = (character.gender === 'male' ? 'female' : 'male')
-    props.dispatch(switchGender(newGender, oldGender))
+    dispatch(switchGender(newGender, oldGender))
   }
-  const { character } = props
+
 
   const wikia = 'http://fireemblem.wikia.com/wiki/' + character.name
-  let name = character.name + ((character.name === 'Corrin' || character.name === 'Kana') ? '_' + character.gender : '')
   return(
-    <div style={props.style}>
+    <div>
       <Card>
         <CardMedia style={styles.portrait}
-                   image={Images.Portraits[name]}
+                   image={character.portrait}
                    title={character.name}
         />
         <CardContent style={styles.content}>

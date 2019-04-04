@@ -1,34 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Images from '../../images/images.js'
-import { PropTypes } from 'prop-types'
 
 const faceStyle = {
   width: '50px',
   height: '50px'
 }
 
-const FaceIcon = (props, context) => {
-  const onClick = (e) => {
-    if(e.target.title !== 'None'){
-      context.store.dispatch({
-        type: 'OPEN_STATUS',
-        name: props.name
-      })
-    }
-  }
+const FaceIcon = (props) => {
 
-  let { name } = props
-  if(name === "Corrin" || name === "Kana"){
-    name += '_' + props.gender
-  }
+
+  let name = props.name + (props.name === 'Corrin' || props.name === 'Kana'? '_' + props.gender : '')
+
   return(
     <div>
-      <img style={faceStyle} src={Images.Faces[name]} title={props.name} onClick={onClick} alt={props.name} />
+      <img style={faceStyle} src={Images.Faces[name]} title={props.name} onClick={props.onClick} alt={props.name} />
       <div>{props.name}</div>
     </div>
   )
 }
-FaceIcon.contextTypes = {
-  store: PropTypes.object
+const mapStateToProps = state => {
+  return {}
 }
-export default FaceIcon
+export default connect(mapStateToProps)(FaceIcon)
