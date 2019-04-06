@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Images from '../../images/images.js'
 
 const faceStyle = {
@@ -8,8 +7,6 @@ const faceStyle = {
 }
 
 const FaceIcon = (props) => {
-
-
   let name = props.name + (props.name === 'Corrin' || props.name === 'Kana'? '_' + props.gender : '')
 
   return(
@@ -19,7 +16,5 @@ const FaceIcon = (props) => {
     </div>
   )
 }
-const mapStateToProps = state => {
-  return {}
-}
-export default connect(mapStateToProps)(FaceIcon)
+
+export default FaceIcon
