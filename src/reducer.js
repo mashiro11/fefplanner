@@ -107,7 +107,17 @@ const status = (state = {}, action) => {
       return state
   }
 }
+
+const gamePath = (state = 'all', action) => {
+  switch(action.type){
+    case 'CHANGE_PATH':
+      return action.gamePath
+    default:
+      return state
+  }
+}
 const reducer = combineReducers({
+  gamePath,
   characters,
   status
 })

@@ -15,18 +15,16 @@ import './App.css'
 class App extends React.Component {
   constructor(props){
     super(props)
+    const paths = ['all', 'bir', 'con', 'rev']
     this.state = {
       path: 0,
+      paths: paths
     }
-  }
-
-  paths = (num) => {
-    const p = ['all', 'bir', 'con', 'rev']
-    return p[num]
   }
 
   pathSelected = (e, newValue) => {
     this.setState({path: newValue})
+    this.props.dispatch({type:'CHANGE_PATH', gamePath: this.state.paths[newValue]})
   }
 
   render() {
@@ -50,7 +48,7 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>
           )}
-          {this.paths(this.state.path) === 'bir' || this.paths(this.state.path) === 'rev'?
+          {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
             characters
             .filter(character => character.path === 'bir' && character.childDefiner)
             .map((character, index) =>
@@ -58,7 +56,7 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>)
           : null }
-          {this.paths(this.state.path) === 'con' || this.paths(this.state.path) === 'rev'?
+          {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
             characters
             .filter( character => character.path === 'con' && character.childDefiner)
             .map((character, index) =>
@@ -76,9 +74,10 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    gamePath: state.gamePath,
     characters: state.characters,
     status: state.status
   }
 }
 
-export default connect(mapStateToProps, {})(App)
+export default connect(mapStateToProps)(App)

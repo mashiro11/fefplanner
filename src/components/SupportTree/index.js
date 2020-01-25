@@ -62,22 +62,37 @@ class SupportTree extends React.Component {
                         .map(chr => chr.name)
   }
 
+  filterByPath = (characterNameList) => characterNameList ?
+                                          characterNameList.filter(current => {
+                                            let found = this.props.characters.find(ch => ch.name === current)
+                                            return found? found.path === this.props.gamePath || found.path === 'all' : false})
+                                          : []
+
+  friendList = (character) => character.name === 'Corrin' ?
+                      this.corrinSupportList(character, 'friend') :
+                      this.filterByPath(character.supportList.Friend)
+
+  partnerList = (character) => {
+      if(!this.props.characters || !character) return []
+      if(character.name === 'Corrin')
+        return this.corrinSupportList(character, 'partner')
+      else{
+        const corrin = this.props.characters.find(current => current.name === 'Corrin')
+        let partnerList = this.filterByPath(character.supportList.Partner)
+
+        if((character.name !== 'Niles' &&
+            corrin.gender === 'male' && character.gender === 'male')
+            ||
+           (character.name !== 'Rhajat' &&
+           corrin.gender === 'female' && character.gender === 'female'))
+            partnerList = partnerList.filter(current => current !== 'Corrin')
+        return partnerList
+      }
+  }
+
   render(){
     const { character } = this.props
     const child = this.props.characters.find( current => current.name === character.childName )
-    const friendList  = character.name === 'Corrin' ? this.corrinSupportList(character, 'friend') : character.supportList.Friend
-    const partnerList = character.name === 'Corrin' ? this.corrinSupportList(character, 'partner') : character.supportList.Partner
-
-    if(character.name !== 'Corrin'){
-      const corrin = this.props.characters.find(current => current.name === 'Corrin')
-      if((corrin.gender === 'male' &&
-         character.gender === 'male' &&
-         character.name !== 'Niles') ||
-         (corrin.gender === 'female' &&
-         character.gender === 'female' &&
-         character.name !== 'Rejaht'))
-          partnerList.splice(partnerList.indexOf('Corrin'), 1)
-      }
 
     return (
       <div>
@@ -92,8 +107,8 @@ class SupportTree extends React.Component {
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.friend} edit
-                  onFaceClick={this.onFaceClick(character.name, 'friend', friendList)}
-                  onEditClick={this.onEditClick(character.name, 'friend', friendList)}/>
+                  onFaceClick={this.onFaceClick(character.name, 'friend', this.friendList(character))}
+                  onEditClick={this.onEditClick(character.name, 'friend', this.friendList(character))}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.name} gender={character.gender}
@@ -101,8 +116,8 @@ class SupportTree extends React.Component {
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.support} edit
-                  onFaceClick={this.onFaceClick(character.name, 'partner', partnerList)}
-                  onEditClick={this.onEditClick(character.name, 'partner', partnerList)}/>
+                  onFaceClick={this.onFaceClick(character.name, 'partner', this.partnerList(character))}
+                  onEditClick={this.onEditClick(character.name, 'partner', this.partnerList(character))}/>
               </Grid>
           </Grid>
           <Typography>
@@ -111,16 +126,16 @@ class SupportTree extends React.Component {
           <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={child.friend} edit
-                  onFaceClick={this.onFaceClick(child.name, 'friend', child.supportList.Friend)}
-                  onEditClick={this.onEditClick(child.name, 'friend', friendList)}/>
+                  onFaceClick={this.onFaceClick(child.name, 'friend', this.friendList(child))}
+                  onEditClick={this.onEditClick(child.name, 'friend', this.friendList(child))}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={child.name} gender={child.gender} onFaceClick={this.onFaceClick()} />
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={child.support} edit
-                  onFaceClick={this.onFaceClick(child.name, 'partner', child.supportList.Partner)}
-                  onEditClick={this.onEditClick(child.name, 'partner', partnerList)} />
+                  onFaceClick={this.onFaceClick(child.name, 'partner', this.partnerList(child))}
+                  onEditClick={this.onEditClick(child.name, 'partner', this.partnerList(child))} />
               </Grid>
           </Grid>
         </Card>
@@ -146,6 +161,7 @@ class SupportTree extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    gamePath: state.gamePath,
     characters: state.characters
   }
 }
