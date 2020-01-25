@@ -22,8 +22,7 @@ class SupportTree extends React.Component {
     super(props)
     this.state = {
       openSelection: false,
-      options: [],
-      gender: props.character.name === 'Corrin'? props.character.gender : ''
+      options: []
     }
   }
 
@@ -109,8 +108,8 @@ class SupportTree extends React.Component {
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.friend} edit
-                  onFaceClick={this.onFaceClick(character.name, 'friend', this.friendList(character))}
-                  onEditClick={this.onEditClick(character.name, 'friend', this.friendList(character))}/>
+                  onFaceClick={this.onFaceClick(character.name, 'FRIEND', this.friendList(character))}
+                  onEditClick={this.onEditClick(character.name, 'FRIEND', this.friendList(character))}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.name} gender={character.gender}
@@ -118,8 +117,8 @@ class SupportTree extends React.Component {
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.support} edit
-                  onFaceClick={this.onFaceClick(character.name, 'partner', this.partnerList(character))}
-                  onEditClick={this.onEditClick(character.name, 'partner', this.partnerList(character))}/>
+                  onFaceClick={this.onFaceClick(character.name, 'PARTNER', this.partnerList(character))}
+                  onEditClick={this.onEditClick(character.name, 'PARTNER', this.partnerList(character))}/>
               </Grid>
           </Grid>
           <Typography>
@@ -128,16 +127,16 @@ class SupportTree extends React.Component {
           <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={child.friend} edit
-                  onFaceClick={this.onFaceClick(child.name, 'friend', this.friendList(child))}
-                  onEditClick={this.onEditClick(child.name, 'friend', this.friendList(child))}/>
+                  onFaceClick={this.onFaceClick(child.name, 'FRIEND', this.friendList(child))}
+                  onEditClick={this.onEditClick(child.name, 'FRIEND', this.friendList(child))}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={child.name} gender={child.gender} onFaceClick={this.onFaceClick()} />
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={child.support} edit
-                  onFaceClick={this.onFaceClick(child.name, 'partner', this.partnerList(child))}
-                  onEditClick={this.onEditClick(child.name, 'partner', this.partnerList(child))} />
+                  onFaceClick={this.onFaceClick(child.name, 'PARTNER', this.partnerList(child))}
+                  onEditClick={this.onEditClick(child.name, 'PARTNER', this.partnerList(child))} />
               </Grid>
           </Grid>
         </Card>
@@ -149,8 +148,7 @@ class SupportTree extends React.Component {
               corrin = corrin ? corrin : this.state.baseCharacter === 'Corrin' ?
                                          this.props.characters.find(chr => chr.name === 'Corrin') : null
               this.props.dispatch({
-                type: 'CHANGE_SUPPORT',
-                supportType: this.state.supportType,
+                type: 'CHANGE_' + this.state.supportType,
                 selected: selected === 'Corrin' ? 'Corrin' + '_' + corrin.gender: selected,
                 baseCharacter: this.state.baseCharacter === 'Corrin' ? 'Corrin' + '_' + corrin.gender : this.state.baseCharacter
               })

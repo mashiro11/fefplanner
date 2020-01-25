@@ -6,40 +6,30 @@ const supportTree = (state = {}, action) => {
   const id = state.id === undefined ? 0 : 1 + state.id++
   console.log(id)
   switch(action.type){
-    case 'CHANGE_SUPPORT':
-      //character not participating in support change action
-      //needs to check if its own support is in action
-      if(state.name !== action.baseCharacter && state.name !== action.selected){
-        if(action.supportType === 'partner' && state.support === action.selected)
-          return {
-            ...state,
-            support: 'None'
-          }
-        if(action.supportType === 'friend' && state.friend === action.selected)
-          return {
-            ...state,
-            friend: 'None'
-          }
-        return state
-      }
-      if(state.name === action.baseCharacter){
-        if(action.supportType === 'partner')
-          return{
-            ...state,
-            support: action.selected
-          }
-        else if(action.supportType === 'friend')
-          return{
-            ...state,
-            friend: action.selected
-          }
-      }
-      else if(action.supportType === 'partner')
-        return{
+    case 'CHANGE_FRIEND':
+      if(state.name === action.baseCharacter)
+        return {
+          ...state,
+          friend: action.selected
+        }
+      return state
+    case 'CHANGE_PARTNER':
+      if(state.name === action.baseCharacter)
+        return {
+          ...state,
+          support: action.selected
+        }
+      else if(state.name === action.selected)
+        return {
           ...state,
           support: action.baseCharacter
         }
-      break
+      else if(state.support === action.selected)
+        return {
+          ...state,
+          support: 'None'
+        }
+      return state
     default:
       return state
   }
@@ -86,7 +76,8 @@ const charactersInitialState = Object.values(Database.characters)
 
 const characters = (state = charactersInitialState, action) => {
   switch(action.type){
-    case 'CHANGE_SUPPORT':
+    case 'CHANGE_FRIEND':
+    case 'CHANGE_PARTNER':
       return state.map(sT => supportTree(sT, action))
     default:
       return(state)

@@ -33,7 +33,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <img src={background} height="200" alt="Fire Emblem: Fates" />
-        <h1 className="App-title">Fire Emblem: Fates - Character Planner</h1>
+        <h1 className="App-title">Fire Emblem: Fates - Character Support Planner</h1>
         <Tabs value={this.state.path} centered onChange={this.pathSelected}>
           <Tab label={'All Paths'} />
           <Tab label={'Birthright'} />
@@ -45,7 +45,7 @@ class App extends React.Component {
               <SupportTree character={this.props.avatar.corrin} />
             </Grid>
           {characters
-            .filter( character => character.path === 'all' && character.childDefiner && character.name !== 'Corrin')
+            .filter( character => character.path === 'all' && character.childDefiner)
             .map((character, index) =>
               <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
                 <SupportTree character={character} />
