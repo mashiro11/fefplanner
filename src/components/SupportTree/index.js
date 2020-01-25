@@ -25,10 +25,10 @@ class SupportTree extends React.Component {
     }
   }
 
-  onClick = (options) => {
+  onFaceClick = (baseCharacter, supportType, options) => {
     return  (e) => {
       if(e.target.title === 'None'){
-        this.setState({openSelection: true, options: options})
+        this.setState({openSelection: true, baseCharacter: baseCharacter, supportType: supportType, options: options})
       }
       else{
         this.props.dispatch(openStatus(e.target.title))
@@ -36,23 +36,24 @@ class SupportTree extends React.Component {
     }
   }
 
+  onEditClick = (baseCharacter, supportType, options) => () => this.setState({openSelection: true, baseCharacter: baseCharacter, supportType: supportType, options: options})
+
   corrinSupportList = (corrin, support) => {
     const { characters } = this.props
-    switch(support){
-      case 'friend':
+
+    if(support === 'friend')
               return characters
                         .filter( chr => chr.gender === corrin.gender &&
                                         chr.name !== corrin.name &&
-                                        chr.name != corrin.childName
+                                        chr.name !== corrin.childName
                                 )
                         .map(chr => chr.name)
-      case 'partner':
+    else if(support === 'partner')
               return characters
                         .filter( chr => chr.gender !== corrin.gender &&
-                                        chr.name != corrin.childName
+                                        chr.name !== corrin.childName
                                 )
                         .map(chr => chr.name)
-    }
   }
 
   render(){
@@ -70,13 +71,18 @@ class SupportTree extends React.Component {
         </CardContent>
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={character.friend} onClick={this.onClick(friendList)} />
+                <FaceIcon name={character.friend} edit
+                  onFaceClick={this.onFaceClick(character.name, 'friend', friendList)}
+                  onEditClick={this.onEditClick(character.name, 'friend', friendList)}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={character.name} gender={character.gender} onClick={this.onClick()} />
+                <FaceIcon name={character.name} gender={character.gender}
+                  onFaceClick={this.onFaceClick()} />
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={character.support} onClick={this.onClick(partnerList)} />
+                <FaceIcon name={character.support} edit
+                  onFaceClick={this.onFaceClick(character.name, 'partner', partnerList)}
+                  onEditClick={this.onEditClick(character.name, 'partner', partnerList)}/>
               </Grid>
           </Grid>
           <Typography>
@@ -84,19 +90,33 @@ class SupportTree extends React.Component {
           </Typography>
           <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={child.friend} onClick={this.onClick()} />
+                <FaceIcon name={child.friend} edit
+                  onFaceClick={this.onFaceClick(child.name, 'friend', child.supportList.Friend)}
+                  onEditClick={this.onEditClick(child.name, 'friend', friendList)}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={child.name} gender={child.gender} onClick={this.onClick()} />
+                <FaceIcon name={child.name} gender={child.gender} onFaceClick={this.onFaceClick()} />
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={child.support} onClick={this.onClick()} />
+                <FaceIcon name={child.support} edit
+                  onFaceClick={this.onFaceClick(child.name, 'partner', child.supportList.Partner)}
+                  onEditClick={this.onEditClick(child.name, 'partner', partnerList)} />
               </Grid>
           </Grid>
         </Card>
         { this.state.openSelection ?
-          <CharacterSelector characters={this.state.options}
-            onCancel={()=> this.setState({openSelection: false}) }/>
+          <CharacterSelector
+            onSelect={(selected) => () => {
+              this.props.dispatch({
+                type: 'CHANGE_SUPPORT',
+                supportType: this.state.supportType,
+                selected: selected,
+                baseCharacter: this.state.baseCharacter
+              })
+              this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null})
+            }}
+            characters={this.state.options}
+            onCancel={()=> this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null}) }/>
           :null
         }
       </div>

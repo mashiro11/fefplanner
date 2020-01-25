@@ -7,13 +7,26 @@ const supportTree = (state = {}, action) => {
   console.log(id)
   switch(action.type){
     case 'CHANGE_SUPPORT':
-      if(state.name !== action.name){
+      if(state.name !== action.baseCharacter && state.name !== action.selected){
         return state
       }
-      return {
-        ...state,
-        support: action.support
+      if(state.name === action.baseCharacter){
+        if(action.supportType === 'partner')
+          return{
+            ...state,
+            support: action.selected
+          }
+        else if(action.supportType === 'friend')
+          return{
+            ...state,
+            friend: action.selected
+          }
       }
+      else if(action.supportType === 'partner')
+        return{
+          ...state,
+          support: action.baseCharacter
+        }
     default:
       return state
   }
