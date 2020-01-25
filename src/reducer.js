@@ -8,6 +8,16 @@ const supportTree = (state = {}, action) => {
   switch(action.type){
     case 'CHANGE_SUPPORT':
       if(state.name !== action.baseCharacter && state.name !== action.selected){
+        if(action.supportType === 'partner' && state.support === action.selected)
+          return {
+            ...state,
+            support: 'None'
+          }
+        if(action.supportType === 'friend' && state.friend === action.selected)
+          return {
+            ...state,
+            friend: 'None'
+          }
         return state
       }
       if(state.name === action.baseCharacter){
@@ -28,21 +38,6 @@ const supportTree = (state = {}, action) => {
           support: action.baseCharacter
         }
       break
-    default:
-      return state
-  }
-}
-
-const character = (state = {}, action) => {
-  let name = state.name + (state.name === 'Corrin' ? '_' +  action.corrinGender :
-                           state.name === 'Kana' ? '_' +  action.kanaGender : '')
-  switch(action.type){
-    case 'SWITCH_GENDER':
-      return {...state,
-        gender: state.gender === 'male' ? 'female' : 'male',
-        portrait: Images.Portraits[name],
-        face: Images.Faces[name]
-      }
     default:
       return state
   }
@@ -83,12 +78,6 @@ const characters = (state = charactersInitialState, action) => {
   switch(action.type){
     case 'CHANGE_SUPPORT':
       return state.map(sT => supportTree(sT, action))
-    case 'SWITCH_GENDER':
-      return [
-        character(state.find( chr => chr.name === 'Corrin'), action),
-        character(state.find( chr => chr.name === 'Kana'), action),
-        ...state.filter( chr => chr.name !== 'Corrin' && chr.name !== 'Kana')
-        ]
     default:
       return(state)
     }
@@ -116,8 +105,35 @@ const gamePath = (state = 'all', action) => {
       return state
   }
 }
+
+const avatarInitialState = {
+  corrin: charactersInitialState.find( chr => chr.name === 'Corrin'),
+  kana: charactersInitialState.find(chr => chr.name === 'Kana')
+}
+
+const avatar = (state = avatarInitialState, action) =>{
+  switch(action.type){
+    case 'SWITCH_GENDER':
+    let corrin = state.corrin
+    let kana = state.kana
+    corrin.gender = corrin.gender === 'male' ? 'female' : 'male'
+    kana.gender = corrin.gender === 'male' ? 'female' : 'male'
+
+    corrin.portrait = Images.Portraits['Corrin' + '_' + corrin.gender]
+    corrin.face = Images.Faces['Corrin' + '_' + corrin.gender]
+
+    kana.portrait = Images.Portraits['Kana' + '_' + kana.gender]
+    kana.face = Images.Faces['Kana' + '_' + kana.gender]
+
+      return {corrin, kana}
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   gamePath,
+  avatar,
   characters,
   status
 })

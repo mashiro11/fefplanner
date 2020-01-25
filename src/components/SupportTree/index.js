@@ -18,12 +18,12 @@ const openStatus = (name) => {
 
 class SupportTree extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       openSelection: false,
       options: [],
-      gender: 'male'
+      gender: props.character.name === 'Corrin'? props.character.gender : ''
     }
   }
 
@@ -142,11 +142,15 @@ class SupportTree extends React.Component {
         { this.state.openSelection ?
           <CharacterSelector
             onSelect={(selected) => () => {
+              let corrin
+              corrin = selected === 'Corrin' ? this.props.characters.find(chr => chr.name === 'Corrin') : null
+              corrin = corrin ? corrin : this.state.baseCharacter === 'Corrin' ?
+                                         this.props.characters.find(chr => chr.name === 'Corrin') : null
               this.props.dispatch({
                 type: 'CHANGE_SUPPORT',
                 supportType: this.state.supportType,
-                selected: selected,
-                baseCharacter: this.state.baseCharacter
+                selected: selected === 'Corrin' ? 'Corrin' + '_' + corrin.gender: selected,
+                baseCharacter: this.state.baseCharacter === 'Corrin' ? 'Corrin' + '_' + corrin.gender : this.state.baseCharacter
               })
               this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null})
             }}
