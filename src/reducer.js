@@ -27,6 +27,7 @@ const supportTree = (state = {}, action) => {
           ...state,
           support: action.baseCharacter
         }
+      break
     default:
       return state
   }
@@ -38,7 +39,7 @@ const character = (state = {}, action) => {
   switch(action.type){
     case 'SWITCH_GENDER':
       return {...state,
-        gender: (state.name === 'Corrin' ? action.corrinGender : action.kanaGender),
+        gender: state.gender === 'male' ? 'female' : 'male',
         portrait: Images.Portraits[name],
         face: Images.Faces[name]
       }

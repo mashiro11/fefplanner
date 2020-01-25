@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
+import Switch from '@material-ui/core/Switch'
 import CharacterSelector from '../CharacterSelector'
 
 
@@ -21,8 +22,13 @@ class SupportTree extends React.Component {
     super()
     this.state = {
       openSelection: false,
-      options: []
+      options: [],
+      gender: 'male'
     }
+  }
+
+  onSwitchChange = () => {
+    this.props.dispatch({type: 'SWITCH_GENDER'})
   }
 
   onFaceClick = (baseCharacter, supportType, options) => {
@@ -61,6 +67,18 @@ class SupportTree extends React.Component {
     const child = this.props.characters.find( current => current.name === character.childName )
     const friendList  = character.name === 'Corrin' ? this.corrinSupportList(character, 'friend') : character.supportList.Friend
     const partnerList = character.name === 'Corrin' ? this.corrinSupportList(character, 'partner') : character.supportList.Partner
+
+    if(character.name !== 'Corrin'){
+      const corrin = this.props.characters.find(current => current.name === 'Corrin')
+      if((corrin.gender === 'male' &&
+         character.gender === 'male' &&
+         character.name !== 'Niles') ||
+         (corrin.gender === 'female' &&
+         character.gender === 'female' &&
+         character.name !== 'Rejaht'))
+          partnerList.splice(partnerList.indexOf('Corrin'), 1)
+      }
+
     return (
       <div>
         <Card>
@@ -69,6 +87,8 @@ class SupportTree extends React.Component {
             {character.name}
           </Typography>
         </CardContent>
+        {character.name === 'Corrin' ? <span>{character.gender}</span> : null}
+        {character.name === 'Corrin' ? <Switch onChange={this.onSwitchChange}/> : null}
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <FaceIcon name={character.friend} edit
