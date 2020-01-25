@@ -77,7 +77,7 @@ class SupportTree extends React.Component {
       if(character.name === 'Corrin')
         return this.corrinSupportList(character, 'partner')
       else{
-        const corrin = this.props.characters.find(current => current.name === 'Corrin')
+        const corrin = this.props.avatar.corrin
         let partnerList = this.filterByPath(character.supportList.Partner)
 
         if((character.name !== 'Niles' &&
@@ -92,7 +92,9 @@ class SupportTree extends React.Component {
 
   render(){
     const { character } = this.props
-    const child = this.props.characters.find( current => current.name === character.childName )
+    const child = character.name === 'Corrin' ?
+                  this.props.avatar.kana :
+                  this.props.characters.find( current => current.name === character.childName )
 
     return (
       <div>
@@ -166,6 +168,7 @@ class SupportTree extends React.Component {
 const mapStateToProps = state => {
   return {
     gamePath: state.gamePath,
+    avatar: state.avatar,
     characters: state.characters
   }
 }
