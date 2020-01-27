@@ -78,19 +78,19 @@ class CharacterStatus extends React.Component{
             </div>
 
             <Paper style={styles.classes}>
-              <div>Classes</div>
+              <div>Classes (Heart Seal)</div>
               { character.charClass.map( (classTree, index) =>
                 <ClassTree classTree={classTree} charName={character.name} key={index}/>
               )}
               {character.isChild?
                 <div>
-                  <div>Inherited Class</div>
+                  <div>Inherited Class (Heart Seal)</div>
                   {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charName={character.name} /> : null}
                 </div>: null
               }
-              <div>Support S Class</div>
+              <div>Support S Class (Partner Seal)</div>
               {character.supportClass ? <ClassTree classTree={character.supportClass} charName={character.name} /> : null }
-              <div>Support A+ Class</div>
+              <div>Support A+ Class (Friend Seal)</div>
               {character.friendClass ? <ClassTree classTree={character.friendClass} charName={character.name} /> : null }
             </Paper>
 
