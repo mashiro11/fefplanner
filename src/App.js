@@ -40,9 +40,9 @@ class App extends React.Component {
           <Tab label={'Revelations'} />
         </Tabs>
         <Grid container justify="center" spacing={24} style={{padding:24}}>
-            <Grid item xs={6} sm={3} lg={2} xl={1} key={0}>
-              <SupportTree character={this.props.avatar.corrin} />
-            </Grid>
+          <Grid item xs={6} sm={3} lg={2} xl={1} key={0}>
+            <SupportTree character={this.props.avatar.corrin} />
+          </Grid>
           {characters
             .filter( character => character.path === 'all' && character.childDefiner)
             .map((character, index) =>
@@ -50,6 +50,8 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>
           )}
+        </Grid>
+        <Grid container justify="center" spacing={24} style={{padding:24}}>
           {characters
             .filter( character => character.path === 'all' && !character.childDefiner && !character.isChild)
             .map((character, index) =>
@@ -57,6 +59,8 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>
           )}
+        </Grid>
+        <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
             characters
             .filter(character => character.path === 'bir' && character.childDefiner)
@@ -65,6 +69,8 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>)
           : null }
+        </Grid>
+        <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
             characters
             .filter(character => character.path === 'bir' && !character.childDefiner && !character.isChild)
@@ -73,6 +79,8 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>)
           : null }
+        </Grid>
+        <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
             characters
             .filter( character => character.path === 'con' && character.childDefiner)
@@ -81,6 +89,8 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>
             ): null }
+        </Grid>
+        <Grid container justify="center" spacing={24} style={{padding:24}}>
             {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
               characters
               .filter( character => character.path === 'con' && !character.childDefiner && !character.isChild)

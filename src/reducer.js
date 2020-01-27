@@ -30,6 +30,7 @@ const supportTree = (state = {}, action) => {
           supportClass: action.baseCharacter.charClass[0]
         }
       }else if(state.support === action.selected.name){
+        //TODO: must undo lots of stuff
         return {
           ...state,
           support: 'None'
