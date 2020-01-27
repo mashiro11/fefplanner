@@ -121,24 +121,28 @@ class SupportTree extends React.Component {
                   onEditClick={this.onEditClick(character.name, 'PARTNER', this.partnerList(character))}/>
               </Grid>
           </Grid>
-          <Typography>
-            Child
-          </Typography>
-          <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
-              <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={child.friend} edit
-                  onFaceClick={this.onFaceClick(child.name, 'FRIEND', this.friendList(child))}
-                  onEditClick={this.onEditClick(child.name, 'FRIEND', this.friendList(child))}/>
+          {character.childDefiner?
+            <div>
+              <Typography>
+                Child
+              </Typography>
+              <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
+                  <Grid item xs={4} sm={4} lg={4} xl={4}>
+                    <FaceIcon name={child.friend} edit
+                      onFaceClick={this.onFaceClick(child.name, 'FRIEND', this.friendList(child))}
+                      onEditClick={this.onEditClick(child.name, 'FRIEND', this.friendList(child))}/>
+                  </Grid>
+                  <Grid item xs={4} sm={4} lg={4} xl={4}>
+                    <FaceIcon name={child.name} gender={child.gender} onFaceClick={this.onFaceClick()} />
+                  </Grid>
+                  <Grid item xs={4} sm={4} lg={4} xl={4}>
+                    <FaceIcon name={child.support} edit
+                      onFaceClick={this.onFaceClick(child.name, 'PARTNER', this.partnerList(child))}
+                      onEditClick={this.onEditClick(child.name, 'PARTNER', this.partnerList(child))} />
+                  </Grid>
               </Grid>
-              <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={child.name} gender={child.gender} onFaceClick={this.onFaceClick()} />
-              </Grid>
-              <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={child.support} edit
-                  onFaceClick={this.onFaceClick(child.name, 'PARTNER', this.partnerList(child))}
-                  onEditClick={this.onEditClick(child.name, 'PARTNER', this.partnerList(child))} />
-              </Grid>
-          </Grid>
+            </div>: null
+          }
         </Card>
         { this.state.openSelection ?
           <CharacterSelector

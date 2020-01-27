@@ -5,7 +5,6 @@ import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import Grid from '@material-ui/core/Grid'
 
-import CharacterList from './containers/CharacterList'
 import SupportTree from './components/SupportTree'
 import CharacterStatus from './components/CharacterStatus'
 import background from './background.jpg'
@@ -59,6 +58,14 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>)
           : null }
+          {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
+            characters
+            .filter(character => character.path === 'bir' && !character.childDefiner && !character.isChild)
+            .map((character, index) =>
+              <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                <SupportTree character={character} />
+              </Grid>)
+          : null }
           {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
             characters
             .filter( character => character.path === 'con' && character.childDefiner)
@@ -67,8 +74,15 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>
             ): null }
+            {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
+              characters
+              .filter( character => character.path === 'con' && !character.childDefiner && !character.isChild)
+              .map((character, index) =>
+                <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                  <SupportTree character={character} />
+                </Grid>
+              ): null }
         </Grid>
-        { undefined ? <CharacterList /> : null }
         { status.name ? <CharacterStatus character={characters.find( character => character.name === status.name)} /> : null }
       </div>
     )
