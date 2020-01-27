@@ -4,7 +4,6 @@ import Images from './images/images.js'
 
 //character2 inherits from character1
 const inheritedClass = (character1, character2) => {
-  let inheritedClass
   if(!character1.charClass[0][0].exclusive){
     if(character1.charClass[0][0].name === 'Villager'){
       if(character2.isChild){
@@ -24,8 +23,7 @@ const inheritedClass = (character1, character2) => {
 }
 
 const supportTree = (state = {}, action) => {
-  const id = state.id === undefined ? 0 : 1 + state.id++
-  action.selected.name = action.selected.name === 'Corrin' ? 'Corrin' + '_' + action.selected.gender: action.selected.name
+  action.selected.name = action.selected.name === 'Corrin' ? 'Corrin_' + action.selected.gender: action.selected.name
 
   switch(action.type){
     case 'CHANGE_FRIEND':
@@ -205,11 +203,11 @@ const avatar = (state = avatarInitialState, action) =>{
       corrin.gender = corrin.gender === 'male' ? 'female' : 'male'
       kana.gender = corrin.gender === 'male' ? 'female' : 'male'
 
-      corrin.portrait = Images.Portraits['Corrin' + '_' + corrin.gender]
-      corrin.face = Images.Faces['Corrin' + '_' + corrin.gender]
+      corrin.portrait = Images.Portraits['Corrin_' + corrin.gender]
+      corrin.face = Images.Faces['Corrin_' + corrin.gender]
 
-      kana.portrait = Images.Portraits['Kana' + '_' + kana.gender]
-      kana.face = Images.Faces['Kana' + '_' + kana.gender]
+      kana.portrait = Images.Portraits['Kana_' + kana.gender]
+      kana.face = Images.Faces['Kana_' + kana.gender]
 
       return {corrin, kana}
     default:
