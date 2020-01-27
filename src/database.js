@@ -857,7 +857,8 @@ function changeObjCharacter(characterName, character){
             character.supportList["Partner"] = ["Corrin", "Kana",
                                                 "Sophie", "Midori", "Rhajat", "Selkie", "Caeldori", "Mitama",
                                                "Nina", "Velouria", "Ophelia", "Soleil"];
-            character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]]];
+            character.charClass = [[classes["SkyKnight"], classes["FalconKnight"], classes["KinshiKnight"]],
+                                   [classes["Troubadourmale"], classes["Butler"], classes["Strategist"]]];
                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             character.grownthRate =  [ 35,  45  ,  5  , 45  , 35  , 25  , 35  , 25];
             character.maxModifiers = [  0 , +1  , +1  , +2  , +4  , +1  , -2  , +1];

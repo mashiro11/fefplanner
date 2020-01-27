@@ -5,13 +5,19 @@ import Images from './images/images.js'
 //character2 inherits from character1
 const inheritedClass = (character1, character2) => {
   let inheritedClass
-  if(!character1.charClass[0][0].exclusive &&
-      character1.charClass[0][0].name !== character2.charClass[0][0].name){
+  if(!character1.charClass[0][0].exclusive){
+    if(character1.charClass[0][0].name === 'Villager'){
+      if(character2.isChild){
+        return character1.charClass[0]
+      }
+      return character1.charClass[1]
+    }else if(character1.charClass[0][0].name !== character2.charClass[0][0].name){
       if(character2.charClass.length > 1 &&
          character1.charClass[0][0].name === character2.charClass[1][0].name){
         return character1.charClass[1]
       }
       return character1.charClass[0]
+    }
   }else{
     return character1.charClass[1]
   }
@@ -32,26 +38,22 @@ const supportTree = (state = {}, action) => {
       }
       return state
     case 'CHANGE_PARTNER':
-      if(state.isChild){
-        if((action.baseCharacter.childDefiner &&
-           state.name !== action.baseCharacter.childName) ||
-           (!action.baseCharacter.childDefiner &&
-           state.name === action.selected.childName) ) {
-              return{
-                ...state,
-                inheritedClass: inheritedClass(action.baseCharacter, state)
-              }
-        }else if((action.selected.childDefiner &&
-                state.name !== action.selected.childName) ||
-                (!action.selected.childDefiner &&
-                state.name === action.baseCharacter.childName)){
-                return{
+      if(action.selected.name === 'None'){
+
+      }else if(state.name === 'Shigure' &&
+              ((action.baseCharacter.name === 'Azura' &&
+              action.selected.name === 'Jakob') ||
+              (action.baseCharacter.name === 'Jakob' &&
+              action.selected.name === 'Azura'))){
+                const charClass = state.charClass
+                charClass[1] = Database.characters['Camilla'].charClass[0]
+                return {
                   ...state,
-                  inheritedClass: inheritedClass(action.selected, state)
+                  charClass: charClass,
+                  supportParent: action.selected.name,
+                  inheritedClass: inheritedClass(action.selected.name === 'Jakob' ? action.selected : action.baseCharacter, state)
                 }
-        }
-      }else
-      if(state.name === action.baseCharacter.name){
+      }else if(state.name === action.baseCharacter.name){
         return {
           ...state,
           support: action.selected.name,
@@ -63,11 +65,47 @@ const supportTree = (state = {}, action) => {
           support: action.baseCharacter.name,
           supportClass: inheritedClass(action.baseCharacter, action.selected)
         }
+      }else if(action.baseCharacter.childDefiner &&
+         state.name === action.baseCharacter.childName)
+         {
+            return{
+              ...state,
+              supportParent: action.selected.name,
+              inheritedClass: inheritedClass(action.selected, state)
+            }
+      }else if(action.selected.childDefiner &&
+              state.name === action.selected.childName){
+              return{
+                ...state,
+                supportParent: action.baseCharacter.name,
+                inheritedClass: inheritedClass(action.baseCharacter, state)
+              }
       }else if(state.support === action.selected.name){
-        //TODO: must undo lots of stuff
+        //TODO: must undo skill choices based on lost classes
+        //return removeSupport(state, action)
         return {
           ...state,
-          support: 'None'
+          support: 'None',
+          supportClass: null
+        }
+      }else if(state.supportParent === action.selected.name){
+        //return removeInheritance(state, action)
+        if(state.name === 'Shigure' &&
+          action.selected.name === 'Jakob'){
+            console.log('undo')
+            const charClass = state.charClass
+            charClass[1] = action.selected.charClass[0]
+            return{
+              ...state,
+              charClass: charClass,
+              supportParent: 'None',
+              inheritedClass: null
+            }
+        }else
+        return {
+          ...state,
+          supportParent: 'None',
+          inheritedClass: null
         }
       }
       return state
