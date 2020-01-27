@@ -101,6 +101,11 @@ class App extends React.Component {
               ): null }
         </Grid>
         { status.name ? <CharacterStatus character={characters.find( character => character.name === status.name)} /> : null }
+        <div>
+          Based on information from:<br/>
+            <a href={'www.youtube.com/watch?v=zgg8lt75MrE'}>www.youtube.com/watch?v=zgg8lt75MrE</a><br/>
+            <a href={'fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem_Fates'}>fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem_Fates</a>
+        </div>
       </div>
     )
   }
