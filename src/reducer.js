@@ -4,31 +4,37 @@ import Images from './images/images.js'
 
 const supportTree = (state = {}, action) => {
   const id = state.id === undefined ? 0 : 1 + state.id++
-  console.log(id)
+  action.selected.name = action.selected.name === 'Corrin' ? 'Corrin' + '_' + action.selected.gender: action.selected.name
+
   switch(action.type){
     case 'CHANGE_FRIEND':
-      if(state.name === action.baseCharacter)
+      if(state.name === action.baseCharacter.name){
         return {
           ...state,
-          friend: action.selected
+          friend: action.selected.name,
+          friendClass: action.selected.charClass[0]
         }
+      }
       return state
     case 'CHANGE_PARTNER':
-      if(state.name === action.baseCharacter)
+      if(state.name === action.baseCharacter.name){
         return {
           ...state,
-          support: action.selected
+          support: action.selected.name,
+          supportClass: action.selected.charClass[0]
         }
-      else if(state.name === action.selected)
+      }else if(state.name === action.selected.name){
         return {
           ...state,
-          support: action.baseCharacter
+          support: action.baseCharacter.name,
+          supportClass: action.baseCharacter.charClass[0]
         }
-      else if(state.support === action.selected)
+      }else if(state.support === action.selected.name){
         return {
           ...state,
           support: 'None'
         }
+      }
       return state
     default:
       return state
@@ -51,11 +57,17 @@ const createCharInfo = (character) => {
     maxModifiers: character.maxModifiers,
     supportList: character.supportList,
     choosenClasses: character.choosenClasses,
-    choosenSkills: character.choosenSkills
+    choosenSkills: character.choosenSkills,
+    friendClass: null,
+    supportClass: null
   }
   if(character.childDefiner){
     info = {...info,
             childName: character.child.name }
+  }
+  if(character.isChild){
+    info = {...info,
+            childDefinerName: character.childDefinerName }
   }
 
   let name = character.name

@@ -48,7 +48,6 @@ const styles = {
 class CharacterStatus extends React.Component{
   render(){
     const { character } = this.props
-    const wikia = 'http://fireemblem.wikia.com/wiki/' + character.name
       const closeStatus = () => {
         this.props.dispatch({type: 'CLOSE_STATUS', name: character.name})
       }
@@ -58,7 +57,7 @@ class CharacterStatus extends React.Component{
         <Paper style={styles.pannel}>
             <div style={styles.portrait}>
               <img style={styles.picture} src={character.portrait} title={character.name} alt={character.name}/>
-              <Button size="small" color="primary" href={wikia}>
+              <Button size="small" color="primary">
                 {character.name}
               </Button>
             </div>
@@ -85,7 +84,9 @@ class CharacterStatus extends React.Component{
                 <ClassTree classTree={classTree} charName={character.name} key={index}/>
               )}
               <div>Support S Class</div>
+              {character.supportClass ? <ClassTree classTree={character.supportClass} charName={character.name} /> : null }
               <div>Support A+ Class</div>
+              {character.friendClass ? <ClassTree classTree={character.friendClass} charName={character.name} /> : null }
             </Paper>
 
           <Button style={styles.closeButton} size="small" color="primary" onClick={closeStatus}>

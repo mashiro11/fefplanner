@@ -26,13 +26,17 @@ const charName = {
 }
 
 const FaceIcon = (props) => {
+  const wikia = 'http://fireemblem.wikia.com/wiki/' + props.name
   let name = props.name + (props.name === 'Corrin' || props.name === 'Kana'? '_' + props.gender : '')
 
   return(
     <div>
       <img style={faceStyle} src={Images.Faces[name]} title={props.name} onClick={props.onFaceClick} alt={props.name} />
       {props.edit? <EditIcon onClick={props.onEditClick} style={editIcon}/> : null}
-      <div style={props.edit ? charName: null}>{props.name}</div>
+      {props.name === 'None' ?
+        <div style={props.edit ? charName: null}>{props.name}</div> : 
+        <a href={wikia}><div style={props.edit ? charName: null}>{props.name}</div></a>
+      }
     </div>
   )
 }

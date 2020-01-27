@@ -50,6 +50,13 @@ class App extends React.Component {
                 <SupportTree character={character} />
               </Grid>
           )}
+          {characters
+            .filter( character => character.path === 'all' && !character.childDefiner && !character.isChild)
+            .map((character, index) =>
+              <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
+                <SupportTree character={character} />
+              </Grid>
+          )}
           {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
             characters
             .filter(character => character.path === 'bir' && character.childDefiner)

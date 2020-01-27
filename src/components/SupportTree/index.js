@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import FaceIcon from '../FaceIcon'
 import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Switch from '@material-ui/core/Switch'
 import CharacterSelector from '../CharacterSelector'
@@ -64,7 +63,11 @@ class SupportTree extends React.Component {
   filterByPath = (characterNameList) => characterNameList ?
                                           characterNameList.filter(current => {
                                             let found = this.props.characters.find(ch => ch.name === current)
-                                            return found? found.path === this.props.gamePath || found.path === 'all' : false})
+                                            return found?
+                                                  found.path === this.props.gamePath ||
+                                                  found.path === 'all' ||
+                                                  this.props.gamePath === 'rev'
+                                                  : false})
                                           : []
 
   friendList = (character) => character.name === 'Corrin' ?
@@ -96,13 +99,7 @@ class SupportTree extends React.Component {
                   this.props.characters.find( current => current.name === character.childName )
 
     return (
-      <div>
-        <Card>
-        <CardContent>
-          <Typography gutterBottom variant='headline' component='h5'>
-            {character.name}
-          </Typography>
-        </CardContent>
+      <Paper>
         {character.name === 'Corrin' ? <span>{character.gender}</span> : null}
         {character.name === 'Corrin' ? <Switch onChange={this.onSwitchChange}/> : null}
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
@@ -143,18 +140,13 @@ class SupportTree extends React.Component {
               </Grid>
             </div>: null
           }
-        </Card>
         { this.state.openSelection ?
           <CharacterSelector
             onSelect={(selected) => () => {
-              let corrin
-              corrin = selected === 'Corrin' ? this.props.characters.find(chr => chr.name === 'Corrin') : null
-              corrin = corrin ? corrin : this.state.baseCharacter === 'Corrin' ?
-                                         this.props.characters.find(chr => chr.name === 'Corrin') : null
               this.props.dispatch({
                 type: 'CHANGE_' + this.state.supportType,
-                selected: selected === 'Corrin' ? 'Corrin' + '_' + corrin.gender: selected,
-                baseCharacter: this.state.baseCharacter === 'Corrin' ? 'Corrin' + '_' + corrin.gender : this.state.baseCharacter
+                selected: this.props.characters.find(chr => chr.name === selected),
+                baseCharacter: this.props.characters.find(chr => chr.name === this.state.baseCharacter),
               })
               this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null})
             }}
@@ -162,7 +154,7 @@ class SupportTree extends React.Component {
             onCancel={()=> this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null}) }/>
           :null
         }
-      </div>
+      </Paper>
     )
   }
 }
