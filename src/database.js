@@ -2036,6 +2036,7 @@ function CharClass(className, charGender){
             WOLFSKIN -> WOLFSSEGNER
         */
         if(this.name === "Wolfskin"){
+            this.exclusive = true
             this.weapons = ["Stone"];
             this.skills = [skills["OddShaped"], skills["Beastbane"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2284,6 +2285,7 @@ function CharClass(className, charGender){
             KITSUNE -> NINE TAILS
         */
         if(this.name === "Kitsune"){
+            this.exclusive = true
             this.weapons = ["Stone"];
             this.skills = [skills["Evenhanded"], skills["Beastbane"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2304,6 +2306,7 @@ function CharClass(className, charGender){
             Special Classes
         */
         if(this.name === "Songstress"){
+            this.exclusive = true
             this.weapons = ["Lance"];
             this.skills = [skills["Luck+4"], skills["InspiringSong"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res

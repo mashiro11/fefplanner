@@ -2,6 +2,21 @@ import { combineReducers } from 'redux'
 import Database from './database.js'
 import Images from './images/images.js'
 
+//character2 inherits from character1
+const inheritedClass = (character1, character2) => {
+  let inheritedClass
+  if(!character1.charClass[0][0].exclusive &&
+      character1.charClass[0][0].name !== character2.charClass[0][0].name){
+      if(character2.charClass.length > 1 &&
+         character1.charClass[0][0].name === character2.charClass[1][0].name){
+        return character1.charClass[1]
+      }
+      return character1.charClass[0]
+  }else{
+    return character1.charClass[1]
+  }
+}
+
 const supportTree = (state = {}, action) => {
   const id = state.id === undefined ? 0 : 1 + state.id++
   action.selected.name = action.selected.name === 'Corrin' ? 'Corrin' + '_' + action.selected.gender: action.selected.name
@@ -17,17 +32,36 @@ const supportTree = (state = {}, action) => {
       }
       return state
     case 'CHANGE_PARTNER':
+      if(state.isChild){
+        if((action.baseCharacter.childDefiner &&
+           state.name !== action.baseCharacter.childName) ||
+           (!action.baseCharacter.childDefiner &&
+           state.name === action.selected.childName) ) {
+              return{
+                ...state,
+                inheritedClass: inheritedClass(action.baseCharacter, state)
+              }
+        }else if((action.selected.childDefiner &&
+                state.name !== action.selected.childName) ||
+                (!action.selected.childDefiner &&
+                state.name === action.baseCharacter.childName)){
+                return{
+                  ...state,
+                  inheritedClass: inheritedClass(action.selected, state)
+                }
+        }
+      }else
       if(state.name === action.baseCharacter.name){
         return {
           ...state,
           support: action.selected.name,
-          supportClass: action.selected.charClass[0]
+          supportClass: inheritedClass(action.selected, action.baseCharacter)
         }
       }else if(state.name === action.selected.name){
         return {
           ...state,
           support: action.baseCharacter.name,
-          supportClass: action.baseCharacter.charClass[0]
+          supportClass: inheritedClass(action.baseCharacter, action.selected)
         }
       }else if(state.support === action.selected.name){
         //TODO: must undo lots of stuff

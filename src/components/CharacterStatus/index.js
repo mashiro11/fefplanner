@@ -83,6 +83,12 @@ class CharacterStatus extends React.Component{
               { character.charClass.map( (classTree, index) =>
                 <ClassTree classTree={classTree} charName={character.name} key={index}/>
               )}
+              {character.isChild?
+                <div>
+                  <div>Inherited Class</div>
+                  {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charName={character.name} /> : null}
+                </div>: null
+              }
               <div>Support S Class</div>
               {character.supportClass ? <ClassTree classTree={character.supportClass} charName={character.name} /> : null }
               <div>Support A+ Class</div>
