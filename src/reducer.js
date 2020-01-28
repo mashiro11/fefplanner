@@ -50,6 +50,7 @@ const supportTree = (state = {}, action) => {
           action.baseCharacter.name === 'Azura' &&
           state.supportParent === 'Jakob'){
             const charClass = state.charClass
+            //gives troubadour/butler class
             charClass[1] = Database.characters['Jakob'].charClass[0]
             return{
               ...state,
@@ -94,6 +95,7 @@ const supportTree = (state = {}, action) => {
               (action.baseCharacter.name === 'Jakob' &&
               action.selected.name === 'Azura'))){
                 const charClass = state.charClass
+                //gives wyvernrider class
                 charClass[1] = Database.characters['Camilla'].charClass[0]
                 return {
                   ...state,
