@@ -42,6 +42,20 @@ class SupportTree extends React.Component {
 
   onEditClick = (baseCharacter, supportType, options) => () => this.setState({openSelection: true, baseCharacter: baseCharacter, supportType: supportType, options: options})
 
+  isBrother = (selected) =>{
+    if(selected === 'None') return false
+    const charSelected = this.props.characters.find(chr => selected === chr.name)
+
+    const baseCharacter = this.props.characters.find(chr => this.state.baseCharacter === chr.name)
+    if(baseCharacter.childDefiner){
+      const child = this.props.characters.find(chr => baseCharacter.childName === chr.name)
+      if(child.support === charSelected.childName) return true
+    }else if(baseCharacter.supportParent){
+      if(!charSelected.childDefinerName) return false
+      if(baseCharacter.supportParent === charSelected.childDefinerName) return true
+    }
+    return false
+  }
   corrinSupportList = (corrin, support) => {
     const { characters } = this.props
 
@@ -116,8 +130,8 @@ class SupportTree extends React.Component {
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <div>Partner</div>
                 <FaceIcon name={character.support} edit
-                  onFaceClick={this.onFaceClick(character.name, 'PARTNER', this.partnerList(character))}
-                  onEditClick={this.onEditClick(character.name, 'PARTNER', this.partnerList(character))}/>
+                  onFaceClick={this.onFaceClick(character.name, 'SUPPORT', this.partnerList(character))}
+                  onEditClick={this.onEditClick(character.name, 'SUPPORT', this.partnerList(character))}/>
               </Grid>
           </Grid>
           {character.childDefiner?
@@ -138,8 +152,8 @@ class SupportTree extends React.Component {
                   <Grid item xs={4} sm={4} lg={4} xl={4}>
                     <div>Partner</div>
                     <FaceIcon name={child.support} edit
-                      onFaceClick={this.onFaceClick(child.name, 'PARTNER', this.partnerList(child))}
-                      onEditClick={this.onEditClick(child.name, 'PARTNER', this.partnerList(child))} />
+                      onFaceClick={this.onFaceClick(child.name, 'SUPPORT', this.partnerList(child))}
+                      onEditClick={this.onEditClick(child.name, 'SUPPORT', this.partnerList(child))} />
                   </Grid>
               </Grid>
             </div>: null
@@ -147,14 +161,26 @@ class SupportTree extends React.Component {
         { this.state.openSelection ?
           <CharacterSelector
             onSelect={(selected) => () => {
-              this.props.dispatch({
-                type: 'CHANGE_' + this.state.supportType,
-                selected: this.props.characters.find(chr => chr.name === selected),
-                baseCharacter: this.props.characters.find(chr => chr.name === this.state.baseCharacter),
-              })
+              const charSelected = this.props.characters.find(chr => chr.name === selected)
+              const baseCharacter = this.props.characters.find(chr => chr.name === this.state.baseCharacter)
+              const message = `Want ${selected} to be ${this.state.baseCharacter}'s ${this.state.supportType === 'FRIEND'? this.state.supportType.toLowerCase():''} support?\n(confirming will undo previous support and inherited skills may also be undone)`
+              let proceed = true
+              if(selected !== 'None' &&
+              (this.isBrother(selected) ||
+              charSelected[this.state.supportType.toLowerCase()] !== 'None' ||
+              baseCharacter[this.state.supportType.toLowerCase()] !== 'None'))
+                proceed = window.confirm(message)
+              if(proceed){
+                this.props.dispatch({
+                  type: 'CHANGE_' + this.state.supportType,
+                  remove: selected === 'None',
+                  selected: charSelected,
+                  baseCharacter: baseCharacter
+                })
+              }
               this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null})
             }}
-            characters={this.state.options}
+            characters={this.props.characters.find(chr => chr.name === this.state.baseCharacter)[this.state.supportType.toLowerCase()] !== 'None'? ['None',...this.state.options]: this.state.options}
             onCancel={()=> this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null}) }/>
           :null
         }
