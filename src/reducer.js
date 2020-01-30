@@ -24,7 +24,7 @@ const inheritedClass = (character1, character2) => {
 
 const supportTree = (state = {}, action) => {
   if(!action.remove)
-    action.selected.name = action.selected.name === 'Corrin' ? 'Corrin_' + action.selected.gender: action.selected.name
+    action.selected.name = action.selected.name === 'Corrin' ? 'Corrin_' + action.selected.sex: action.selected.name
 
   switch(action.type){
     case 'CHANGE_FRIEND':
@@ -211,7 +211,7 @@ const createCharInfo = (character) => {
     path: character.path,
     childDefiner: character.childDefiner,
     isChild:character.isChild,
-    gender: character.gender,
+    sex: character.sex,
     skill: character.skill,
     charClass: character.charClass,
     friend: 'None',
@@ -235,7 +235,7 @@ const createCharInfo = (character) => {
 
   let name = character.name
   if(character.name === 'Corrin' || character.name === 'Kana'){
-    name = character.name + '_' + character.gender
+    name = character.name + '_' + character.sex
   }
   info = {...info,
           portrait: Images.Portraits[name],
@@ -254,16 +254,16 @@ const characters = (state = charactersInitialState, action) => {
     case 'CHANGE_FRIEND':
     case 'CHANGE_SUPPORT':
       return state.map(sT => supportTree(sT, action))
-    case 'SWITCH_GENDER':
+    case 'SWITCH_SEX':
       const corrin = state.find(chr => chr.name === 'Corrin')
       console.log('removed: ', state.splice(state.indexOf(corrin), 1))
       const kana = state.find(chr => chr.name === 'Kana')
       console.log('removed: ', state.splice(state.indexOf(kana), 1))
       //switch
-      corrin.gender = corrin.gender === 'male' ? 'female' : 'male'
-      kana.gender = corrin.gender === 'male' ? 'female' : 'male'
-      corrin.face = Images.Faces['Corrin_' + corrin.gender]
-      kana.face = Images.Faces['Kana_' + kana.gender]
+      corrin.sex = corrin.sex === 'male' ? 'female' : 'male'
+      kana.sex = corrin.sex === 'male' ? 'female' : 'male'
+      corrin.face = Images.Faces['Corrin_' + corrin.sex]
+      kana.face = Images.Faces['Kana_' + kana.sex]
 
       //undo partner / friend
       let corrinPartner

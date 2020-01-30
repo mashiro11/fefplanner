@@ -579,7 +579,7 @@ function Character(characterName){
     this.name = characterName;
     this.path = null;
     this.portrait = null;
-    this.gender = null;
+    this.sex = null;
     this.skill = null;
     this.charClass = null;
 
@@ -636,7 +636,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = true
             character.isChild = false
-            character.gender = "male"
+            character.sex = "male"
             character.skill = new Skill("Supportive")
             characters["Kana"] = new Character("Kana")
             character.child = characters["Kana"]
@@ -653,7 +653,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("HealingDescant");
 
             characters["Shigure"] = new Character("Shigure");
@@ -685,7 +685,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("DevotedPartner");
 
             character.supportList["Friend"] = ["Peri", "Flora", "Hana"];
@@ -712,7 +712,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Forager");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -732,7 +732,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("EvasivePartner");
 
             characters["Dwyer"] = new Character("Dwyer");
@@ -754,7 +754,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("VowOfFriendship");
 
             characters["Sophie"] = new Character("Sophie");
@@ -776,7 +776,7 @@ function changeObjCharacter(characterName, character){
             character.path = "all"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("MiraculousSave");
 
             characters["Midori"] = new Character("Midori");
@@ -802,7 +802,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Silas";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Mischievous");
             character.supportList["Friend"] = ["Caeldori", "Velouria", "Soleil"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer",
@@ -818,7 +818,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Jakob";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("BornSteward");
             character.supportList["Friend"] = ["Kiragi", "Gray-Asugi", "Percy"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori",
@@ -834,7 +834,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Kaze";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("LuckyCharm");
             character.supportList["Friend"] = ["Kana", "Selkie", "Ophelia"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer",
@@ -851,7 +851,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Azura";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("PerfectPitch");
             character.supportList["Friend"] = ["Hisame", "Forrest"];
             character.supportList["Partner"] = ["Corrin", "Kana",
@@ -872,7 +872,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Corrin";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("DraconicHeir");
             character.supportList["Friend"] = null ;
             character.supportList["Partner"] = null;
@@ -899,7 +899,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Chivalry");
 
             characters["Siegbert"] = new Character("Siegbert");
@@ -919,7 +919,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Pragmatic");
 
             characters["Forrest"] = new Character("Forrest");
@@ -939,7 +939,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("FancyFootwork");
 
             characters["Soleil"] = new Character("Soleil");
@@ -959,7 +959,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("AchingBlood");
 
             characters["Ophelia"] = new Character("Ophelia");
@@ -979,7 +979,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Kidnap");
 
             characters["Nina"] = new Character("Nina");
@@ -999,7 +999,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Misfortunate");
 
             characters["Percy"] = new Character("Percy");
@@ -1019,7 +1019,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("FierceMien");
 
             characters["Ignatius"] = new Character("Ignatius");
@@ -1039,7 +1039,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Collector");
 
             characters["Velouria"] = new Character("Velouria");
@@ -1064,7 +1064,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Xander";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Gallant");
             character.supportList["Friend"] = ["Kana", "Ignatius", "Forrest", "Shiro"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Caeldori", "Mitama"];
@@ -1079,7 +1079,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Leo";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("FierceCounter");
             character.supportList["Friend"] = ["Shigure", "Siegbert", "Ignatius", "Kiragi"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Rhajat", "Selkie"];
@@ -1095,7 +1095,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Benny";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("GuardedBravery");
             character.supportList["Friend"] = ["Siegbert", "Forrest", "Percy", "Asugi"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Caeldori", "Selkie"];
@@ -1111,7 +1111,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Keaton";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("GoodyBasket");
             character.supportList["Friend"] = ["Kana", "Sophie", "Nina", "Selkie"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Kiragi", "Hisame"];
@@ -1127,7 +1127,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Arthur";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("FortunateSon");
             character.supportList["Friend"] = ["Kana", "Dwyer", "Ignatius", "Hisame"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Sophie", "Midori", "Nina", "Ophelia", "Soleil", "Velouria", "Rhajat", "Mitama"];
@@ -1143,7 +1143,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Odin";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Bibliophile");
             character.supportList["Friend"] = ["Midori", "Soleil", "Rhajat"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Shiro", "Hisame"];
@@ -1159,7 +1159,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Laslow";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Sisterhood");
             character.supportList["Friend"] = ["Sophie", "Nina", "Ophelia", "Mitama"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Kiragi", "Asugi"];
@@ -1175,7 +1175,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Niles";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Daydream");
             character.supportList["Friend"] = ["Soleil", "Velouria", "Caeldori"];
             character.supportList["Partner"] = ["Corrin", "Kana", "Shigure", "Dwyer", "Siegbert", "Forrest", "Ignatius", "Percy", "Shiro", "Asugi"];
@@ -1195,7 +1195,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("RosesThorns");
             character.supportList["Friend"] = ["Elise", "Selena", "Beruka", "Hinoka"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1211,7 +1211,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("LilysPoise");
             character.supportList["Friend"] = ["Azura", "Camilla", "Effie", "Sakura"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1227,7 +1227,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("BloodThirst");
             character.supportList["Friend"] = ["Felicia", "Charlotte", "Selena", "Kagero"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1243,7 +1243,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("FierceRival");
             character.supportList["Friend"] = ["Camilla", "Beruka", "Peri", "Setsuna"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1259,7 +1259,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Opportunist");
             character.supportList["Friend"] = ["Camilla", "Charlotte", "Selena", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1275,7 +1275,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Puissance");
             character.supportList["Friend"] = ["Mozu", "Elise", "Nyx", "Hana"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1291,7 +1291,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Countercurse");
             character.supportList["Friend"] = ["Mozu", "Elise", "Charlotte", "Orochi"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1307,7 +1307,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Unmask");
             character.supportList["Friend"] = ["Nyx", "Beruka", "Peri", "Rinkah"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1323,7 +1323,7 @@ function changeObjCharacter(characterName, character){
             character.path = "con"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("IcyBlood");
             character.supportList["Friend"] = ["Felicia"];
             character.supportList["Partner"] = ["Corrin"];
@@ -1353,7 +1353,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Bushido");
             character.supportList["Friend"] = ["Corrin", "Cyrus-Cilas", "Takumi", "Saizo", "Xander"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Camilla", "Elise"];
@@ -1372,7 +1372,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Competitive");
             character.supportList["Friend"] = ["Jakob", "Ryoma", "Hinata", "Leo"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Camilla", "Elise"];
@@ -1391,7 +1391,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Pyrotechnics");
             character.supportList["Friend"] = ["Kaze", "Subaki", "Ryoma", "Laslow"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Charlotte", "Beruka"];
@@ -1410,7 +1410,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("DivineRetribution");
             character.supportList["Friend"] = ["Subaki", "Hayato", "Kaden", "Arthur"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Effie", "Beruka"];
@@ -1429,7 +1429,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("TripleThreat");
             character.supportList["Friend"] = ["Subaki", "Takumi", "Kaden", "Odin"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Selena", "Peri"];
@@ -1448,7 +1448,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Perfectionist");
             character.supportList["Friend"] = ["Hinata", "Saizo", "Azama", "Niles"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Selena", "Nyx"];
@@ -1467,7 +1467,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Pride");
             character.supportList["Friend"] = ["Azama", "Kaden", "Benny"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Effie", "Nyx"];
@@ -1486,7 +1486,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = true;
             character.isChild = false;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Reciprocity");
             character.supportList["Friend"] = ["Hinata", "Hayato", "Azama", "Keaton"];
             character.supportList["Partner"] = ["Corrin", "Azura", "Felicia", "Mozu", "Hinoka", "Sakura", "Hana", "Orochi", "Rinkah", "Kagero", "Oboro", "Setsuna", "Charlotte", "Peri"];
@@ -1506,7 +1506,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Ryoma";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("NobleCause");
             character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]],
@@ -1522,7 +1522,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Takumi";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Optimist");
             character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Archer"], classes["Sniper"], classes["KinshiKnight"]],
@@ -1538,7 +1538,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Saizo";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("SweetTooth");
             character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Ninja"], classes["MasterNinja"], classes["Mechanist"]],
@@ -1554,7 +1554,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Hinata";
             character.isChild = true;
-            character.gender = "male";
+            character.sex = "male";
             character.skill = new Skill("Calm");
             character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Samurai"], classes["Swordmaster"], classes["MasterOfArms"]],
@@ -1570,7 +1570,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Azama";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Haiku");
             character.charClass = [[classes["ShrineMaiden"], classes["Priestess"], classes["Onmyoji"]],
                                    [classes["Apothecary"], classes["Merchant"], classes["Mechanist"]]];
@@ -1585,7 +1585,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Subaki";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Prodigy");
             character.supportList["Friend"] = ["Felicia"];
             character.supportList["Partner"] = ["Corrin"];
@@ -1602,7 +1602,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Kaden";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("PlayThings");
             character.supportList["Friend"] = ["Felicia"];
             character.supportList["Partner"] = ["Corrin"];
@@ -1619,7 +1619,7 @@ function changeObjCharacter(characterName, character){
             character.childDefiner = false;
             character.childDefinerName = "Hayato";
             character.isChild = true;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Vendetta");
             character.supportList["Friend"] = ["Felicia"];
             character.supportList["Partner"] = ["Corrin"];
@@ -1635,7 +1635,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("RallyingCry");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1653,7 +1653,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("QuietStrength");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1671,7 +1671,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("ShurikenMastery");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1689,7 +1689,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Optimistic");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1707,7 +1707,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("NohrEnmity");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1725,7 +1725,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("FearsomeBlow");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1743,7 +1743,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("Capture");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1761,7 +1761,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("FieryBlood");
             character.supportList["Friend"] = ["Orochi", "Oboro", "Kagero", "Charlotte"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1779,7 +1779,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("MorbidCelebration");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1798,7 +1798,7 @@ function changeObjCharacter(characterName, character){
             character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
-            character.gender = "female";
+            character.sex = "female";
             character.skill = new Skill("InExtremis");
             character.supportList["Friend"] = ["Effie", "Nyx", "Oboro"];
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
@@ -1820,9 +1820,9 @@ function changeObjCharacter(characterName, character){
         }
 }
 
-function CharClass(className, charGender){
+function CharClass(className, charsex){
     this.name = className;
-    this.gender = null;
+    this.sex = null;
     this.weapons = null;
     this.skills = null;
     this.grownthRate = null;
@@ -1833,7 +1833,7 @@ function CharClass(className, charGender){
     this.gif = ".gif";
 
     this.setClass = function(){
-        this.gender = charGender;
+        this.sex = charsex;
         /*
             CAVALIER -> GREAT KNIGHT | PALADIN
         */
@@ -2009,14 +2009,14 @@ function CharClass(className, charGender){
         */
         if(this.name === "Troubadour"){
             this.weapons = ["Staff"];
-            this.skills = [skills["Resistance+2"], (this.gender === "female") ? skills["Demoiselle"] : skills["Gentilhomme"]];
+            this.skills = [skills["Resistance+2"], (this.sex === "female") ? skills["Demoiselle"] : skills["Gentilhomme"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
             this.baseStatuss = [  15 ,  0  ,  3  ,  7  ,  5  ,  4  ,  1  ,  4];
             this.maxStatus =   [  35 , 16  , 19  , 24  , 20  , 23  , 16  , 21];
             this.grownthRate = [   0 ,  0  , 10  , 20  , 10  , 15  ,  0  , 15];
         }
         if(this.name === "Maid" || this.name === "Butler"){
-            this.name = (this.gender === "male") ? "Butler" : "Maid";
+            this.name = (this.sex === "male") ? "Butler" : "Maid";
 
             this.weapons = ["Shuriken", "Staff"];
             this.skills = [skills["LiveToServe"], skills["Tomebreaker"]];
@@ -2217,7 +2217,7 @@ function CharClass(className, charGender){
             MONK/SHRINE MAIDEN -> ONMYOJI | GREAT MASTER
         */
         if(this.name === "Monk" || this.name === "ShrineMaiden"){
-            (this.gender === "male") ? this.name = "Monk" : this.name = "ShrineMaiden";
+            (this.sex === "male") ? this.name = "Monk" : this.name = "ShrineMaiden";
 
             this.weapons = ["Staff"];
             this.skills = [skills["Miracle"], skills["RallyLuck"]];
@@ -2227,8 +2227,8 @@ function CharClass(className, charGender){
             this.grownthRate = [  25 , 60  , 25  , 80  , 80  , 60  , 15  , 35];
         }
         if(this.name === "GreatMaster" || this.name === "Priestess"){
-            this.name = (this.gender === "male") ? "GreatMaster" : "Priestess";
-            this.weapons = (this.gender === "male") ? ["Lance", "Staff"] : ["Bow", "Staff"];
+            this.name = (this.sex === "male") ? "GreatMaster" : "Priestess";
+            this.weapons = (this.sex === "male") ? ["Lance", "Staff"] : ["Bow", "Staff"];
 
             this.skills = [skills["Renewal"], skills["Countermagic"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2368,8 +2368,8 @@ function CharClass(className, charGender){
     this.setClass(className);
 }
 
-function Skill(skillName, gender){
-    this.gender = gender;
+function Skill(skillName, sex){
+    this.sex = sex;
     this.name = skillName;
     this.description = skillDescription[skillName];
     this.icon = "images/skills/"+this.name+".png";
@@ -2638,7 +2638,7 @@ function Skill(skillName, gender){
 }
 
 /*
-function getGender(name){
+function getsex(name){
     if(name === "Kaze") return "male";
     if(name === "Corrin-Male") return "male";
     if(name === "Silas") return "male";

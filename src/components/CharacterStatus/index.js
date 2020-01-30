@@ -80,18 +80,18 @@ class CharacterStatus extends React.Component{
             <Paper style={styles.classes}>
               <div>Classes (Heart Seal)</div>
               { character.charClass.map( (classTree, index) =>
-                <ClassTree classTree={classTree} charName={character.name} key={index}/>
+                <ClassTree classTree={classTree} charName={character.name} charSex={character.sex} key={index}/>
               )}
               {character.isChild?
                 <div>
                   <div>Inherited Class (Heart Seal)</div>
-                  {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charName={character.name} /> : null}
+                  {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charSex={character.charSex} charName={character.name} /> : null}
                 </div>: null
               }
               <div>Support S Class (Partner Seal)</div>
-              {character.supportClass ? <ClassTree classTree={character.supportClass} charName={character.name} /> : null }
+              {character.supportClass ? <ClassTree classTree={character.supportClass} charSex={character.charSex} charName={character.name} /> : null }
               <div>Support A+ Class (Friend Seal)</div>
-              {character.friendClass ? <ClassTree classTree={character.friendClass} charName={character.name} /> : null }
+              {character.friendClass ? <ClassTree classTree={character.friendClass} charSex={character.charSex} charName={character.name} /> : null }
             </Paper>
 
           <Button style={styles.closeButton} size="small" color="primary" onClick={closeStatus}>

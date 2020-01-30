@@ -37,7 +37,7 @@ class SupportTree extends React.Component {
       proceed = window.confirm(message)
     }
     if(proceed)
-      this.props.dispatch({type: 'SWITCH_GENDER'})
+      this.props.dispatch({type: 'SWITCH_SEX'})
   }
 
   onFaceClick = (baseCharacter, supportType) => {
@@ -74,14 +74,14 @@ class SupportTree extends React.Component {
 
     if(support === 'friend')
               return this.filterByPath(characters
-                                      .filter( chr => chr.gender === corrin.gender &&
+                                      .filter( chr => chr.sex === corrin.sex &&
                                                       chr.name !== corrin.name &&
                                                       chr.name !== corrin.childName
                                               )
                                       .map(chr => chr.name))
     else if(support === 'partner')
               return this.filterByPath(characters
-                                      .filter( chr => chr.gender !== corrin.gender &&
+                                      .filter( chr => chr.sex !== corrin.sex &&
                                                       chr.name !== corrin.childName
                                               )
                                       .map(chr => chr.name))
@@ -130,10 +130,10 @@ class SupportTree extends React.Component {
         let partnerList = this.filterByPath(character.supportList.Partner)
 
         if((character.name !== 'Niles' &&
-            corrin.gender === 'male' && character.gender === 'male')
+            corrin.sex === 'male' && character.sex === 'male')
             ||
            (character.name !== 'Rhajat' &&
-           corrin.gender === 'female' && character.gender === 'female'))
+           corrin.sex === 'female' && character.sex === 'female'))
             partnerList = partnerList.filter(current => current !== 'Corrin')
         return partnerList
       }
@@ -171,7 +171,7 @@ class SupportTree extends React.Component {
 
     return (
       <Paper style={{fontSize: 10}}>
-        {character.name === 'Corrin' ? <span>{character.gender}</span> : null}
+        {character.name === 'Corrin' ? <span>{character.sex}</span> : null}
         {character.name === 'Corrin' ? <Switch onChange={this.onSwitchChange}/> : null}
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
@@ -181,7 +181,7 @@ class SupportTree extends React.Component {
                   onEditClick={this.onEditClick(character.name, 'FRIEND')}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon character={character} gender={character.gender}
+                <FaceIcon character={character} sex={character.sex}
                   onFaceClick={this.onFaceClick()} />
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
