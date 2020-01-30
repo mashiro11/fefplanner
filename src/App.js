@@ -40,9 +40,6 @@ class App extends React.Component {
           <Tab label={'Revelations'} />
         </Tabs>
         <Grid container justify="center" spacing={24} style={{padding:24}}>
-          <Grid item xs={6} sm={3} lg={2} xl={1} key={0}>
-            <SupportTree character={this.props.avatar.corrin} />
-          </Grid>
           {characters
             .filter( character => character.path === 'all' && character.childDefiner)
             .map((character, index) =>

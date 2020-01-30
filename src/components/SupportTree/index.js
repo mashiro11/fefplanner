@@ -27,7 +27,17 @@ class SupportTree extends React.Component {
   }
 
   onSwitchChange = () => {
-    this.props.dispatch({type: 'SWITCH_GENDER'})
+    const corrin = this.props.character
+    let proceed = true
+    if(corrin.support !== 'None' ||
+       corrin.friend !== 'None' ||
+       this.getCharacterByName('Kana').support !== 'None' ||
+       this.getCharacterByName('Kana').friend !== 'None'){
+      let message = "Changing Corrin sex now will erase any supports on both Corrin and Kana. Proceed switch?"
+      proceed = window.confirm(message)
+    }
+    if(proceed)
+      this.props.dispatch({type: 'SWITCH_GENDER'})
   }
 
   onFaceClick = (baseCharacter, supportType) => {
@@ -47,8 +57,8 @@ class SupportTree extends React.Component {
   isBrother = (selected) =>{
     if(selected === 'None') return false
     const charSelected = this.props.characters.find(chr => selected === chr.name)
-
     const baseCharacter = this.props.characters.find(chr => this.state.baseCharacter === chr.name)
+
     if(baseCharacter.childDefiner){
       const child = this.props.characters.find(chr => baseCharacter.childName === chr.name)
       if(child.support === charSelected.childName) return true
@@ -63,18 +73,18 @@ class SupportTree extends React.Component {
     const { characters } = this.props
 
     if(support === 'friend')
-              return characters
-                        .filter( chr => chr.gender === corrin.gender &&
-                                        chr.name !== corrin.name &&
-                                        chr.name !== corrin.childName
-                                )
-                        .map(chr => chr.name)
+              return this.filterByPath(characters
+                                      .filter( chr => chr.gender === corrin.gender &&
+                                                      chr.name !== corrin.name &&
+                                                      chr.name !== corrin.childName
+                                              )
+                                      .map(chr => chr.name))
     else if(support === 'partner')
-              return characters
-                        .filter( chr => chr.gender !== corrin.gender &&
-                                        chr.name !== corrin.childName
-                                )
-                        .map(chr => chr.name)
+              return this.filterByPath(characters
+                                      .filter( chr => chr.gender !== corrin.gender &&
+                                                      chr.name !== corrin.childName
+                                              )
+                                      .map(chr => chr.name))
   }
 
   filterByPath = (characterNameList) => characterNameList ?
@@ -116,7 +126,7 @@ class SupportTree extends React.Component {
       if(character.name === 'Corrin')
         return this.corrinSupportList(character, 'partner')
       else{
-        const corrin = this.props.avatar.corrin
+        const corrin = this.getCharacterByName('Corrin')
         let partnerList = this.filterByPath(character.supportList.Partner)
 
         if((character.name !== 'Niles' &&
@@ -150,11 +160,14 @@ class SupportTree extends React.Component {
     this.setState({openSelection: false, baseCharacter: null, supportType: null, options: null})
   }
 
+  getCharacterByName = (name) => {
+    if(name === 'None') return {name: 'None', face: Images.Faces['None']}
+    return this.props.characters.find(chr => chr.name === name)
+  }
+
   render(){
     const { character } = this.props
-    const child = character.name === 'Corrin' ?
-                  this.props.avatar.kana :
-                  this.props.characters.find( current => current.name === character.childName )
+    const child = this.props.characters.find( current => current.name === character.childName )
 
     return (
       <Paper style={{fontSize: 10}}>
@@ -163,17 +176,17 @@ class SupportTree extends React.Component {
         <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <div>Friend</div>
-                <FaceIcon name={character.friend} edit
+                <FaceIcon character={this.getCharacterByName(character.friend)} edit
                   onFaceClick={this.onFaceClick(character.name, 'FRIEND')}
                   onEditClick={this.onEditClick(character.name, 'FRIEND')}/>
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
-                <FaceIcon name={character.name} gender={character.gender}
+                <FaceIcon character={character} gender={character.gender}
                   onFaceClick={this.onFaceClick()} />
               </Grid>
               <Grid item xs={4} sm={4} lg={4} xl={4}>
                 <div>Partner</div>
-                <FaceIcon name={character.support} edit
+                <FaceIcon character={this.getCharacterByName(character.support)} edit
                   onFaceClick={this.onFaceClick(character.name, 'SUPPORT')}
                   onEditClick={this.onEditClick(character.name, 'SUPPORT')}/>
               </Grid>
@@ -186,16 +199,16 @@ class SupportTree extends React.Component {
               <Grid container direction="row" justify="center" spacing={8} style={{padding:2}}>
                   <Grid item xs={4} sm={4} lg={4} xl={4}>
                     <div>Friend</div>
-                    <FaceIcon name={child.friend} edit
+                    <FaceIcon character={this.getCharacterByName(child.friend)} edit
                       onFaceClick={this.onFaceClick(child.name, 'FRIEND')}
                       onEditClick={this.onEditClick(child.name, 'FRIEND')}/>
                   </Grid>
                   <Grid item xs={4} sm={4} lg={4} xl={4}>
-                    <FaceIcon name={child.name} gender={child.gender} onFaceClick={this.onFaceClick()} />
+                    <FaceIcon character={this.getCharacterByName(child.name)} onFaceClick={this.onFaceClick()} />
                   </Grid>
                   <Grid item xs={4} sm={4} lg={4} xl={4}>
                     <div>Partner</div>
-                    <FaceIcon name={child.support} edit
+                    <FaceIcon character={this.getCharacterByName(child.support)} edit
                       onFaceClick={this.onFaceClick(child.name, 'SUPPORT')}
                       onEditClick={this.onEditClick(child.name, 'SUPPORT')} />
                   </Grid>

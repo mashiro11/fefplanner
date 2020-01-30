@@ -246,7 +246,7 @@ const createCharInfo = (character) => {
 }
 
 const charactersInitialState = Object.values(Database.characters)
-                                     .filter( character => character.name !== 'Corrin' && character.name !== 'Kana')
+                                     //.filter( character => character.name !== 'Corrin' && character.name !== 'Kana')
                                      .map( (character, index) => createCharInfo(character) )
 
 const characters = (state = charactersInitialState, action) => {
@@ -254,6 +254,59 @@ const characters = (state = charactersInitialState, action) => {
     case 'CHANGE_FRIEND':
     case 'CHANGE_SUPPORT':
       return state.map(sT => supportTree(sT, action))
+    case 'SWITCH_GENDER':
+      const corrin = state.find(chr => chr.name === 'Corrin')
+      console.log('removed: ', state.splice(state.indexOf(corrin), 1))
+      const kana = state.find(chr => chr.name === 'Kana')
+      console.log('removed: ', state.splice(state.indexOf(kana), 1))
+      //switch
+      corrin.gender = corrin.gender === 'male' ? 'female' : 'male'
+      kana.gender = corrin.gender === 'male' ? 'female' : 'male'
+      corrin.face = Images.Faces['Corrin_' + corrin.gender]
+      kana.face = Images.Faces['Kana_' + kana.gender]
+
+      //undo partner / friend
+      let corrinPartner
+      let partnerChild
+      let kanaPartner
+      if(corrin.friend !== 'None'){
+        corrin.friend = 'None'
+        corrin.friendClass = null
+      }
+      if(kana.friend !== 'None'){
+        kana.friend = 'None'
+        kana.friendClass = null
+      }
+
+      if(corrin.support !== 'None'){
+         corrinPartner = state.find(chr => chr.name === corrin.support)
+         console.log('removed: ', state.splice(state.indexOf(corrinPartner), 1))
+         corrin.support = 'None'
+         corrin.supportClass = null
+         corrinPartner.support = 'None'
+         corrinPartner.supportClass = null
+         kana.supportParent = null
+         kana.inheritedClass = null
+         if(corrinPartner.childDefiner){
+           partnerChild = state.find(chr => chr.name === corrinPartner.childName)
+           console.log('removed: ', state.splice(state.indexOf(partnerChild), 1))
+           partnerChild.supportParent = null
+           partnerChild.inheritedClass = null
+         }
+      }
+      if(kana.support !== 'None'){
+        kanaPartner = state.find(chr => chr.name === kana.support)
+        console.log('removed: ', state.splice(state.indexOf(kanaPartner), 1))
+        kana.support = 'None'
+        kana.supportClass = null
+        kanaPartner.support = 'None'
+        kanaPartner.supportClass = null
+      }
+      let finalList
+      finalList = corrinPartner ? [corrin, kana, corrinPartner, ...state] : [corrin, kana, ...state]
+      finalList = partnerChild ? [partnerChild, ...finalList] : finalList
+      finalList = kanaPartner ? [kanaPartner, ...finalList] : finalList
+      return finalList
     default:
       return(state)
     }
@@ -282,34 +335,8 @@ const gamePath = (state = 'all', action) => {
   }
 }
 
-const avatarInitialState = {
-  corrin: createCharInfo(Database.characters['Corrin']),
-  kana: createCharInfo(Database.characters['Kana'])
-}
-
-const avatar = (state = avatarInitialState, action) =>{
-  switch(action.type){
-    case 'SWITCH_GENDER':
-      let corrin = state.corrin
-      let kana = state.kana
-      corrin.gender = corrin.gender === 'male' ? 'female' : 'male'
-      kana.gender = corrin.gender === 'male' ? 'female' : 'male'
-
-      corrin.portrait = Images.Portraits['Corrin_' + corrin.gender]
-      corrin.face = Images.Faces['Corrin_' + corrin.gender]
-
-      kana.portrait = Images.Portraits['Kana_' + kana.gender]
-      kana.face = Images.Faces['Kana_' + kana.gender]
-
-      return {corrin, kana}
-    default:
-      return state
-  }
-}
-
 const reducer = combineReducers({
   gamePath,
-  avatar,
   characters,
   status
 })
