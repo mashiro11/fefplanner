@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import EditIcon from '@material-ui/icons/Edit'
 import Images from '../../images/images.js'
 
@@ -25,20 +26,35 @@ const charName = {
   top: -20
 }
 
-const FaceIcon = (props) => {
-  const wikia = 'http://fireemblem.wikia.com/wiki/' + props.name
-  let name = props.name + (props.name === 'Corrin' || props.name === 'Kana'? '_' + props.gender : '')
 
-  return(
-    <div>
-      <img style={faceStyle} src={Images.Faces[name]} title={props.name} onClick={props.onFaceClick} alt={props.name} />
-      {props.edit? <EditIcon onClick={props.onEditClick} style={editIcon}/> : null}
-      {props.name === 'None' ?
-        <div style={props.edit ? charName: null}>{props.name}</div> : 
-        <a href={wikia}><div style={props.edit ? charName: null}>{props.name}</div></a>
-      }
-    </div>
-  )
+class FaceIcon extends React.Component{
+
+  getFace = (characterName) => {
+    if(characterName === 'Corrin') return this.props.avatar.corrin.face
+    if(characterName === 'Kana') return this.props.avatar.kana.face
+    return Images.Faces[characterName]
+  }
+
+  render(){
+    const { name } = this.props
+    const wikia = 'http://fireemblem.wikia.com/wiki/' + name
+    return(
+      <div>
+        <img style={faceStyle} src={this.getFace(name)} title={name} onClick={this.props.onFaceClick} alt={name} />
+        {this.props.edit? <EditIcon onClick={this.props.onEditClick} style={editIcon}/> : null}
+        {this.props.name === 'None' ?
+          <div style={this.props.edit ? charName: null}>{name}</div> :
+          <a href={wikia}><div style={this.props.edit ? charName: null}>{name}</div></a>
+        }
+      </div>
+    )
+  }
 }
 
-export default FaceIcon
+const mapStateToProps = state =>{
+  return{
+    avatar: state.avatar
+  }
+}
+
+export default connect(mapStateToProps)(FaceIcon)
