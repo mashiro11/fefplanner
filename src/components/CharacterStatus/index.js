@@ -62,10 +62,19 @@ class CharacterStatus extends React.Component{
             </div>
 
             <div>
+              <div>
+              {character.name === 'Corrin' ?
+                <div style={{fontSize: 10}}>
+                  <span>Boom:</span><span>myboon</span>
+                  <span>Bane:</span><span>mybane</span>
+                </div>
+                :null
+              }
               <Status style={styles.status}
                 grownthRate={ character.grownthRate }
                 maxModifiers={ character.maxModifiers }
                 />
+              </div>
               <Paper style={styles.skills}>
                 <div>Selected skills:</div>
                 <div>
@@ -88,6 +97,10 @@ class CharacterStatus extends React.Component{
                   {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charSex={character.charSex} charName={character.name} /> : null}
                 </div>: null
               }
+              { character.name === 'Corrin' ?
+                <Button><Paper>Select Class</Paper></Button>
+                : null
+              }
               <div>Support S Class (Partner Seal)</div>
               {character.supportClass ? <ClassTree classTree={character.supportClass} charSex={character.charSex} charName={character.name} /> : null }
               <div>Support A+ Class (Friend Seal)</div>
@@ -105,8 +118,6 @@ class CharacterStatus extends React.Component{
 
 const mapStateToProps = state => {
   return{
-    avatar: state.avatar,
-    characters: state.characters,
     status: state.status
   }
 }
