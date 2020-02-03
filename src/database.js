@@ -1838,6 +1838,7 @@ function CharClass(className, charsex){
             CAVALIER -> GREAT KNIGHT | PALADIN
         */
         if(this.name === "Cavalier"){
+          this.promotedClasses = ['Paladin', 'GreatKnight']
             this.weapons = ["Sword", "Lance"];
             this.skills = [skills["ElbowRoom"], skills["Shelter"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1866,6 +1867,7 @@ function CharClass(className, charsex){
             KNIGHT -> GENERAL | GREAT KNIGHT
         */
         if(this.name === "Knight"){
+          this.promotedClasses = ['General', 'GreatKnight']
             this.weapons = ["Lance"];
             this.skills = [skills["Defense+2"], skills["NaturalCover"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1885,6 +1887,7 @@ function CharClass(className, charsex){
             FIGHTER -> BERSERKER | HERO
         */
         if(this.name === "Fighter"){
+          this.promotedClasses = ['Berserker', 'Hero']
             this.weapons = ["Axe"];
             this.skills = [skills["HP+5"], skills["Gamble"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1913,6 +1916,7 @@ function CharClass(className, charsex){
             MERCENARY -> BOW KNIGHT | HERO
         */
         if(this.name === "Mercenary"){
+          this.promotedClasses = ['Hero', 'BowKnight']
             this.weapons = ["Sword"];
             this.skills = [skills["GoodFortune"], skills["StrongRiposte"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1933,6 +1937,7 @@ function CharClass(className, charsex){
             OUTLAW -> BOW KNIGHT | ADVENTURER
         */
         if(this.name === "Outlaw"){
+          this.promotedClasses = ['BowKnight', 'Adventurer']
             this.weapons = ["Bow"];
             this.skills = [skills["Locktouch"], skills["Movement+1"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1952,6 +1957,7 @@ function CharClass(className, charsex){
             WYVERN RIDER -> WYVERN LORD | MALIG KNIGHT
         */
         if(this.name === "WyvernRider"){
+          this.promotedClasses = ['WyvernLord', 'MaligKnight']
             this.weapons = ["Axe"];
             this.skills = [skills["Strength+2"], skills["Lunge"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1980,6 +1986,7 @@ function CharClass(className, charsex){
             DARK MAGE -> SORCERER | DARK KNIGHT
         */
         if(this.name === "DarkMage"){
+          this.promotedClasses = ['DarkKnight', 'Sorcerer']
             this.weapons = ["Tome"];
             this.skills = [skills["Heartseeker"], skills["MaleficAura"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2008,6 +2015,7 @@ function CharClass(className, charsex){
             TROUBADOUR -> STRATEGIST | MAID/BUTLER
         */
         if(this.name === "Troubadour"){
+          this.promotedClasses = ['Strategist', 'Butler', 'Maid']
             this.weapons = ["Staff"];
             this.skills = [skills["Resistance+2"], (this.sex === "female") ? skills["Demoiselle"] : skills["Gentilhomme"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2037,6 +2045,7 @@ function CharClass(className, charsex){
             WOLFSKIN -> WOLFSSEGNER
         */
         if(this.name === "Wolfskin"){
+          this.promotedClasses = ['Wolfssegner']
             this.exclusive = true
             this.weapons = ["Stone"];
             this.skills = [skills["OddShaped"], skills["Beastbane"]];
@@ -2060,6 +2069,7 @@ function CharClass(className, charsex){
             SAMURAI -> SWORDMASTER | MASTER OF ARMS
         */
         if(this.name === "Samurai"){
+          this.promotedClasses = ['Swordmaster', 'MasterOfArms']
             this.weapons = ["Sword"];
             this.skills = [skills["DuelistBlow"], skills["Vantage"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2087,6 +2097,7 @@ function CharClass(className, charsex){
             NINJA -> MASTER NINJA | MECHANIST
         */
         if(this.name === "Ninja"){
+          this.promotedClasses = ['MasterNinja', 'Mechanist']
             this.weapons = ["Shuriken"];
             this.skills = [skills["Locktouch"], skills["PoisonStrike"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2114,6 +2125,7 @@ function CharClass(className, charsex){
             VILLAGER -> MERCHANT | MASTER OF ARMS
         */
         if(this.name === "Villager"){
+          this.promotedClasses = ['MasterOfArms', 'Merchant']
             this.weapons = ["Lance"];
             this.skills = [skills["Aptitude"], skills["Underdog"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2133,6 +2145,7 @@ function CharClass(className, charsex){
             APOTHECARY -> MERCHANT | MECHANIST
         */
         if(this.name === "Apothecary"){
+          this.promotedClasses = ['Merchant', 'Mechanist']
             this.weapons = ["Bow"];
             this.skills = [skills["PotentPotion"], skills["QuickSalve"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2144,6 +2157,7 @@ function CharClass(className, charsex){
             ONI SAVAGE -> ONI CHIFTAIN | BLACKSMITH
         */
         if(this.name === "OniSavage"){
+          this.promotedClasses = ['OniChieftain', 'BlackSmith']
             this.weapons = ["Axe"];
             this.skills = [skills["SealResistence"], skills["Shove"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2171,6 +2185,7 @@ function CharClass(className, charsex){
             SPEAR FIGHTER -> BASARA | SPEAR MASTER
         */
         if(this.name === "SpearFighter"){
+          this.promotedClasses = ['Basara', 'SpearMaster']
             this.weapons = ["Lance"];
             this.skills = [skills["SealDefense"], skills["Swap"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2198,6 +2213,7 @@ function CharClass(className, charsex){
             DIVINER -> ONMYOJI | BASARA
         */
         if(this.name === "Diviner"){
+          this.promotedClasses = ['Onmyoji', 'Basara']
             this.weapons = ["Tome"];
             this.skills = [skills["Magic+2"], skills["FutureSight"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2217,6 +2233,7 @@ function CharClass(className, charsex){
             MONK/SHRINE MAIDEN -> ONMYOJI | GREAT MASTER
         */
         if(this.name === "Monk" || this.name === "ShrineMaiden"){
+          this.promotedClasses = ['Onmyoji', 'GreatMaster', 'Priestess'];
             (this.sex === "male") ? this.name = "Monk" : this.name = "ShrineMaiden";
 
             this.weapons = ["Staff"];
@@ -2240,6 +2257,7 @@ function CharClass(className, charsex){
             SKY KNIGHT -> FALCON KNIGHT | KINSHI KNIGHT
         */
         if(this.name === "SkyKnight"){
+          this.promotedClasses = ['FalconKnight', 'KinshiKnight']
             this.weapons = ["Lance"];
             this.skills = [skills["DartingBlow"], skills["Camaraderie"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2267,6 +2285,7 @@ function CharClass(className, charsex){
             ARCHER -> SNIPER | KINSHI KNIGHT
         */
         if(this.name === "Archer"){
+          this.promotedClasses = ['Sniper', 'KinshiKnight']
             this.weapons = ["Bow"];
             this.skills = [skills["Skill+2"], skills["QuickDraw"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -2286,6 +2305,7 @@ function CharClass(className, charsex){
             KITSUNE -> NINE TAILS
         */
         if(this.name === "Kitsune"){
+          this.promotedClasses = ['NineTails']
             this.exclusive = true
             this.weapons = ["Stone"];
             this.skills = [skills["Evenhanded"], skills["Beastbane"]];
@@ -2307,6 +2327,7 @@ function CharClass(className, charsex){
             Special Classes
         */
         if(this.name === "Songstress"){
+          this.promotedClasses = ['Songstress2']
             this.exclusive = true
             this.weapons = ["Lance"];
             this.skills = [skills["Luck+4"], skills["InspiringSong"]];
@@ -2330,6 +2351,7 @@ function CharClass(className, charsex){
          *
          */
         if(this.name === "NohrPrinc"){
+          this.promotedClasses = ['NohrNoble', 'HoshidoNoble']
             this.weapons = ["Sword", "Stone"];
             this.skills = [skills["Nobility"], skills["DragonFang"]];
                                 //HP - Str - Mag - Skl - Spd - Lck - Def - Res

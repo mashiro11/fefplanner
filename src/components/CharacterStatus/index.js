@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import Status from '../Status'
 import ClassTree from '../ClassTree'
+import CharacterSelector from '../CharacterSelector'
+import Database from '../../database.js'
 
 const styles = {
   pannel:{
@@ -45,6 +47,26 @@ const styles = {
 }
 
 class CharacterStatus extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={
+      classSelection: false,
+      hasSecondClass: false
+    }
+  }
+  selectCorrinClass = () => {
+    this.setState({classSelection: true})
+  }
+  onSelect = (name) => (e) => {
+    if(!this.state.hasSecondClass){
+      this.props.dispatch({type: 'ADD_CLASS', className: name})
+    }
+    this.setState({classSelection: false})
+  }
+  onClassCancel = () => {
+    this.setState({classSelection: false})
+  }
+
   render(){
     const { character } = this.props
       const closeStatus = () => {
@@ -97,8 +119,24 @@ class CharacterStatus extends React.Component{
                   {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charSex={character.charSex} charName={character.name} /> : null}
                 </div>: null
               }
+
               { character.name === 'Corrin' ?
-                <Button><Paper>Select Class</Paper></Button>
+                <Button onClick={this.selectCorrinClass}>
+                  <Paper>Select Class</Paper>
+                </Button>
+                : null
+              }
+              {
+                this.state.classSelection?
+                <div style={{maxHeight: 252, maxWidth: 150, overflow: 'auto'}}>
+                  <CharacterSelector
+                    characters={Object.values(Database.classes)
+                                      .filter(c => !c.exclusive && c.promotedClasses &&
+                                              (!c.sex || character.sex === c.sex) && c.name !== 'NohrPrinc')
+                                      .map( c => c.name)}
+                    onSelect={this.onSelect}
+                    onCancel={this.onClassCancel}/>
+                </div>
                 : null
               }
               <div>Support S Class (Partner Seal)</div>

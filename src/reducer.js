@@ -250,14 +250,27 @@ const charactersInitialState = Object.values(Database.characters)
                                      .map( (character, index) => createCharInfo(character) )
 
 const characters = (state = charactersInitialState, action) => {
+  let corrin
+  let kana
   switch(action.type){
+    case 'ADD_CLASS':
+      corrin = state.find(chr => chr.name === 'Corrin')
+      state.splice(state.indexOf(corrin), 1)
+      const addedClasses = [action.className, ...Database.classes[action.className].promotedClasses]
+      corrin.charClass[1] = addedClasses.filter( className => !Database.classes[className].sex || corrin.sex === Database.classes[className].sex)
+                                        .map(className => Database.classes[className])
+
+      kana = state.find(chr => chr.name === 'Kana')
+      state.splice(state.indexOf(kana), 1)
+      kana.charClass[1] = corrin.charClass[1]
+      return [corrin, kana, ...state]
     case 'CHANGE_FRIEND':
     case 'CHANGE_SUPPORT':
       return state.map(sT => supportTree(sT, action))
     case 'SWITCH_SEX':
-      const corrin = state.find(chr => chr.name === 'Corrin')
+      corrin = state.find(chr => chr.name === 'Corrin')
       console.log('removed: ', state.splice(state.indexOf(corrin), 1))
-      const kana = state.find(chr => chr.name === 'Kana')
+      kana = state.find(chr => chr.name === 'Kana')
       console.log('removed: ', state.splice(state.indexOf(kana), 1))
       //switch
       corrin.sex = corrin.sex === 'male' ? 'female' : 'male'
