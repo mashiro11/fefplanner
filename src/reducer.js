@@ -5,7 +5,8 @@ import Images from './images/images.js'
 //character2 inherits from character1
 const inheritedClass = (character1, character2) => {
   if(!character1.charClass[0][0].exclusive){
-    if(character1.charClass[0][0].name === 'Villager'){
+    if(character1.charClass[0][0].name === 'Villager' ||
+      character1.charClass[0][0].name === 'NohrPrinc'){
       if(character2.isChild){
         return character1.charClass[0]
       }
@@ -24,7 +25,9 @@ const inheritedClass = (character1, character2) => {
 
 const supportTree = (state = {}, action) => {
   if(!action.remove)
-    action.selected.name = action.selected.name === 'Corrin' ? 'Corrin_' + action.selected.sex: action.selected.name
+    action.selected.name = action.selected.name === 'Corrin' ?
+                            'Corrin_' + action.selected.sex
+                            : action.selected.name
 
   switch(action.type){
     case 'CHANGE_FRIEND':
@@ -251,27 +254,29 @@ const charactersInitialState = Object.values(Database.characters)
 
 const characters = (state = charactersInitialState, action) => {
   let corrin
+  let corrinPartner
   let kana
   switch(action.type){
     case 'ADD_CLASS':
       corrin = state.find(chr => chr.name === 'Corrin')
-      state.splice(state.indexOf(corrin), 1)
       const addedClasses = [action.className, ...Database.classes[action.className].promotedClasses]
       corrin.charClass[1] = addedClasses.filter( className => !Database.classes[className].sex || corrin.sex === Database.classes[className].sex)
                                         .map(className => Database.classes[className])
+      if(corrin.support !== 'None'){
+        corrinPartner = state.find(chr => chr.name === corrin.support)
+        corrinPartner.supportClass = corrin.charClass[1]
+      }
 
       kana = state.find(chr => chr.name === 'Kana')
-      state.splice(state.indexOf(kana), 1)
       kana.charClass[1] = corrin.charClass[1]
-      return [corrin, kana, ...state]
+
+      return state
     case 'CHANGE_FRIEND':
     case 'CHANGE_SUPPORT':
       return state.map(sT => supportTree(sT, action))
     case 'SWITCH_SEX':
       corrin = state.find(chr => chr.name === 'Corrin')
-      console.log('removed: ', state.splice(state.indexOf(corrin), 1))
       kana = state.find(chr => chr.name === 'Kana')
-      console.log('removed: ', state.splice(state.indexOf(kana), 1))
       //switch
       corrin.sex = corrin.sex === 'male' ? 'female' : 'male'
       kana.sex = corrin.sex === 'male' ? 'female' : 'male'
@@ -279,7 +284,7 @@ const characters = (state = charactersInitialState, action) => {
       kana.face = Images.Faces['Kana_' + kana.sex]
 
       //undo partner / friend
-      let corrinPartner
+      corrinPartner
       let partnerChild
       let kanaPartner
       if(corrin.friend !== 'None'){
@@ -293,7 +298,6 @@ const characters = (state = charactersInitialState, action) => {
 
       if(corrin.support !== 'None'){
          corrinPartner = state.find(chr => chr.name === corrin.support)
-         console.log('removed: ', state.splice(state.indexOf(corrinPartner), 1))
          corrin.support = 'None'
          corrin.supportClass = null
          corrinPartner.support = 'None'
@@ -302,24 +306,19 @@ const characters = (state = charactersInitialState, action) => {
          kana.inheritedClass = null
          if(corrinPartner.childDefiner){
            partnerChild = state.find(chr => chr.name === corrinPartner.childName)
-           console.log('removed: ', state.splice(state.indexOf(partnerChild), 1))
            partnerChild.supportParent = null
            partnerChild.inheritedClass = null
          }
       }
       if(kana.support !== 'None'){
         kanaPartner = state.find(chr => chr.name === kana.support)
-        console.log('removed: ', state.splice(state.indexOf(kanaPartner), 1))
         kana.support = 'None'
         kana.supportClass = null
         kanaPartner.support = 'None'
         kanaPartner.supportClass = null
       }
-      let finalList
-      finalList = corrinPartner ? [corrin, kana, corrinPartner, ...state] : [corrin, kana, ...state]
-      finalList = partnerChild ? [partnerChild, ...finalList] : finalList
-      finalList = kanaPartner ? [kanaPartner, ...finalList] : finalList
-      return finalList
+
+      return state
     default:
       return(state)
     }

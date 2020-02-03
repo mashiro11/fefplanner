@@ -101,6 +101,9 @@ class App extends React.Component {
         <div>
           Based on information from:<br/>
             <a href={'www.youtube.com/watch?v=zgg8lt75MrE'}>www.youtube.com/watch?v=zgg8lt75MrE</a><br/>
+            <a href={'https://www.reddit.com/r/fireemblem/comments/46pnau/hires_poster_of_fefates_class_progression/'}>
+              www.reddit.com/r/fireemblem/comments/46pnau/hires_poster_of_fefates_class_progression/
+            </a><br/>
             <a href={'fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem_Fates'}>fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem_Fates</a><br/>
             <a href={'serenesforest.net/fire-emblem-fates/revelation/character-base-stats/'}>serenesforest.net/fire-emblem-fates/revelation/character-base-stats/</a>
         </div>
