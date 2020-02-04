@@ -152,8 +152,7 @@ class SupportTree extends React.Component {
     if(proceed){
       this.props.dispatch({
         type: 'CHANGE_' + this.state.supportType,
-        remove: selected === 'None',
-        selected: charSelected,
+        selected: selected === 'None' ? {name: 'None', charClass: [null]} : charSelected,
         baseCharacter: baseCharacter
       })
     }
