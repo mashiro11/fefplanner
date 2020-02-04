@@ -1,7 +1,7 @@
 import Database from '../database.js'
 import Images from '../images/images.js'
 //character2 inherits from character1
-const inheritedClass = (character1, character2) => {
+const inheritClass = (character1, character2) => {
   if(!character1.charClass[0]) return null
 
   if(!character1.charClass[0][0].exclusive){
@@ -23,12 +23,12 @@ const inheritedClass = (character1, character2) => {
   }
 }
 
-const changeFriend = (state, action) => {
+const changeFriend = (state, selected) => {
   //TODO: check for skills
   return {
     ...state,
-    friend: action.selected.name,
-    friendClass: action.selected.charClass[0]
+    friend: selected.name,
+    friendClass: selected.charClass[0]
   }
 }
 
@@ -99,10 +99,10 @@ const directSupport = (state, support) => {
   return {
       ...state,
       support: support.name,
-      supportClass: inheritedClass(support, state),
+      supportClass: inheritClass(support, state),
       //erase parent, if forbidden
       supportParent: support.isChild && support.childDefinerName === state.supportParent? null : state.supportParent,
-      inheritedClass: support.isChild && support.childDefinerName === state.supportParent? null : state.inheritedClass
+      inheritedClass: support.isChild && support.childDefinerName === state.supportParent? null : state.inheritClass
     }
 }
 
@@ -110,7 +110,7 @@ const childClassInheritance = (state, newParent) => {
   return{
         ...state,
         supportParent: newParent.name,
-        inheritedClass: inheritedClass(newParent, state),
+        inheritedClass: inheritClass(newParent, state),
         //erase support, if forbidden
         support: newParent.childDefiner && newParent.childName === state.support ? 'None' : state.support,
         supportClass: newParent.childDefiner && newParent.childName === state.support ? null : state.supportClass
@@ -143,7 +143,7 @@ const shigureCase = (state, action) => {
       ...state,
       charClass: charClass,
       supportParent: action.selected.name,
-      inheritedClass: inheritedClass(action.selected.name === 'Jakob' ? action.selected : action.baseCharacter, state)
+      inheritClass: inheritClass(action.selected.name === 'Jakob' ? action.selected : action.baseCharacter, state)
     }
   }//non related child has parent stolen
   if(state.supportParent === 'Jakob' && (
@@ -165,7 +165,7 @@ const shigureCase = (state, action) => {
           ...state,
           charClass: charClass,
           supportParent: 'None',
-          inheritedClass: null
+          inheritClass: null
         }
   }
   if('Shigure' === action.selected.name){
@@ -174,16 +174,16 @@ const shigureCase = (state, action) => {
   if('Shigure' === action.baseCharacter.name){
     return directSupport(state, action.selected)
   }
+  if(action.baseCharacter.name === 'Azura'){
+    return childClassInheritance(state, action.selected)
+  }
+  if(action.selected.name === 'Azura'){
+    return childClassInheritance(state, action.baseCharacter)
+  }
   return state
 }
 
 const characters = (state = charactersInitialState, action) => {
-  let corrin
-  let corrinPartner
-  let partnerChild
-  let kana
-  let kanaPartner
-  let newState = state.slice()
   switch(action.type){
     case 'CHANGE_PATH':
       return state.map( chr => chr.name === 'Corrin' || chr.name === 'Kana'?
@@ -193,7 +193,7 @@ const characters = (state = charactersInitialState, action) => {
                         addCorrinClass(chr, action.className) : chr)
     case 'CHANGE_FRIEND':
       return state.map( chr => chr.name === action.baseCharacter.name ?
-                        changeFriend(chr, action) : chr)
+                        changeFriend(chr, action.selected) : chr)
     case 'CHANGE_SUPPORT':
       return state.map( chr => chr.name === 'Shigure'? shigureCase(chr, action) :
                         chr.name === action.selected.name ? directSupport(chr, action.baseCharacter) :
@@ -205,51 +205,26 @@ const characters = (state = charactersInitialState, action) => {
                         chr.name === action.selected.support ? clearSupport(chr) :
                         chr.name === action.baseCharacter.support ? clearSupport(chr) : chr)
     case 'SWITCH_SEX':
-      corrin = newState.splice(newState.findIndex(chr => chr.name === 'Corrin'), 1)[0]
-      console.log('corrin:', corrin)
-      kana = newState.splice(newState.findIndex(chr => chr.name === 'Kana'), 1)[0]
-      //switch
-      corrin.sex = corrin.sex === 'male' ? 'female' : 'male'
-      kana.sex = corrin.sex === 'male' ? 'female' : 'male'
-      corrin.face = Images.Faces['Corrin_' + corrin.sex]
-      kana.face = Images.Faces['Kana_' + kana.sex]
-
-      //undo partner / friend
-      if(corrin.friend !== 'None'){
-        corrin.friend = 'None'
-        corrin.friendClass = null
-      }
-      if(kana.friend !== 'None'){
-        kana.friend = 'None'
-        kana.friendClass = null
-      }
-
-      if(corrin.support !== 'None'){
-         corrinPartner = newState.splice(state.findIndex(chr => chr.name === corrin.support), 1)[0]
-         corrin.support = 'None'
-         corrin.supportClass = null
-         corrinPartner.support = 'None'
-         corrinPartner.supportClass = null
-         kana.supportParent = null
-         kana.inheritedClass = null
-         if(corrinPartner.childDefiner){
-           partnerChild = newState.splice(newState.findIndex(chr => chr.name === corrinPartner.childName), 1)[0]
-           partnerChild.supportParent = null
-           partnerChild.inheritedClass = null
-         }
-      }
-      if(kana.support !== 'None'){
-        kanaPartner = newState.splice(newState.findIndex(chr => chr.name === kana.support), 1)[0]
-        kana.support = 'None'
-        kana.supportClass = null
-        kanaPartner.support = 'None'
-        kanaPartner.supportClass = null
-      }
-
-      return [corrin, kana,
-        ...(corrinPartner? [corrinPartner] : []),
-        ...(kanaPartner? [kanaPartner] : []),
-        ...newState]
+      return state.map( chr => chr.name === 'Corrin' ||
+                        chr.name === 'Kana' ?
+                          clearSupport({
+                            ...chr,
+                            sex: chr.sex === 'male' ? 'female' : 'male',
+                            portrait: Images.Portraits[chr.name + '_' + (chr.sex === 'male' ? 'female' : 'male')],
+                            face: Images.Faces[chr.name + '_' + (chr.sex === 'male' ? 'female' : 'male')],
+                            supportParent: null,
+                            inheritClass: null,
+                            friend: 'None',
+                            friendClass: null
+                          }) :
+                        chr.support === 'Corrin' ||
+                        chr.support === 'Kana' ?
+                          clearSupport(chr) :
+                        chr.friend === 'Corrin' ||
+                        chr.friend === 'Kana' ?
+                          changeFriend(chr, {name: 'None', charClass: [null]}) :
+                        chr
+      )
     default:
       return(state)
     }
