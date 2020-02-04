@@ -2,6 +2,8 @@ import Database from '../database.js'
 import Images from '../images/images.js'
 //character2 inherits from character1
 const inheritedClass = (character1, character2) => {
+  if(!character1.charClass[0]) return null
+
   if(!character1.charClass[0][0].exclusive){
     if(character1.charClass[0][0].name === 'Villager' ||
       character1.charClass[0][0].name === 'NohrPrinc'){
@@ -22,174 +24,12 @@ const inheritedClass = (character1, character2) => {
 }
 
 const changeFriend = (state, action) => {
+  //TODO: check for skills
   return {
     ...state,
     friend: action.selected.name,
     friendClass: action.selected.charClass[0]
   }
-}
-
-const supportTree = (state = {}, action) => {
-  if(!action.remove)
-    action.selected.name = action.selected.name === 'Corrin' ?
-                            'Corrin_' + action.selected.sex
-                            : action.selected.name
-
-  if(action.remove){
-    //undo special Azura + Joker -> Shigure case
-    if(state.name === 'Shigure' &&
-      action.baseCharacter.name === 'Azura' &&
-      state.supportParent === 'Jakob'){
-        const charClass = state.charClass
-        //gives troubadour/butler class
-        charClass[1] = Database.characters['Jakob'].charClass[0]
-        return{
-          ...state,
-          charClass: charClass,
-          supportParent: 'None',
-          inheritedClass: null
-        }
-    }
-    else if(state.name === action.baseCharacter.name){
-      return{
-        ...state,
-        support: 'None',
-        supportClass: null,
-      }
-    }else if(state.name === action.baseCharacter.support){
-      return{
-        ...state,
-        support: 'None',
-        supportClass: null,
-      }
-    }
-    else if(state.childDefinerName === action.baseCharacter.name){
-      return {
-        ...state,
-        inheritedClass: null,
-        supportParent: null
-      }
-    }
-    else if(state.supportParent === action.baseCharacter.name){
-      return {
-        ...state,
-        inheritedClass: null,
-        supportParent: null
-      }
-    }
-    return state
-  }
-  //special Azura + Joker -> Shigure case
-  if(state.name === 'Shigure' &&
-          ((action.baseCharacter.name === 'Azura' &&
-          action.selected.name === 'Jakob') ||
-          (action.baseCharacter.name === 'Jakob' &&
-          action.selected.name === 'Azura'))){
-            const charClass = state.charClass
-            //gives wyvernrider class
-            charClass[1] = Database.characters['Camilla'].charClass[0]
-            return {
-              ...state,
-              charClass: charClass,
-              supportParent: action.selected.name,
-              inheritedClass: inheritedClass(action.selected.name === 'Jakob' ? action.selected : action.baseCharacter, state)
-            }
-  }//characters directly related to support choice
-  else if(state.name === action.baseCharacter.name){
-    return {
-      ...state,
-      support: action.selected.name,
-      supportClass: inheritedClass(action.selected, action.baseCharacter),
-      //erase parent, if forbidden
-      supportParent: action.selected.isChild && action.selected.childDefinerName === state.supportParent? null : state.supportParent,
-      inheritedClass: action.selected.isChild && action.selected.childDefinerName === state.supportParent? null : state.inheritedClass,
-    }
-  }else if(state.name === action.selected.name){
-    return {
-      ...state,
-      support: action.baseCharacter.name,
-      supportClass: inheritedClass(action.baseCharacter, action.selected),
-      //erase parent, if forbidden
-      supportParent: action.baseCharacter.isChild && action.baseCharacter.childDefinerName === state.supportParent? null : state.supportParent,
-      inheritedClass: action.baseCharacter.isChild && action.baseCharacter.childDefinerName === state.supportParent? null : state.inheritedClass
-    }
-  }
-  //parent support needs to propagate information to children
-  else if(action.baseCharacter.childDefiner &&
-     state.name === action.baseCharacter.childName)
-     {
-        return{
-          ...state,
-          supportParent: action.selected.name,
-          inheritedClass: inheritedClass(action.selected, state),
-          //erase support, if forbidden
-          support: action.selected.childDefiner && action.selected.childName === state.support ? 'None' : state.support
-        }
-  }else if(action.selected.childDefiner &&
-          state.name === action.selected.childName){
-          return{
-            ...state,
-            supportParent: action.baseCharacter.name,
-            inheritedClass: inheritedClass(action.baseCharacter, state),
-            //erase support, if forbidden
-            support: action.baseCharacter.childDefiner && action.baseCharacter.childName === state.support ? 'None' : state.support
-          }
-  }//setting brothers as partner support need parent support undone
-  else if(state.childDefiner &&
-          state.childName === action.baseCharacter.name){
-            if(action.selected.isChild && action.selected.childDefinerName === state.support){
-              return{
-                ...state,
-                supportClass: null,
-                support: 'None'
-              }
-            }
-            return state
-  }else if(state.childDefiner &&
-          state.childName === action.selected.name){
-            if(action.baseCharacter.isChild && action.baseCharacter.childDefinerName === state.support){
-              return{
-                ...state,
-                supportClass: null,
-                support: 'None'
-              }
-            }
-  }//non related character has partner stolen
-  else if(state.support === action.selected.name &&
-          action.baseCharacter.name !== state.name){
-    return {
-      ...state,
-      support: 'None',
-      supportClass: null
-    }
-  }else if(state.support === action.baseCharacter.name &&
-          action.selected.name !== state.name){
-    return {
-      ...state,
-      support: 'None',
-      supportClass: null
-    }
-  }//non related child has parent stolen
-  else if(state.supportParent === action.baseCharacter.name ||
-          state.supportParent === action.selected.name){
-    if(state.name === 'Shigure' &&
-      action.selected.name === 'Jakob'){
-        const charClass = state.charClass
-        charClass[1] = action.selected.charClass[0]
-        return{
-          ...state,
-          charClass: charClass,
-          supportParent: 'None',
-          inheritedClass: null
-        }
-    }
-    return{
-      ...state,
-      supportParent: null,
-      inheritedClass: null
-    }
-  }
-  return state
 }
 
 const createCharInfo = (character) => {
@@ -255,11 +95,92 @@ const addCorrinClass = (corrin, className) => {
   }
 }
 
+const directSupport = (state, support) => {
+  return {
+      ...state,
+      support: support.name,
+      supportClass: inheritedClass(support, state),
+      //erase parent, if forbidden
+      supportParent: support.isChild && support.childDefinerName === state.supportParent? null : state.supportParent,
+      inheritedClass: support.isChild && support.childDefinerName === state.supportParent? null : state.inheritedClass
+    }
+}
+
+const childClassInheritance = (state, newParent) => {
+  return{
+        ...state,
+        supportParent: newParent.name,
+        inheritedClass: inheritedClass(newParent, state),
+        //erase support, if forbidden
+        support: newParent.childDefiner && newParent.childName === state.support ? 'None' : state.support,
+        supportClass: newParent.childDefiner && newParent.childName === state.support ? null : state.supportClass
+      }
+}
+
+const verifyParenthood = (state, selected) => {
+  return state.support === selected.childDefinerName ?
+         clearSupport(state) : state
+}
+
+const clearSupport = (state) => {
+  return {
+    ...state,
+    support:  'None',
+    supportClass: null
+  }
+}
+
+const shigureCase = (state, action) => {
+  if( (action.selected.name === 'Jakob' &&
+        action.baseCharacter.name === 'Azura') ||
+        (action.selected.name === 'Azura' &&
+        action.baseCharacter.name === 'Jakob')) {
+  //special Azura + Joker -> Shigure case
+  const charClass = state.charClass
+  //gives wyvernrider class
+  charClass[1] = Database.characters['Camilla'].charClass[0]
+    return {
+      ...state,
+      charClass: charClass,
+      supportParent: action.selected.name,
+      inheritedClass: inheritedClass(action.selected.name === 'Jakob' ? action.selected : action.baseCharacter, state)
+    }
+  }//non related child has parent stolen
+  if(state.supportParent === 'Jakob' && (
+      (action.baseCharacter.name === 'Jakob' &&
+      action.selected.name !== 'Azura')
+      ||
+      (action.selected.name === 'Jakob' &&
+      action.baseCharacter.name !== 'Azura')
+      ||
+      (action.baseCharacter.name === 'Azura' &&
+      action.selected.name === 'None')
+      ||
+      (action.baseCharacter.name === 'Jakob' &&
+      action.selected.name === 'None')))
+      {
+        const charClass = state.charClass
+        charClass[1] = Database.characters['Jakob'].charClass[0]
+        return{
+          ...state,
+          charClass: charClass,
+          supportParent: 'None',
+          inheritedClass: null
+        }
+  }
+  if('Shigure' === action.selected.name){
+    return directSupport(state, action.baseCharacter)
+  }
+  if('Shigure' === action.baseCharacter.name){
+    return directSupport(state, action.selected)
+  }
+  return state
+}
+
 const characters = (state = charactersInitialState, action) => {
   let corrin
   let corrinPartner
   let partnerChild
-  let kanaIndex
   let kana
   let kanaPartner
   let newState = state.slice()
@@ -274,7 +195,15 @@ const characters = (state = charactersInitialState, action) => {
       return state.map( chr => chr.name === action.baseCharacter.name ?
                         changeFriend(chr, action) : chr)
     case 'CHANGE_SUPPORT':
-      return state.map(chr => supportTree(chr, action))
+      return state.map( chr => chr.name === 'Shigure'? shigureCase(chr, action) :
+                        chr.name === action.selected.name ? directSupport(chr, action.baseCharacter) :
+                        chr.name === action.baseCharacter.name ? directSupport(chr, action.selected) :
+                        chr.name === action.baseCharacter.childName ? childClassInheritance(chr, action.selected) :
+                        chr.name === action.selected.childName ? childClassInheritance(chr, action.baseCharacter) :
+                        chr.name === action.baseCharacter.childDefinerName ? verifyParenthood(chr, action.selected) :
+                        chr.name === action.selected.childDefinerName ? verifyParenthood(chr, action.baseCharacter) :
+                        chr.name === action.selected.support ? clearSupport(chr) :
+                        chr.name === action.baseCharacter.support ? clearSupport(chr) : chr)
     case 'SWITCH_SEX':
       corrin = newState.splice(newState.findIndex(chr => chr.name === 'Corrin'), 1)[0]
       console.log('corrin:', corrin)

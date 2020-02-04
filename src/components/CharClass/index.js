@@ -10,8 +10,6 @@ const styles = {
 const CharClass = (props) => {
   const { charClass, charName, charSex } = props
   let classGif = charName+charClass.name + (charName === 'Corrin' || charName === 'Kana' ? charSex : '')
-  console.log('classGif:', classGif)
-  console.log('gifs:', Images.Gifs)
   return(
     <div>
       <img src={Images.Gifs[classGif]} alt={charClass.name} title={charClass.name}/>

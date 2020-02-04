@@ -43,7 +43,6 @@ class SupportTree extends React.Component {
   onFaceClick = (baseCharacter, supportType) => {
     return  (e) => {
       if(e.target.title === 'None'){
-        console.log('supportType: ', supportType)
         this.setState({openSelection: true, baseCharacter: baseCharacter, supportType: supportType})
       }
       else{
@@ -98,8 +97,6 @@ class SupportTree extends React.Component {
                                           : []
 
   supportList = () => {
-    console.log('this.state.baseCharacter:', this.state.baseCharacter)
-    console.log('this.props.character:', this.props.character)
 
     let character
     if(this.state.baseCharacter === this.props.character.name)
@@ -113,7 +110,6 @@ class SupportTree extends React.Component {
     }else if(this.state.supportType.toLowerCase() === 'support'){
       sList = this.partnerList(character)
     }
-    console.log('character:', character)
     return character[this.state.supportType.toLowerCase()] === 'None' ? sList : ['None', ...sList]
   }
 
@@ -152,6 +148,7 @@ class SupportTree extends React.Component {
     if(proceed){
       this.props.dispatch({
         type: 'CHANGE_' + this.state.supportType,
+        remove: selected === 'None',
         selected: selected === 'None' ? {name: 'None', charClass: [null]} : charSelected,
         baseCharacter: baseCharacter
       })
