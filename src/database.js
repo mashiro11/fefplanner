@@ -1,4 +1,14 @@
 const skillDescription = [];
+//Corrin Classes
+skillDescription["Nobility"] = "The user gains x1.2 experience after a battle.";
+skillDescription["DragonFang"] = "The user's may activate this skill based on their (Skill Stat x 0.75)%. When activated, the user adds half of their raw damage as extra attack power. For example, if a unit has 66 raw (base) damage, upon activating Dragon Fang, 33 extra damage is added, which is gives the user 99 raw damage, which is then changed depending on the Weapon Triangle advantage and the opponent's defense/resistance.";
+skillDescription["DragonWard"] = "Allies adjacent to the user have a passive Pavise/Aegis combo effect attached to them, halving all incoming damage should it activate. The skill's activation rate is based on the ally's Luck stat, not the user.";
+skillDescription["HoshidanUnity"] = "Hoshidan Unity adds 10% to skill activation rates after calculating the initial activation rate based on stat related activation rates.";
+skillDescription["DraconicHex"] = "When the user fights an enemy (no matter if they initiated the battle) after the battle, if both units survived, the enemy will suffer -4 to all of their stats. These stat reductions do not stack on existing stat reductions. The stat reductions as a result of this skill will supersede any stat drop lower than its amount but will not supersede any higher stat reductions.";
+skillDescription["NohrianTrust"] = "During Attack or Guard Stance, the user can use any of their support unit's battle skills. It is learned by Nohr Nobles at level 15 or higher.";
+
+
+
 //  Songstress
 skillDescription["Luck+4"] = "Increase Luck by 4";
 
@@ -357,7 +367,7 @@ skillDescription["WindDiscipline"] = "If Fuga's HP is not full, he will receive 
 const skills = {};
 skills["Nobility"] = new Skill("Nobility");
 skills["DragonFang"] = new Skill("DragonFang");
-skills["DragonWard"] = new Skill("DragonWar");
+skills["DragonWard"] = new Skill("DragonWard");
 skills["HoshidanUnity"] = new Skill("HoshidanUnity");
 skills["DraconicHex"] = new Skill("DraconicHex");
 skills["NohrianTrust"] = new Skill("NohrianTrust");

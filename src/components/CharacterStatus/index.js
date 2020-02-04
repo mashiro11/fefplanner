@@ -59,7 +59,7 @@ class CharacterStatus extends React.Component{
   }
   onSelect = (name) => (e) => {
     if(!this.state.hasSecondClass){
-      this.props.dispatch({type: 'ADD_CLASS', className: name})
+      this.props.dispatch({type: 'ADD_CLASS', className: name, corrin: this.props.character})
     }
     this.setState({classSelection: false})
   }
