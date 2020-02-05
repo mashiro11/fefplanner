@@ -1,6 +1,8 @@
 import Database from '../database.js'
 import Images from '../images/images.js'
+
 //character2 inherits from character1
+//TODO: needs class sex check
 const inheritClass = (character1, character2) => {
   if(!character1.charClass[0]) return null
 
@@ -14,6 +16,7 @@ const inheritClass = (character1, character2) => {
     }else if(character1.charClass[0][0].name !== character2.charClass[0][0].name){
       if(character2.charClass.length > 1 &&
          character1.charClass[0][0].name === character2.charClass[1][0].name){
+
         return character1.charClass[1]
       }
       return character1.charClass[0]
@@ -242,6 +245,13 @@ const characters = (state = charactersInitialState, action) => {
                                         ).filter( obj => obj))]
                         }
                         : chr)
+    case 'REMOVE_SKILL':
+      //check if skill is required by Other
+        //check if other can require another
+        //check if another is present
+      return state
+    case 'SHIFT_SKILL':
+      return state
     default:
       return(state)
     }
