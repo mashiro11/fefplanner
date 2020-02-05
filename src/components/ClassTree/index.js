@@ -13,7 +13,7 @@ const ClassTree = (props) => {
   return(
     <Paper style={styles.container}>
       { classTree.map( (charClass, index) =>
-        <CharClass charClass={charClass} charName={props.charName} charSex={props.charSex} key={index}/>
+        <CharClass charClass={charClass} onSkillClick={props.onSkillClick} charName={props.charName} charSex={props.charSex} key={index}/>
       )}
     </Paper>
   )

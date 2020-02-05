@@ -617,8 +617,8 @@ function Character(characterName){
     this.support["Partner"] = "None";
 
 
-    this.choosenClasses = {};
-    this.choosenSkills = new Map();
+    this.choosenClasses = [];
+    this.choosenSkills = [];
     Character.count = 0;//atributo de classe
 
     this.setCharacter = changeObjCharacter;

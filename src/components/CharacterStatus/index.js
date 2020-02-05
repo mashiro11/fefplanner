@@ -38,7 +38,7 @@ const styles = {
   },
   skills:{
     display: 'grid',
-    gridTemplateColumns: 'auto auto auto',
+    gridTemplateRows: 'auto auto auto',
     fontSize: 9
   },
   closeButton:{
@@ -65,6 +65,13 @@ class CharacterStatus extends React.Component{
   }
   onClassCancel = () => {
     this.setState({classSelection: false})
+  }
+
+  AddSkill = (e) => {
+    if(this.props.character.choosenSkills.length < 10)
+      this.props.dispatch({type: 'ADD_SKILL', skillName: e.target.alt, characterName: this.props.character.name })
+    else
+      window.confirm('Character already has 10 skills! Remove a skill to add another')
   }
 
   render(){
@@ -100,10 +107,24 @@ class CharacterStatus extends React.Component{
               <Paper style={styles.skills}>
                 <div>Selected skills:</div>
                 <div>
-                    Equiped
+                  <div>Equiped</div>
+                  <div>
+                    {character.choosenSkills.slice(0, 5).map( (skill, index) =>
+                      <span key={index}>
+                        <img src={skill.icon} alt={skill.name} title={skill.name+':\n'+skill.description}/>
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div>
-                    Unequiped
+                  <div>Unquiped</div>
+                  <div>
+                    {character.choosenSkills.slice(5, 10).map( (skill, index) =>
+                      <span key={index}>
+                        <img src={skill.icon} alt={skill.name} title={skill.name+':\n'+skill.description}/>
+                      </span>
+                    )}
+                  </div>
                 </div>
               </Paper>
             </div>
@@ -111,12 +132,12 @@ class CharacterStatus extends React.Component{
             <Paper style={styles.classes}>
               <div>Classes (Heart Seal)</div>
               { character.charClass.map( (classTree, index) =>
-                <ClassTree classTree={classTree} charName={character.name} charSex={character.sex} key={index}/>
+                <ClassTree classTree={classTree} onSkillClick={this.AddSkill} charName={character.name} charSex={character.sex} key={index}/>
               )}
               {character.isChild?
                 <div>
                   <div>Inherited Class (Heart Seal)</div>
-                  {character.inheritedClass? <ClassTree classTree={character.inheritedClass} charSex={character.charSex} charName={character.name} /> : null}
+                  {character.inheritedClass? <ClassTree classTree={character.inheritedClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null}
                 </div>: null
               }
 
@@ -140,9 +161,9 @@ class CharacterStatus extends React.Component{
                 : null
               }
               <div>Support S Class (Partner Seal)</div>
-              {character.supportClass ? <ClassTree classTree={character.supportClass} charSex={character.charSex} charName={character.name} /> : null }
+              {character.supportClass ? <ClassTree classTree={character.supportClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null }
               <div>Support A+ Class (Friend Seal)</div>
-              {character.friendClass ? <ClassTree classTree={character.friendClass} charSex={character.charSex} charName={character.name} /> : null }
+              {character.friendClass ? <ClassTree classTree={character.friendClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null }
             </Paper>
 
           <Button style={styles.closeButton} size="small" color="primary" onClick={closeStatus}>

@@ -22,7 +22,7 @@ const CharClass = (props) => {
       <div>Skills:
         { charClass.skills.map( (skill, index) =>
           <span key={index}>
-            <img style={styles.skill} src={Images.Skills[skill.name]} alt={skill.name} title={skill.name+':\n'+skill.description}/>
+            <img style={styles.skill} onClick={props.onSkillClick} src={Images.Skills[skill.name]} alt={skill.name} title={skill.name+':\n'+skill.description}/>
           </span>
         )}
       </div>

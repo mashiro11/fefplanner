@@ -131,11 +131,11 @@ const clearSupport = (state) => {
 }
 
 const shigureCase = (state, action) => {
+  //special Azura + Joker -> Shigure case
   if( (action.selected.name === 'Jakob' &&
         action.baseCharacter.name === 'Azura') ||
         (action.selected.name === 'Azura' &&
         action.baseCharacter.name === 'Jakob')) {
-  //special Azura + Joker -> Shigure case
   const charClass = state.charClass
   //gives wyvernrider class
   charClass[1] = Database.characters['Camilla'].charClass[0]
@@ -146,19 +146,17 @@ const shigureCase = (state, action) => {
       inheritClass: inheritClass(action.selected.name === 'Jakob' ? action.selected : action.baseCharacter, state)
     }
   }//non related child has parent stolen
-  if(state.supportParent === 'Jakob' && (
-      (action.baseCharacter.name === 'Jakob' &&
-      action.selected.name !== 'Azura')
+  if(state.supportParent === 'Jakob' &&
+    ( action.baseCharacter.name === 'Jakob'
       ||
-      (action.selected.name === 'Jakob' &&
-      action.baseCharacter.name !== 'Azura')
+      action.selected.name === 'Jakob'
       ||
       (action.baseCharacter.name === 'Azura' &&
       action.selected.name === 'None')
       ||
       (action.baseCharacter.name === 'Jakob' &&
-      action.selected.name === 'None')))
-      {
+      action.selected.name === 'None')
+    )){
         const charClass = state.charClass
         charClass[1] = Database.characters['Jakob'].charClass[0]
         return{
@@ -168,19 +166,27 @@ const shigureCase = (state, action) => {
           inheritClass: null
         }
   }
-  if('Shigure' === action.selected.name){
+  if('Shigure' === action.selected.name)
     return directSupport(state, action.baseCharacter)
-  }
-  if('Shigure' === action.baseCharacter.name){
+
+  if('Shigure' === action.baseCharacter.name)
     return directSupport(state, action.selected)
-  }
-  if(action.baseCharacter.name === 'Azura'){
+
+  if(action.baseCharacter.name === 'Azura')
     return childClassInheritance(state, action.selected)
-  }
-  if(action.selected.name === 'Azura'){
+
+  if(action.selected.name === 'Azura')
     return childClassInheritance(state, action.baseCharacter)
-  }
+
   return state
+}
+
+const requiredSkills = (skill) =>{
+    let newSkill = {
+      ...Database.skills[skill.name],
+      icon: Images.Skills[skill.name]
+    }
+    return skill.require ? [...requiredSkills({...Database.skills[skill.require], icon: Images.Skills[skill.require]}), newSkill] : [newSkill]
 }
 
 const characters = (state = charactersInitialState, action) => {
@@ -225,6 +231,17 @@ const characters = (state = charactersInitialState, action) => {
                           changeFriend(chr, {name: 'None', charClass: [null]}) :
                         chr
       )
+    case 'ADD_SKILL':
+      return state.map( chr => chr.name === action.characterName?
+                        {...chr,
+                          choosenSkills: [...chr.choosenSkills,
+                                          ...(requiredSkills(Database.skills[action.skillName]).map( requiredSkill => {
+                                            let hasSkill = chr.choosenSkills.find( choosenSkill => choosenSkill.name === requiredSkill.name)
+                                            return hasSkill ? null : requiredSkill
+                                            }
+                                        ).filter( obj => obj))]
+                        }
+                        : chr)
     default:
       return(state)
     }
