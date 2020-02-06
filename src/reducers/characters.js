@@ -41,6 +41,8 @@ const createCharInfo = (character) => {
              character.name
   return {
     ...character,
+    skill: {...Database.skills[character.skill],
+            icon: Images.Skills[character.skill]},
     friend: 'None',
     support: 'None',
     friendClass: null,
@@ -49,7 +51,6 @@ const createCharInfo = (character) => {
     childDefinerName: character.isChild ? character.childDefinerName : null,
     portrait: Images.Portraits[name],
     face: Images.Faces[name]
-
   }
 }
 

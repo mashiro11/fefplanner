@@ -1,5 +1,6 @@
 import React from 'react'
 import Images from '../../images/images.js'
+import Skill from '../Skill'
 
 const styles = {
   skill: {
@@ -8,7 +9,7 @@ const styles = {
 }
 
 const CharClass = (props) => {
-  const { charClass, charName, charSex } = props
+  const { charClass, charName, charSex, onSkillClick } = props
   let classGif = charName+charClass.name + (charName === 'Corrin' || charName === 'Kana' ? charSex : '')
   return(
     <div>
@@ -21,9 +22,7 @@ const CharClass = (props) => {
       </div>
       <div>Skills:
         { charClass.skills.map( (skill, index) =>
-          <span key={index}>
-            <img style={styles.skill} onClick={props.onSkillClick} src={Images.Skills[skill.name]} alt={skill.name} title={skill.name+':\n'+skill.description}/>
-          </span>
+          <Skill onClick={onSkillClick} skill={skill} key={index} />
         )}
       </div>
     </div>

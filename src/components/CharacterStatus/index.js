@@ -6,6 +6,8 @@ import Status from '../Status'
 import ClassTree from '../ClassTree'
 import CharacterSelector from '../CharacterSelector'
 import Database from '../../database.js'
+import Skill from '../Skill'
+import ToolBox from '../ToolBox'
 
 const styles = {
   pannel:{
@@ -55,7 +57,7 @@ class CharacterStatus extends React.Component{
     }
   }
   selectCorrinClass = () => {
-    this.setState({classSelection: true})
+    this.setState({classSelection: !this.state.classSelection})
   }
   onSelect = (name) => (e) => {
     if(!this.state.hasSecondClass){
@@ -74,6 +76,12 @@ class CharacterStatus extends React.Component{
       window.confirm('Character already has 10 skills! Remove a skill to add another')
   }
 
+  SelectChoosenSkills = (index) => (e) =>{
+    console.log('clicked')
+    this.setState({editingSkill: index})
+  }
+
+
   render(){
     const { character } = this.props
       const closeStatus = () => {
@@ -88,6 +96,24 @@ class CharacterStatus extends React.Component{
               <Button size="small" color="primary">
                 {character.name}
               </Button>
+              { character.name === 'Corrin' ?
+                <Button onClick={this.selectCorrinClass}>
+                  <Paper>Select Class</Paper>
+                </Button>
+                : null
+              }
+              {this.state.classSelection?
+                <div style={{maxHeight: 120, maxWidth: 150, overflow: 'auto'}}>
+                  <CharacterSelector
+                    characters={Object.values(Database.classes)
+                                      .filter(c => !c.exclusive && c.promotedClasses &&
+                                              (!c.sex || character.sex === c.sex) && c.name !== 'NohrPrinc')
+                                      .map( c => c.name)}
+                    onSelect={this.onSelect}
+                    onCancel={this.onClassCancel}/>
+                </div>
+                : null
+              }
             </div>
 
             <div>
@@ -105,25 +131,32 @@ class CharacterStatus extends React.Component{
                 />
               </div>
               <Paper style={styles.skills}>
-                <div>Selected skills:</div>
                 <div>
                   <div>Equiped</div>
-                  <div>
-                    {character.choosenSkills.slice(0, 5).map( (skill, index) =>
-                      <span key={index}>
-                        <img src={skill.icon} alt={skill.name} title={skill.name+':\n'+skill.description}/>
-                      </span>
-                    )}
+                  <div style={{display: 'grid', gridTemplateColumns: '10% 80% 10%'}}>
+                  <div>&lt;</div>
+                    <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
+                      {character.choosenSkills.slice(0, 5).map( (skill, index) =>
+                        <ToolBox top='delete' bottomButtomTitle='Unequip' topButtomTitle='Remove' key={index}>
+                          <Skill skill={skill} key={index} />
+                        </ToolBox>
+                      )}
+                    </div>
+                  <div>&gt;</div>
                   </div>
                 </div>
                 <div>
                   <div>Unquiped</div>
-                  <div>
-                    {character.choosenSkills.slice(5, 10).map( (skill, index) =>
-                      <span key={index}>
-                        <img src={skill.icon} alt={skill.name} title={skill.name+':\n'+skill.description}/>
-                      </span>
-                    )}
+                  <div style={{display: 'grid', gridTemplateColumns: '10% 80% 10%'}}>
+                    <div>&lt;</div>
+                    <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
+                      {character.choosenSkills.slice(5, 10).map( (skill, index) =>
+                        <ToolBox top='move' topButtomTitle='Equip' bottomButtomTitle='Remove' key={index}>
+                          <Skill skill={skill} key={index} />
+                        </ToolBox>
+                      )}
+                    </div>
+                    <div>&gt;</div>
                   </div>
                 </div>
               </Paper>
@@ -139,26 +172,6 @@ class CharacterStatus extends React.Component{
                   <div>Inherited Class (Heart Seal)</div>
                   {character.inheritedClass? <ClassTree classTree={character.inheritedClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null}
                 </div>: null
-              }
-
-              { character.name === 'Corrin' ?
-                <Button onClick={this.selectCorrinClass}>
-                  <Paper>Select Class</Paper>
-                </Button>
-                : null
-              }
-              {
-                this.state.classSelection?
-                <div style={{maxHeight: 252, maxWidth: 150, overflow: 'auto'}}>
-                  <CharacterSelector
-                    characters={Object.values(Database.classes)
-                                      .filter(c => !c.exclusive && c.promotedClasses &&
-                                              (!c.sex || character.sex === c.sex) && c.name !== 'NohrPrinc')
-                                      .map( c => c.name)}
-                    onSelect={this.onSelect}
-                    onCancel={this.onClassCancel}/>
-                </div>
-                : null
               }
               <div>Support S Class (Partner Seal)</div>
               {character.supportClass ? <ClassTree classTree={character.supportClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null }
