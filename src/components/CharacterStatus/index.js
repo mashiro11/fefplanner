@@ -81,6 +81,10 @@ class CharacterStatus extends React.Component{
     this.setState({editingSkill: index})
   }
 
+  shiftSkills = (side, group) => {
+    this.props.dispatch({type: 'SHIFT_SKILLS', side: side, group: group})
+  }
+
 
   render(){
     const { character } = this.props
@@ -120,8 +124,8 @@ class CharacterStatus extends React.Component{
               <div>
               {character.name === 'Corrin' ?
                 <div style={{fontSize: 10}}>
-                  <span>Boom:</span><span>myboon</span>
-                  <span>Bane:</span><span>mybane</span>
+                  <span>Boom:</span><span> myboon</span>
+                  <span>Bane:</span><span> mybane</span>
                 </div>
                 :null
               }
@@ -134,7 +138,9 @@ class CharacterStatus extends React.Component{
                 <div>
                   <div>Equiped</div>
                   <div style={{display: 'grid', gridTemplateColumns: '10% 80% 10%'}}>
-                  <div>&lt;</div>
+                  <div style={{cursor: 'pointer'}}
+                    onClick={this.shiftSkills(-1, 0)}
+                    title='Shift skills left'>&lt;</div>
                     <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
                       {character.choosenSkills.slice(0, 5).map( (skill, index) =>
                         <ToolBox top='delete' bottomButtomTitle='Unequip' topButtomTitle='Remove' key={index}>
@@ -142,13 +148,17 @@ class CharacterStatus extends React.Component{
                         </ToolBox>
                       )}
                     </div>
-                  <div>&gt;</div>
+                  <div style={{cursor: 'pointer'}} 
+                    onClick={this.shiftSkills(1, 1)}
+                    title='Shift skills right'>&gt;</div>
                   </div>
                 </div>
                 <div>
                   <div>Unquiped</div>
                   <div style={{display: 'grid', gridTemplateColumns: '10% 80% 10%'}}>
-                    <div>&lt;</div>
+                    <div style={{cursor: 'pointer'}}
+                      onClick={this.shiftSkills(-1, 0)}
+                      title='Shift skills left'>&lt;</div>
                     <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
                       {character.choosenSkills.slice(5, 10).map( (skill, index) =>
                         <ToolBox top='move' topButtomTitle='Equip' bottomButtomTitle='Remove' key={index}>
@@ -156,7 +166,9 @@ class CharacterStatus extends React.Component{
                         </ToolBox>
                       )}
                     </div>
-                    <div>&gt;</div>
+                    <div style={{cursor: 'pointer'}}
+                      onClick={this.shiftSkills(1, 1)}
+                      title='Shift skills right'>&gt;</div>
                   </div>
                 </div>
               </Paper>
