@@ -27,9 +27,13 @@ const inheritClass = (character1, character2) => {
 }
 
 const changeFriend = (state, selected) => {
-  //TODO: check for skills
+  let choosenSkills = state.choosenSkills
+  if(selected.name === 'None' && state.friend){
+    choosenSkills = removeSkills(state.friendClass[0].skills[0].name, state.choosenSkills)
+  }
   return {
     ...state,
+    choosenSkills,
     friend: selected.name,
     friendClass: selected.charClass[0]
   }
@@ -107,6 +111,7 @@ const addCorrinClass = (corrin, className) => {
 }
 
 const directSupport = (state, support) => {
+  state = clearSupport(state)
   return {
       ...state,
       support: support.name,
@@ -134,8 +139,13 @@ const verifyParenthood = (state, selected) => {
 }
 
 const clearSupport = (state) => {
+  let choosenSkills = state.choosenSkills
+  if(state.supportClass){
+    choosenSkills = removeSkills(state.supportClass[0].skills[0].name, state.choosenSkills)
+  }
   return {
     ...state,
+    choosenSkills,
     support:  'None',
     supportClass: null
   }
