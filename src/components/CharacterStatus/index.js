@@ -145,7 +145,9 @@ class CharacterStatus extends React.Component{
                     onClick={this.shiftSkills(-1, 0)}
                     title='Shift skills left'>&lt;</div>
                     <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
-                      {character.choosenSkills.slice(0, 5).map( (skill, index) =>
+                      {character.choosenSkills
+                        .slice(0, 5)
+                        .map( (skill, index) =>
                         <ToolBox  key={index} top='delete'
                                   bottomButtomTitle='Unequip'
                                   topButtomTitle='Remove'
@@ -168,7 +170,9 @@ class CharacterStatus extends React.Component{
                       onClick={this.shiftSkills(-1, 1)}
                       title='Shift skills left'>&lt;</div>
                     <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
-                      {character.choosenSkills.slice(5, 10).map( (skill, index) =>
+                      {character.choosenSkills
+                        .slice(5, 10)
+                        .map( (skill, index) =>
                         <ToolBox key={index} top='move'
                           topButtomTitle='Equip'
                           bottomButtomTitle='Remove'
@@ -190,18 +194,35 @@ class CharacterStatus extends React.Component{
             <Paper style={styles.classes}>
               <div>Classes (Heart Seal)</div>
               { character.charClass.map( (classTree, index) =>
-                <ClassTree classTree={classTree} onSkillClick={this.AddSkill} charName={character.name} charSex={character.sex} key={index}/>
+                <ClassTree key={index}
+                  classTree={classTree}
+                  onSkillClick={this.AddSkill}
+                  charName={character.name}
+                  charSex={character.sex} />
               )}
               {character.isChild?
                 <div>
                   <div>Inherited Class (Heart Seal)</div>
-                  {character.inheritedClass? <ClassTree classTree={character.inheritedClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null}
+                  {character.inheritedClass?
+                    <ClassTree classTree={character.inheritedClass}
+                      onSkillClick={this.AddSkill}
+                      charSex={character.charSex}
+                      charName={character.name}
+                    /> : null}
                 </div>: null
               }
               <div>Support S Class (Partner Seal)</div>
-              {character.supportClass ? <ClassTree classTree={character.supportClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null }
+              {character.supportClass ?
+                <ClassTree classTree={character.supportClass}
+                  onSkillClick={this.AddSkill}
+                  charSex={character.charSex}
+                  charName={character.name} /> : null }
               <div>Support A+ Class (Friend Seal)</div>
-              {character.friendClass ? <ClassTree classTree={character.friendClass} onSkillClick={this.AddSkill} charSex={character.charSex} charName={character.name} /> : null }
+              {character.friendClass ?
+                <ClassTree classTree={character.friendClass}
+                  onSkillClick={this.AddSkill}
+                  charSex={character.charSex}
+                  charName={character.name} /> : null }
             </Paper>
 
           <Button style={styles.closeButton} size="small" color="primary" onClick={closeStatus}>
