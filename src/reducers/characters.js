@@ -199,6 +199,17 @@ const requiredSkills = (skill, baseClassLastSkill) =>{
             : [newSkill]
 }
 
+const removeSkills = (skillName, skillL) => {
+  let skill = skillL.find(s => s.name === skillName)
+  let skillList = [...skillL.slice(0, skillL.indexOf(skill)),
+                  ...skillL.slice(skillL.indexOf(skill)+1)]
+  console.log('skillList:', skillList)
+  let toRemove = skillList.find( s => (s.require === skill.name && !skillList.find( sl => sl.name === s.require_alt)) ||
+                                      (s.require_alt === skill.name && !skillList.find( sl => sl.name === s.require)))
+  console.log('toRemove:', toRemove)
+  return toRemove ? removeSkills(toRemove.name, skillList) : skillList 
+}
+
 const characters = (state = charactersInitialState, action) => {
   switch(action.type){
     case 'CHANGE_PATH':
@@ -245,8 +256,6 @@ const characters = (state = charactersInitialState, action) => {
       return state.map( chr => {
                         if(chr.name === action.characterName){
                           const newSkill = Database.skills[action.skillName]
-                          console.log('skill:', newSkill)
-                          console.log('choosenSkills:', chr.choosenSkills)
                           return chr.choosenSkills.find(skill => skill.name === newSkill.name) ? chr :
                                 (chr.choosenSkills.find( skill => skill.name === newSkill.require) ||
                                  chr.choosenSkills.find( skill => skill.name === newSkill.require_alt))?
@@ -265,10 +274,15 @@ const characters = (state = charactersInitialState, action) => {
                         }else return chr
                       })
     case 'REMOVE_SKILL':
-      //check if skill is required by Other
-        //check if other can require another
-        //check if another is present
-      return state
+      return state.map( chr =>{
+                        if(chr.name === action.character.name){
+                          return {
+                            ...chr,
+                            choosenSkills: removeSkills(action.skill, chr.choosenSkills)
+                          }
+                        }
+                        else return chr
+                      })
     case 'SHIFT_SKILL':
       return state
     default:

@@ -28,8 +28,8 @@ class ToolBox extends React.Component {
     }
   }
 
-  toggleOver = () => {
-    this.setState({hover: !this.state.hover})
+  toggle = (state) => () => {
+    this.setState({hover: state})
   }
 
   render(){
@@ -40,19 +40,21 @@ class ToolBox extends React.Component {
     const { children } = this.props
 
     return(
-      <div onMouseEnter={this.toggleOver}
-          onMouseLeave={this.toggleOver}
+      <div onMouseEnter={this.toggle(true)}
+          onMouseLeave={this.toggle(false)}
           style={styles.container}>
           <div>
             {this.state.hover?
-              <div style={styles.button} title={topButtomTitle}>
+              <div style={styles.button} title={topButtomTitle}
+                onClick={this.props.onTopClick}>
                 {this.props.top === 'delete' ? deleteButton: '^'}
               </div>
             : <div style={styles.hiddenButtom}>.</div>
             }
             {children}
             {this.state.hover?
-              <div style={styles.button} title={bottomButtomTitle}>
+              <div style={styles.button} title={bottomButtomTitle}
+                onClick={this.props.onBottomClick}>
                 {this.props.top === 'move' ? deleteButton : 'v'}
               </div>
               : <div style={styles.hiddenButtom}> </div>

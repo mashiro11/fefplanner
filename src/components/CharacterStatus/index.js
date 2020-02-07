@@ -76,9 +76,8 @@ class CharacterStatus extends React.Component{
       window.confirm('Character already has 10 skills! Remove a skill to add another')
   }
 
-  SelectChoosenSkills = (index) => (e) =>{
-    console.log('clicked')
-    this.setState({editingSkill: index})
+  RemoveSkill = (skillName) => (e) =>{
+    this.props.dispatch({type: 'REMOVE_SKILL', skill: skillName, character: this.props.character})
   }
 
   shiftSkills = (side, group) => {
@@ -143,7 +142,7 @@ class CharacterStatus extends React.Component{
                     title='Shift skills left'>&lt;</div>
                     <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
                       {character.choosenSkills.slice(0, 5).map( (skill, index) =>
-                        <ToolBox top='delete' bottomButtomTitle='Unequip' topButtomTitle='Remove' key={index}>
+                        <ToolBox onTopClick={this.RemoveSkill(skill.name)} top='delete' bottomButtomTitle='Unequip' topButtomTitle='Remove' key={index}>
                           <Skill skill={skill} key={index} />
                         </ToolBox>
                       )}
@@ -161,7 +160,7 @@ class CharacterStatus extends React.Component{
                       title='Shift skills left'>&lt;</div>
                     <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
                       {character.choosenSkills.slice(5, 10).map( (skill, index) =>
-                        <ToolBox top='move' topButtomTitle='Equip' bottomButtomTitle='Remove' key={index}>
+                        <ToolBox onBottomClick={this.RemoveSkill(skill.name)} top='move' topButtomTitle='Equip' bottomButtomTitle='Remove' key={index}>
                           <Skill skill={skill} key={index} />
                         </ToolBox>
                       )}
