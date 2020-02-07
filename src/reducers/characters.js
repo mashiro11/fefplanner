@@ -185,12 +185,18 @@ const shigureCase = (state, action) => {
   return state
 }
 
-const requiredSkills = (skill) =>{
+const requiredSkills = (skill, baseClassLastSkill) =>{
+
     let newSkill = {
       ...Database.skills[skill.name],
       icon: Images.Skills[skill.name]
     }
-    return skill.require ? [...requiredSkills({...Database.skills[skill.require], icon: Images.Skills[skill.require]}), newSkill] : [newSkill]
+
+    return skill.require && !skill.require_alt ?
+            [...requiredSkills({...Database.skills[skill.require], icon: Images.Skills[skill.require]}), newSkill] :
+          skill.require && skill.require_alt ?
+            [...requiredSkills({...Database.skills[baseClassLastSkill], icon: Images.Skills[baseClassLastSkill]}), newSkill]
+            : [newSkill]
 }
 
 const characters = (state = charactersInitialState, action) => {
@@ -236,16 +242,28 @@ const characters = (state = charactersInitialState, action) => {
                         chr
       )
     case 'ADD_SKILL':
-      return state.map( chr => chr.name === action.characterName?
-                        {...chr,
-                          choosenSkills: [...chr.choosenSkills,
-                                          ...(requiredSkills(Database.skills[action.skillName]).map( requiredSkill => {
-                                            let hasSkill = chr.choosenSkills.find( choosenSkill => choosenSkill.name === requiredSkill.name)
-                                            return hasSkill ? null : requiredSkill
-                                            }
-                                        ).filter( obj => obj))]
-                        }
-                        : chr)
+      return state.map( chr => {
+                        if(chr.name === action.characterName){
+                          const newSkill = Database.skills[action.skillName]
+                          console.log('skill:', newSkill)
+                          console.log('choosenSkills:', chr.choosenSkills)
+                          return chr.choosenSkills.find(skill => skill.name === newSkill.name) ? chr :
+                                (chr.choosenSkills.find( skill => skill.name === newSkill.require) ||
+                                 chr.choosenSkills.find( skill => skill.name === newSkill.require_alt))?
+                                    {...chr,
+                                      choosenSkills: [...chr.choosenSkills, newSkill]
+                                    }
+                                  :
+                                    {...chr,
+                                      choosenSkills: [...chr.choosenSkills,
+                                                      ...(requiredSkills(newSkill, action.baseClassLastSkill).map( requiredSkill => {
+                                                        let hasSkill = chr.choosenSkills.find( choosenSkill => choosenSkill.name === requiredSkill.name)
+                                                        return hasSkill ? null : requiredSkill
+                                                        }
+                                                    ).filter( obj => obj))]
+                                    }
+                        }else return chr
+                      })
     case 'REMOVE_SKILL':
       //check if skill is required by Other
         //check if other can require another

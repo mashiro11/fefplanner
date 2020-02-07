@@ -2468,18 +2468,21 @@ function Skill(skillName, sex){
         //GreatKnight
         else if(skillName === "Luna"){
             this.require = "Shelter";
+            this.require_alt = "NaturalCover"
         }else if(skillName === "ArmoredBlow"){
             this.require = "Luna";
         }
         //Hero
         else if(skillName === "Sol"){
             this.require = "StrongRiposte";
+            this.require_alt = "Gamble"
         }else if(skillName === "AxeBreaker"){
             this.require = "Sol";
         }
         //BowKnight
         else if(skillName === "RallySkill"){
             this.require = "StrongRiposte";
+            this.require_alt = "Movement+1"
         }else if(skillName === "Shurikenbreaker"){
             this.require = "RallySkill";
         }
@@ -2586,12 +2589,14 @@ function Skill(skillName, sex){
         //MasterOfArms
         else if(skillName === "SealStrength"){
             this.require = "Vantage";
+            this.require_alt = "Underdog"
         }else if(skillName === "LifeAndDeath"){
             this.require = "SealStrength";
         }
         //Merchant
         else if(skillName === "Profiteer"){
             this.require = "Underdog";
+            this.require_alt = "QuickSalve"
         }else if(skillName === "Spendthrift"){
             this.require = "Profiteer";
         }
@@ -2604,6 +2609,7 @@ function Skill(skillName, sex){
         //Mechanist
         else if(skillName === "Golembane"){
             this.require = "PoisonStrike";
+            this.require_alt = "QuickSalve"
         }else if(skillName === "Replicate"){
             this.require = "Golembane";
         }
@@ -2628,12 +2634,14 @@ function Skill(skillName, sex){
         //Basara
         else if(skillName === "RendHeaven"){
             this.require = "Swap";
+            this.require_alt = "FutureSight"
         }else if(skillName === "Quixotic"){
             this.require = "RendHeaven";
         }
         //Onmyoji
         else if(skillName === "RallyMagic"){
             this.require = "FutureSight";
+            this.require_alt = "RallyLuck"
         }else if(skillName === "Tomefaire"){
             this.require = "RallyMagic";
         }
@@ -2652,6 +2660,7 @@ function Skill(skillName, sex){
         //KinshiKnight
         else if(skillName === "AirSuperiority"){
             this.require = "QuickDraw";
+            this.require_alt = "Camaraderie"
         }else if(skillName === "Amaterasu"){
             this.require = "AirSuperiority";
         }

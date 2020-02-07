@@ -69,9 +69,9 @@ class CharacterStatus extends React.Component{
     this.setState({classSelection: false})
   }
 
-  AddSkill = (e) => {
+  AddSkill = (baseClassLastSkill) => (e) => {
     if(this.props.character.choosenSkills.length < 10)
-      this.props.dispatch({type: 'ADD_SKILL', skillName: e.target.alt, characterName: this.props.character.name })
+      this.props.dispatch({type: 'ADD_SKILL', skillName: e.target.alt, baseClassLastSkill, characterName: this.props.character.name })
     else
       window.confirm('Character already has 10 skills! Remove a skill to add another')
   }
@@ -148,7 +148,7 @@ class CharacterStatus extends React.Component{
                         </ToolBox>
                       )}
                     </div>
-                  <div style={{cursor: 'pointer'}} 
+                  <div style={{cursor: 'pointer'}}
                     onClick={this.shiftSkills(1, 1)}
                     title='Shift skills right'>&gt;</div>
                   </div>
