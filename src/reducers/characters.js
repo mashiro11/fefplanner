@@ -299,8 +299,56 @@ const characters = (state = charactersInitialState, action) => {
                         }
                         else return chr
                       })
-    case 'SHIFT_SKILL':
-      return state
+    case 'SHIFT_SKILLS':
+      return state.map(chr => {
+        if(chr.name === action.character.name){
+          let firstHalf = chr.choosenSkills.slice(0,5)
+          let secondHalf = chr.choosenSkills.slice(5,10)
+          let workList
+          if(action.group === 0){
+            workList = firstHalf
+          }
+          if(action.group === 1){
+            workList = secondHalf
+          }
+          if(action.side === -1){
+            let first = workList.shift()
+            workList.push(first)
+          }else if(action.side === 1){
+            let last = workList.pop()
+            workList.unshift(last)
+          }
+          return {
+            ...chr,
+            choosenSkills: [...firstHalf, ...secondHalf]
+          }
+        }else return chr
+      })
+    case 'EQUIP_SKILL':
+      return state.map( chr =>{
+          if(chr.name === action.character.name){
+            console.log('action:', action)
+            console.log('skills:', chr.choosenSkills)
+            return {
+              ...chr,
+              choosenSkills: [chr.choosenSkills[action.index],
+                              ...chr.choosenSkills.slice(0, action.index),
+                              ...chr.choosenSkills.slice(action.index+1)]
+            }
+          }else return chr
+        })
+    case 'UNEQUIP_SKILL':
+      return state.map( chr => {
+          if(chr.name === action.character.name){
+            console.log('selected:', chr.choosenSkills[action.index])
+            return {
+              ...chr,
+              choosenSkills: [...chr.choosenSkills.slice(0, action.index),
+                              ...chr.choosenSkills.slice(action.index+1),
+                              chr.choosenSkills[action.index]]
+            }
+          }else return chr
+        })
     default:
       return(state)
     }

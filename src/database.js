@@ -2415,6 +2415,8 @@ function Skill(skillName, sex){
             this.require = "DragonFang";
         }else if(skillName === "HoshidanUnity"){
             this.require = "DragonWard";
+        }else if(skillName === "NohrianTrust"){
+            this.require = "DraconicHex" 
         }
         //Knight
         else if(skillName === "NaturalCover"){
