@@ -90,11 +90,18 @@ const corrinPath = (corrin, action) => {
 }
 
 const addCorrinClass = (corrin, className) => {
+  let choosenSkills = corrin.choosenSkills
+  if(corrin.charClass.length === 2){
+    if(corrin.friendClass && corrin.friendClass[0].name !== corrin.charClass[1][0].name &&
+      corrin.supportClass && corrin.supportClass[0].name !== corrin.charClass[1][0].name)
+      choosenSkills = removeSkills(corrin.charClass[1][0].skills[0].name, corrin.choosenSkills)
+  }
   let addedClasses = [className, ...Database.classes[className].promotedClasses]
   addedClasses = addedClasses.filter( className => !Database.classes[className].sex || corrin.sex === Database.classes[className].sex)
                                     .map(className => Database.classes[className])
   return{
     ...corrin,
+    choosenSkills,
     charClass: [corrin.charClass[0], addedClasses]
   }
 }
@@ -193,9 +200,9 @@ const requiredSkills = (skill, baseClassLastSkill) =>{
     }
 
     return skill.require && !skill.require_alt ?
-            [...requiredSkills({...Database.skills[skill.require], icon: Images.Skills[skill.require]}), newSkill] :
+            [...requiredSkills({...Database.skills[skill.require], icon: Images.Skills[skill.require]}, baseClassLastSkill), newSkill] :
           skill.require && skill.require_alt ?
-            [...requiredSkills({...Database.skills[baseClassLastSkill], icon: Images.Skills[baseClassLastSkill]}), newSkill]
+            [...requiredSkills({...Database.skills[baseClassLastSkill], icon: Images.Skills[baseClassLastSkill]}, baseClassLastSkill), newSkill]
             : [newSkill]
 }
 
@@ -203,11 +210,10 @@ const removeSkills = (skillName, skillL) => {
   let skill = skillL.find(s => s.name === skillName)
   let skillList = [...skillL.slice(0, skillL.indexOf(skill)),
                   ...skillL.slice(skillL.indexOf(skill)+1)]
-  console.log('skillList:', skillList)
+
   let toRemove = skillList.find( s => (s.require === skill.name && !skillList.find( sl => sl.name === s.require_alt)) ||
                                       (s.require_alt === skill.name && !skillList.find( sl => sl.name === s.require)))
-  console.log('toRemove:', toRemove)
-  return toRemove ? removeSkills(toRemove.name, skillList) : skillList 
+  return toRemove ? removeSkills(toRemove.name, skillList) : skillList
 }
 
 const characters = (state = charactersInitialState, action) => {

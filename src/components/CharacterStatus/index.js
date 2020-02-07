@@ -80,7 +80,7 @@ class CharacterStatus extends React.Component{
     this.props.dispatch({type: 'REMOVE_SKILL', skill: skillName, character: this.props.character})
   }
 
-  shiftSkills = (side, group) => {
+  shiftSkills = (side, group) => () => {
     this.props.dispatch({type: 'SHIFT_SKILLS', side: side, group: group})
   }
 
