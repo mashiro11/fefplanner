@@ -103,6 +103,7 @@ class CharacterStatus extends React.Component{
               <Button size="small" color="primary">
                 {character.name}
               </Button>
+              <Skill skill={character.skill} />
               { character.name === 'Corrin' ?
                 <Button onClick={this.selectCorrinClass}>
                   <Paper>Select Class</Paper>

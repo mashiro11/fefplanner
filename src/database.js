@@ -583,7 +583,7 @@ characters["Flora"] = new Character("Flora");
 characters["Gunter"] = new Character("Gunter");
 characters["Yukimura"] = new Character("Yukimura");
 characters["Izana"] = new Character("Izana");
-characters["Fuuga"] = new Character("Fuuga");
+characters["Fuga"] = new Character("Fuga");
 
 function Character(characterName){
     this.name = characterName;
@@ -728,6 +728,21 @@ function changeObjCharacter(characterName, character){
             character.supportList["Partner"] = ["Corrin", "Jakob", "Silas", "Kaze",
                                      "Ryoma", "Hinata", "Takumi", "Subaki", "Saizo", "Hayato", "Kaden", "Azama",
                                     "Xander", "Leo", "Odin", "Arthur", "Keaton", "Benny", "Niles", "Laslow"];
+            character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
+                                   [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
+                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
+            character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
+            character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
+        }
+        else if(character.name === "Shura"){
+            character.japanese = "Ashura"
+            character.path = "all"
+            character.childDefiner = false;
+            character.isChild = false;
+            character.sex = "male";
+            character.skill = new Skill("Highwayman");
+            character.supportList["Friend"] = ["Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
             character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
                                    [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
                                      //HP - Str - Mag - Skl - Spd - Lck - Def - Res
@@ -1344,6 +1359,21 @@ function changeObjCharacter(characterName, character){
             character.grownthRate =  [ 35 , 50  , 30  , 60  , 45  , 45  , 35  , 40];
             character.maxModifiers = [  0 , +1  , -1  , +2  ,  0  , -1  , +1  , -1];
         }
+        else if(character.name === "Gunter"){
+            character.japanese = "Gunter"
+            character.path = "all"
+            character.childDefiner = false;
+            character.isChild = false;
+            character.sex = "male";
+            character.skill = new Skill("ForcefulPartner");
+            character.supportList["Friend"] = ["Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
+            character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
+                                   [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
+                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
+            character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
+            character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
+        }
 /*
 *****************************************************
 *
@@ -1827,6 +1857,51 @@ function changeObjCharacter(characterName, character){
             for(var i = 1; i < character.child.maxModifiers.length; i++){
                 character.child.maxModifiers[i] = character.maxModifiers[i] + 1 ;
             }
+        }
+        else if(character.name === "Yukimura"){
+            character.japanese = "Yukimura"
+            character.path = "all"
+            character.childDefiner = false;
+            character.isChild = false;
+            character.sex = "male";
+            character.skill = new Skill("Perspicacious");
+            character.supportList["Friend"] = ["Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
+            character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
+                                   [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
+                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
+            character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
+            character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
+        }
+        else if(character.name === "Izana"){
+            character.japanese = "Izana"
+            character.path = "all"
+            character.childDefiner = false;
+            character.isChild = false;
+            character.sex = "male";
+            character.skill = new Skill("Peacebringer");
+            character.supportList["Friend"] = ["Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
+            character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
+                                   [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
+                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
+            character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
+            character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
+        }
+        else if(character.name === "Fuga"){
+            character.japanese = "Fuuga"
+            character.path = "all"
+            character.childDefiner = false;
+            character.isChild = false;
+            character.sex = "male";
+            character.skill = new Skill("WindDiscipline");
+            character.supportList["Friend"] = ["Corrin"];
+            character.supportList["Partner"] = ["Corrin"];
+            character.charClass = [[classes["Villager"], classes["MasterOfArms"], classes["Merchant"]],
+                                   [classes["Archer"], classes["Sniper"], classes["KinshiKnight"]]];
+                                     //HP - Str - Mag - Skl - Spd - Lck - Def - Res
+            character.grownthRate =  [ 30 , 40  ,  5  , 50  , 55  , 45  , 35  , 30];
+            character.maxModifiers = [  0 ,  0  ,  0  , +1  , +1  , +1  ,  0  , -2];
         }
 }
 
@@ -2416,7 +2491,7 @@ function Skill(skillName, sex){
         }else if(skillName === "HoshidanUnity"){
             this.require = "DragonWard";
         }else if(skillName === "NohrianTrust"){
-            this.require = "DraconicHex" 
+            this.require = "DraconicHex"
         }
         //Knight
         else if(skillName === "NaturalCover"){

@@ -43,10 +43,11 @@ const createCharInfo = (character) => {
   let name = character.name === 'Corrin' || character.name === 'Kana' ?
              character.name + '_' + character.sex :
              character.name
+  console.log('character:', character)
   return {
     ...character,
-    skill: {...Database.skills[character.skill],
-            icon: Images.Skills[character.skill]},
+    skill: {...character.skill,
+            icon: Images.Skills[character.skill.name]},
     friend: 'None',
     support: 'None',
     friendClass: null,
