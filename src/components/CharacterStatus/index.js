@@ -8,6 +8,7 @@ import CharacterSelector from '../CharacterSelector'
 import Database from '../../database.js'
 import Skill from '../Skill'
 import ToolBox from '../ToolBox'
+import Circle from './Circle'
 
 const styles = {
   pannel:{
@@ -139,6 +140,30 @@ class CharacterStatus extends React.Component{
                 />
               </div>
               <Paper style={styles.skills}>
+                {character.isChild?
+                <div>
+                  <div>Inherited</div>
+                  <div>
+                    {character.childDefinerInheritedSkill ?
+                      <ToolBox  top='delete'
+                                topButtomTitle='Remove'
+                                onTopClick={this.RemoveSkill(character.childDefinerInheritedSkill.name)}
+                      >
+                        <Skill skill={character.childDefinerInheritedSkill}/>
+                      </ToolBox>
+                    :<Circle clickable/> }
+                    {character.supportParentInheritedSkill ?
+                      <ToolBox  top='delete'
+                                topButtomTitle='Remove'
+                                onTopClick={this.RemoveSkill(character.supportParentInheritedSkill.name)}
+                      >
+                        <Skill skill={character.supportParentInheritedSkill}/>
+                      </ToolBox>
+                    :<Circle clickable/>}
+                  </div>
+                </div>
+                :null}
+
                 <div>
                   <div>Equiped</div>
                   <div style={{display: 'grid', gridTemplateColumns: '10% 80% 10%'}}>

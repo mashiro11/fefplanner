@@ -1361,7 +1361,7 @@ function changeObjCharacter(characterName, character){
         }
         else if(character.name === "Gunter"){
             character.japanese = "Gunter"
-            character.path = "all"
+            character.path = "conrev"
             character.childDefiner = false;
             character.isChild = false;
             character.sex = "male";
@@ -1860,7 +1860,7 @@ function changeObjCharacter(characterName, character){
         }
         else if(character.name === "Yukimura"){
             character.japanese = "Yukimura"
-            character.path = "all"
+            character.path = "bir"
             character.childDefiner = false;
             character.isChild = false;
             character.sex = "male";
@@ -1875,7 +1875,7 @@ function changeObjCharacter(characterName, character){
         }
         else if(character.name === "Izana"){
             character.japanese = "Izana"
-            character.path = "all"
+            character.path = "bircon"
             character.childDefiner = false;
             character.isChild = false;
             character.sex = "male";
@@ -1890,7 +1890,7 @@ function changeObjCharacter(characterName, character){
         }
         else if(character.name === "Fuga"){
             character.japanese = "Fuuga"
-            character.path = "all"
+            character.path = "rev"
             character.childDefiner = false;
             character.isChild = false;
             character.sex = "male";

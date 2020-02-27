@@ -54,6 +54,8 @@ const createCharInfo = (character) => {
     supportClass: null,
     childName: character.childDefiner ? character.child.name : null,
     childDefinerName: character.isChild ? character.childDefinerName : null,
+    childDefinerInheritedSkill: null,
+    supportParentInheritedSkill: null,
     portrait: Images.Portraits[name],
     face: Images.Faces[name]
   }

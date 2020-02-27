@@ -60,7 +60,7 @@ class App extends React.Component {
         <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
             characters
-            .filter(character => character.path === 'bir' && character.childDefiner)
+            .filter(character => character.path.includes('bir') && character.childDefiner)
             .map((character, index) =>
               <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
                 <SupportTree character={character} />
@@ -70,7 +70,7 @@ class App extends React.Component {
         <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.props.gamePath === 'bir' || this.props.gamePath === 'rev'?
             characters
-            .filter(character => character.path === 'bir' && !character.childDefiner && !character.isChild)
+            .filter(character => character.path.includes('bir') && !character.childDefiner && !character.isChild)
             .map((character, index) =>
               <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
                 <SupportTree character={character} />
@@ -80,7 +80,7 @@ class App extends React.Component {
         <Grid container justify="center" spacing={24} style={{padding:24}}>
           {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
             characters
-            .filter( character => character.path === 'con' && character.childDefiner)
+            .filter( character => character.path.includes('con') && character.childDefiner)
             .map((character, index) =>
               <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
                 <SupportTree character={character} />
@@ -90,7 +90,7 @@ class App extends React.Component {
         <Grid container justify="center" spacing={24} style={{padding:24}}>
             {this.props.gamePath === 'con' || this.props.gamePath === 'rev'?
               characters
-              .filter( character => character.path === 'con' && !character.childDefiner && !character.isChild)
+              .filter( character => character.path.includes('con') && !character.childDefiner && !character.isChild)
               .map((character, index) =>
                 <Grid item xs={6} sm={3} lg={2} xl={1} key={index}>
                   <SupportTree character={character} />
