@@ -77,6 +77,13 @@ class CharacterStatus extends React.Component{
       window.confirm('Character already has 10 skills! Remove a skill to add another')
   }
 
+  toggleSkillSelection = (side) => () => this.setState({skillSelection: side === this.state.skillSelection ? null : side})
+
+  inheritSkill = (inheritFrom) => (e) => {
+    this.setState({skillSelection: null})
+    this.props.dispatch({type: 'INHERIT_SKILL', inheritFrom, character: this.props.character, skillName: e.target.alt})
+  }
+
   RemoveSkill = (skillName) => (e) =>{
     this.props.dispatch({type: 'REMOVE_SKILL', skill: skillName, character: this.props.character})
   }
@@ -146,12 +153,12 @@ class CharacterStatus extends React.Component{
                   <div>
                     {character.childDefinerInheritedSkill ?
                       <ToolBox  top='delete'
-                                topButtomTitle='Remove'
-                                onTopClick={this.RemoveSkill(character.childDefinerInheritedSkill.name)}
-                      >
-                        <Skill skill={character.childDefinerInheritedSkill}/>
+                              topButtomTitle='Remove'
+                              onTopClick={this.RemoveSkill(character.childDefinerInheritedSkill.name)}
+                              >
+                              <Skill skill={character.childDefinerInheritedSkill}/>
                       </ToolBox>
-                    :<Circle clickable/> }
+                    :<Circle clickable onClick={this.toggleSkillSelection('left')}/> }
                     {character.supportParentInheritedSkill ?
                       <ToolBox  top='delete'
                                 topButtomTitle='Remove'
@@ -159,8 +166,28 @@ class CharacterStatus extends React.Component{
                       >
                         <Skill skill={character.supportParentInheritedSkill}/>
                       </ToolBox>
-                    :<Circle clickable/>}
+                    :<Circle clickable onClick={this.toggleSkillSelection('right')}/>}
                   </div>
+                  {this.state.skillSelection ?
+                    this.state.skillSelection === 'left' ?
+                      <div>
+                        <div>To inherit skill ingame, it MUST be the PARENT LAST EQUIPPED SKILL</div>
+                        {this.props.characters
+                          .find((chr) => chr.name === character.childDefinerName)
+                          .choosenSkills.map( (item, index) =>
+                            <Skill skill={item} key={index} onClick={this.inheritSkill('childDefiner')}/>
+                        )}
+                      </div>
+                      : character.supportParent ?
+                      <div>
+                        {this.props.characters
+                          .find((chr) => chr.name === character.supportParent)
+                          .choosenSkills.map( (item, index) =>
+                            <Skill skill={item} key={index} onClick={this.inheritSkill('supportParent')}/>
+                        )}
+                      </div>
+                      :null
+                    :null}
                 </div>
                 :null}
 
@@ -262,6 +289,7 @@ class CharacterStatus extends React.Component{
 
 const mapStateToProps = state => {
   return{
+    characters: state.characters,
     status: state.status
   }
 }

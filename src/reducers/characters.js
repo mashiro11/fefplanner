@@ -352,6 +352,15 @@ const characters = (state = charactersInitialState, action) => {
             }
           }else return chr
         })
+    case 'INHERIT_SKILL':
+      return state.map( chr => {
+        if(chr.name === action.character.name){
+          return {
+            ...chr,
+            [action.inheritFrom + 'InheritedSkill']: Database.skills[action.skillName]
+          }
+        }else return chr
+      })
     default:
       return(state)
     }
