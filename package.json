@@ -2,7 +2,7 @@
   "name": "fefplanner",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mashiro11.github.io/fefplanner",
+  "homepage": "http://mashiro11.github.io/fefplanner",
   "dependencies": {
     "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^4.5.1",
