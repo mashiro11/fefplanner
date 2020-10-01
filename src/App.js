@@ -107,6 +107,7 @@ class App extends React.Component {
             <a href={'fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem_Fates'}>fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem_Fates</a><br/>
             <a href={'serenesforest.net/fire-emblem-fates/revelation/character-base-stats/'}>serenesforest.net/fire-emblem-fates/revelation/character-base-stats/</a>
         </div>
+        <iframe src={'https://tailorbuilder.com/cgi-bin/runtime_login.pl?grid=69&prid=4&taal=EN'}></iframe>
       </div>
     )
   }
