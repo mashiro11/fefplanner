@@ -99,6 +99,7 @@ class App extends React.Component {
         </Grid>
         { status.name ? <CharacterStatus character={characters.find( character => character.name === status.name)} /> : null }
         <div>
+          <a href="unitydl://mylink">TestDeepLink</a>
           Based on information from:<br/>
             <a href={'www.youtube.com/watch?v=zgg8lt75MrE'}>www.youtube.com/watch?v=zgg8lt75MrE</a><br/>
             <a href={'https://www.reddit.com/r/fireemblem/comments/46pnau/hires_poster_of_fefates_class_progression/'}>
